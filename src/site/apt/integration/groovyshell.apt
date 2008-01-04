@@ -1,0 +1,29 @@
+ ------
+ Groovy's GroovyShell class
+ 
+Groovy's <<<GroovyShell>>> class
+
+ Another easy way to evaluate Groovy Dice scripts from a Java/Groovy
+ application is to use the Groovy's <<<GroovyShell>>> class:
+ 
++----------------------------
+import groovy.lang.*;
+import net.sf.groovydice.*;
+
+public class MyDiceRollerApp {
+    static final GroovyShell shell;
+
+    static {
+        new GroovyDice().initialize();
+        shell = new GoovyShell();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(shell.evaluate("5.d10 * -8"));
+    }
+}
++----------------------------
+ 
+ For more information, please read the
+ {{{http://groovy.codehaus.org/api/groovy/lang/GroovyShell.html}GroovyShell
+ documentation}}.

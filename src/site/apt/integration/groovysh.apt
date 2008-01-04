@@ -1,0 +1,33 @@
+ ------
+ groovysh integration
+ 
+<<<groovysh>>> integration
+
+ You <<don't>> need to create a full-fledged dice roller application from
+ scratch just to play around with Groovy Dice: why not leverage
+ <<<groovysh>>> and <<<groovyConsole>>>? :-)
+ 
+ The following procedure works for either <<<groovysh>>> and
+ <<<groovyConsole>>>:
+ 
+   [[1]] Type one of the following command lines in the terminal (bash,
+   ms-dos prompt, whatever):
+ 
++----------------------------
+groovysh -cp <groovydice-jar>
+groovyConsole -cp <groovydice-jar>
++----------------------------
+ 
+   [[2]] Evaluate the following Groovy code in the console to initialize
+   the Groovy Dice engine: 
+ 
++----------------------------
+new net.sf.groovydice.GroovyDice().initialize()
++----------------------------
+
+ That's it! You are now able to evaluate Groovy Dice expressions in the
+ console. For example:
+ 
++----------------------------
+10.d20.where{it.is_even}.view
++----------------------------

@@ -1,0 +1,81 @@
+ ------
+ Dice filtering
+
+Dice filtering
+
+ Groovy Dice provides several ways to filter dice of a roll. This is a very
+ useful feature for situations where only a few dice matters.
+ 
+ The simplest way to filter dice is to use <<<best()>>> and <<<worst()>>>
+ methods:
+ 
++-----------------------
+5.d10.best(2)
+10.d20.worst(5)
++-----------------------
+ 
+ You can use the <<<where()>>> method to specify more advanced filters:
+ 
++-----------------------
+5.d6.where(2)
+10.d12.where([1,3,5,7])
+5.d20.where(1..4)
+5.d20.where(2.d10)
++-----------------------
+ 
+ In the first script we are rolling five six-sided dice and filtering all dice
+ equals to <<<2>>>. The second script rolls ten twelve-sided dice and filter
+ all dice equals to <<<1>>>, <<<3>>>, <<<5>>> or <<<7>>>. The third script
+ rolls five twenty-sided dice and filter all dice between <<<1>>> and <<<4>>>
+ (inclusive). Finally, the last script rolls five twenty-sided dice and filter
+ all dice equals to any dice in two ten-sided dice.
+
+ But we can do things even more nicely:
+ 
++-----------------------
+5.d12.where{it.is_even}
+10.d20.where{it in [1,3,5]}
+10.d10.where{it > 8 || it in 1..3}
+5.d6.where{it+1 in 2.d6}
++-----------------------
+ 
+ The first script rolls five twelve-sided dice and filter all even dice. The
+ second script rolls ten twenty-sided dice and filter all dice equals to
+ <<<1>>>, <<<3>>> or <<<5>>>. The third script rolls ten ten-sided dice and
+ filter all dice greater than <<<8>>> or between <<<1>>> and <<<3>>>
+ (inclusive). Finally, the last script rolls five six-sided dice and filter
+ each die where it plus <<<1>>> is equals to any die in two six-sided dice
+ roll.
+
+* Is there a way to count all dice that match a given condition?
+
+ Groovy Dice provides a special type of filter, which is called <<Counter>>.
+ A Counter is just a simple dice filter, but it returns the number of dice that
+ match the given condition. For example:
+ 
++-----------------------
+5.d12.count_where{it.is_even}
++-----------------------
+
+* Exercises
+
+ [[1]] Roll fifteen twenty-sided dice and get the best three odd dice. A:
+ <<<15.d20.where\{it.is_odd\}.best(3)>>>
+ 
+ [[2]] Roll six ten-sided dice and sum all even dice. A:
+ <<<6.d10.where\{it.is_even\}.sum>>>
+ 
+ [[3]] Roll ten ten-sided dice and filter all dice equals to any dice in three
+ six-sided dice. A: <<<10.d10.where(3.d6)>>>
+ 
+ [[4]] Roll ten ten-sided dice and filter all dice equals to the sum of two
+ six-sided dice. A: <<<10.d10.where(2.d6.sum)>>>
+ 
+ [[5]] Roll seven six-sided dice and count all odd dice; then roll ten-sided
+ dice for this number of times: A: <<<7.d6.count_where\{it.is_even\}.d10>>>
+ 
+ [[6]] Let's say you are playing a role-playing game and you decided to attack
+ your enemy. So, you'll need to roll six ten-sided dice against a difficulty of
+ <<<7>>> (the number of dice equals or greater than <<<7>>> will determine your
+ success or failure). How do you express this roll? A:
+ <<<6.d10.count_where\{it>=7\}>>>

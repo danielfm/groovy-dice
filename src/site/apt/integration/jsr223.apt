@@ -1,0 +1,44 @@
+ ------
+ Java Scripting API (JSR 223)
+ 
+Java Scripting API (JSR 223)
+
+ JavaSE 6 has introduced a standard way for Java applications interact with
+ scripting languages: the
+ {{{https://scripting.dev.java.net/}Java Scripting API (JSR 223)}}. This
+ API provides standard interfaces in such way that a given application is
+ able to easily change from a scripting language to another. Very neat stuff!
+ 
+ If you want to run Groovy Dice scripts with Java Scripting API, you'll need
+ to place the Groovy engine JAR (<<and>> the Groovy JARs as well) in your
+ <<<CLASSPATH>>>.
+ 
+ Then, you just need to create a <<<ScriptEngine>>> object in your code, which
+ can be used to evaluate Groovy Dice scripts:
+ 
++----------------------------
+import javax.script.*;
+import net.sf.groovydice.*;
+
+public class MyDiceRollerApp {
+    static final ScriptEngine engine;
+
+    static {
+        new GroovyDice().initialize();
+        engine = new ScriptEngineManager().getEngineByName("groovy");
+    }
+
+    public static void main(String[] args) {
+        try {
+            System.out.println(engine.eval("5.d10 * -8"));
+        }
+        catch (ScriptException exc) {
+            exc.printStackTrace();
+        }
+    }
+}
++----------------------------
+ 
+ For more information, please read
+ {{{http://java.sun.com/javase/6/docs/technotes/guides/scripting/programmer_guide/index.html}
+ this article}} on Java Scripting API.

@@ -1,0 +1,51 @@
+ ------
+ What is Groovy Dice?
+
+
+A groovier way to roll dice
+
+ <<Groovy Dice>> is an open source {{{http://groovy.codehaus.org}Groovy}}-based
+ dice rolling API that provides a simple way to perform almost any kind of dice
+ roll, making this project a reasonable choice for those who are implementing
+ any kind of dice-based game on top of Java platform.
+ 
+ In fact, this project was born just as an experiment on how to design and
+ implement DSLs (Domain Specific Languages) using Groovy. Thus, I invite
+ anyone interested in this subject to {{{download.html}download}} and study the
+ source code. It's not state-of-art stuff, but might help. :-)
+
+* Show me some code!
+
+ Groovy Dice provides a DSL-like syntax that allows us to express dice rolls
+ more effectively. Some examples:
+
++---------------------------------------+
+6.d17      // six seventeen-sided dice
+7.d10 - 5  // roll seven ten-sided dice and append -5 to the results
+3.d + 4.d4 // plus the sum of four four-sided dice to the sum of three six-sided dice
+1.'d%'     // percentile die
+1.pd       // another way to roll a percentile die 
++---------------------------------------+
+
+ We can extract some useful information from a dice roll as well:
+
++---------------------------------------+
+5.d.view       // view the results of five six-sided dice
+10.d6.lowest  // get the lowest die in this roll
++---------------------------------------+
+
+ Filtering dice and applying modifiers to them is also possible:
+
++---------------------------------------+
+5.d12 * 5.on_each_die   // multiply each die by 5
+6.d20 + 2.d.on_each_die // multiply each die by the sum of two six-sided dice
+10.d10.best(3)          // filter the three highest dice in this roll
+20.d6.where{it.is_odd}  // filter all odd dice of this roll
++---------------------------------------+
+
+ Don't be fooled: all these Groovy scripts <works>!
+
+* Is this everything!?
+
+ No, it's just an idea of what you can do with Groovy Dice. To see its real
+ power, take a look at the {{{features/index.html}documentation}}.

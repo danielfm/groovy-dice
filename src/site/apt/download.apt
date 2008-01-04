@@ -1,0 +1,52 @@
+ --------
+ Download
+
+Download
+
+ The latest package of Groovy Dice is available for
+ {{{http://sourceforge.net/project/showfiles.php?group_id=213311}download}} at
+ the project's website. This package contains all JAR files needed to use
+ Groovy Dice in a Java/Groovy application, the complete source code and an
+ offline version of this website.
+
+* Maven2 artifact
+
+ If you want to add Groovy Dice as a dependency, just put the following snippet
+ to your POM:
+ 
++---------------------
+<dependency>
+    <groupId>net.sf.groovydice</groupId>
+    <artifactId>groovydice</artifactId>
+    <version>1.0</version>
+</dependency>
++---------------------
+
+ <<Work in progress>>: The artifact is <not yet> available for use. Please have
+ patience... I'm working on it.
+
+* Getting Groovy Dice from the source control server
+
+ Another way to get Groovy Dice is to checkout its code directly from our
+ Subversion server. For more information, read the
+ {{{source-repository.html}source repository page}}.
+
+** How to build?
+
+ Groovy Dice is built by {{{http://maven.apache.org}Maven 2}}.
+ 
+ After check out the Groovy Dice code from the source control server, just open
+ the terminal (bash, ms-dos prompt, whatever) and run the following command line
+ at the project's root folder:
+
++---------------------
+mvn package site
++----------------------
+
+ This command will compile the source code, run all test cases and create the
+ Groovy Dice JAR file. An offline version of this website will be generated
+ as well.
+ 
+ Needless to say that you must have Maven 2 installed in your machine. Further
+ instructions on how to download and configure Maven can be found at
+ {{{http://maven.apache.org}Maven's website}}.

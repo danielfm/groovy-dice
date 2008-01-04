@@ -1,0 +1,88 @@
+ ------
+ Introduction
+
+Introduction
+
+ The simplest Groovy Dice expression looks like this:
+ 
++-----------------------
+1.d
++-----------------------
+ 
+ This script rolls one <default> die (a six-sided die). Obviously, you can roll
+ any kind of dice you want:
+ 
++-----------------------
+5.d15
+15.d20
+2.d100
+1.pd
+1.'d%'
++-----------------------
+ 
+ Except for the last two lines - which means the same thing (<roll a percentile
+ die>) - the code is very easy to follow for those who know a bit about
+ {{{http://en.wikipedia.org/wiki/Dice_notation}dice notation}}.
+
+* Dynamic dice
+
+ A useful feature is what we call <<Dynamic dice>>, which allows you to
+ dynamically specify the type of dice to roll. For example, imagine that your
+ script needs to ask the user for the dice type:
+ 
++-----------------------
+def n = new Scanner(System.in).nextLine()
+5.d(n) // 'n' is a number or a '%'
++-----------------------
+
+* What is returned by a dice rolling expression?
+
+ If you take a look at {{{../apidocs/index.html}the documentation}}, you'll see
+ that you are able to extract some useful information from dice, like the
+ highest die, the lowest die, the sum of all dice, and so on. Then, all dice
+ expressions (except in few cases) returns a
+ <<<{{{../apidocs/net/sf/groovydice/DiceRollingSpec.html}DiceRollingSpec}}>>>
+ object.
+ 
+ Some examples:
+ 
++-----------------------
+10.d6.highest
+5.d12.lowest
+6.d4.average
+5.d20.sum
+5.d10.best(3)
+8.d20.worst(4)
++-----------------------
+
+ I'm not going to explain what each line does. Try to figure it out yourself!
+
+* How can I access the dice's results?
+
+ A simple way to see the dice's results is to use the <<<getView()>>> method,
+ which returns an <<<Array>>> of <<<Number>>>s:
+ 
++-----------------------
+3.d6.view
++-----------------------
+ 
+ Altough it's possible to iterate though all dice using the return value of
+ <<<getView()>>> method, you can use the <<<for_each_die()>>> method to get
+ better expressivity in your code:
+ 
++-----------------------
+5.d10.for_each_die{println it}
++-----------------------
+
+* Exercises
+
+ [[1]] Roll fifteen six-sided dice. A: <<<15.d6>>>
+ 
+ [[2]] Roll a percentile die for <<<5*4>>> times. A: <<<(5*4).'d%'>>>
+ 
+ [[3]] Roll six twenty-sided dice and print the worst two dice. A:
+ <<<6.d20.worst(2).for_each_die\{println it\}>>>
+ 
+ [[4]] Roll two ten-sided dice, get the highest die and roll twenty-sided
+ dice for this number of times. Return all dice. A:
+ <<<(2.d10.highest).d20.view>>>

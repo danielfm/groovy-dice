@@ -1,0 +1,41 @@
+#breadcrumbs {
+	padding:0;
+	margin:0;
+}
+
+h2,h3,h4 {
+	background: #eee;
+	border: 0;
+	border-bottom: 1px #666 solid;
+	color: #666
+}
+h2 {
+	font-size: x-large;
+}
+h3 {
+	font-size: large;
+}
+h4 {
+	background: transparent;
+	font-size: medium;
+}
+
+tt {
+	font-size: 1.2em;
+	color: #666;
+}
+
+.source {
+	border: 1px #666 dashed;
+	color: #666;
+}
+
+#footer {
+	border-top: 1px #666 solid;
+	margin-top: 3px;
+	padding-top: 5px;
+}
+
+#leftColumn {
+	background-color: #fafafa;
+}

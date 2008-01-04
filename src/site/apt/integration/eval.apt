@@ -1,0 +1,30 @@
+ ------
+ Groovy's Eval class
+ 
+Groovy's <<<Eval>>> class
+
+ Probably, this is the easiest way to evaluate Groovy Dice scripts from a
+ Java/Groovy application. <<<Eval>>> is a Groovy class that allows us to
+ quickly evaluate a Groovy expression.
+ 
+ Here goes a typical example:
+ 
++----------------------------
+package com.mycompany.mavenproject1;
+
+import groovy.util.*;
+import net.sf.groovydice.*;
+
+public class App {
+    static {
+        new GroovyDice().initialize();
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(Eval.me("20.d10.view"));
+    }
+}
++----------------------------
+ 
+ For more information, please read the
+ {{{http://groovy.codehaus.org/api/groovy/util/Eval.html}Eval documentation}}.

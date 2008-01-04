@@ -1,0 +1,74 @@
+ ------
+ Applying modifiers
+ 
+Applying modifiers
+
+ Sometimes you might want to apply modifiers to one or more dice of a roll.
+ To do this, Groovy Dice provides  <simple> modifiers and <conditional>
+ modifiers.
+
+* Simple modifiers
+
+ Let's say you want to roll seven six-sided dice and plus <<<1>>> to <<all>>
+ dice:
+ 
++-----------------------
+7.d6 + 1.on_each_die
++-----------------------
+ 
+ So, if seven six-sided dice are equals to <<<[1,6,5,3,2,3,6]>>>, then the
+ result of the expression will be <<<[2,7,6,4,3,4,7]>>>.
+ 
+ Feel free to use any operator you want:
+ 
++-----------------------
+7.d6 - 2.on_each_die
+7.d6 * 2.on_each_die
+7.d6 ** 2.on_each_die // exponentiation
+7.d6 / 2.on_each_die
+7.d6 % 2.on_each_die // modulo
++-----------------------
+ 
+ It's also possible to use other dice as modifier:
+ 
++-----------------------
+7.d6 + 1.d6.on_each_die
+7.d6 / 3.d6.highest.on_each_die
++-----------------------
+ 
+ The first script rolls seven six-sided dice and plus to each die the result of
+ a six-sided die. The last script rolls seven six-sided dice and divides each
+ die by the highest die of three six-sided dice.
+ 
+ All these scripts returns <<<DiceRollingSpec>>>s.
+
+* Conditional modifiers
+
+ <Conditional> modifiers are just like the <simple> modifier, but we can
+ specify which dice will be affected by the modifier:
+ 
++-----------------------
+7.d6 + 1.on_each_die.when{it.is_even}
++-----------------------
+ 
+ In this example, we roll seven six-sided dice and plus <<<1>>> to each <even>
+ dice. So, if seven six-sided dice are equals to <<<[1,6,5,3,2,3,6]>>>, then
+ the result will be <<<[1,7,5,3,3,3,7]>>>.
+ 
+ You can pass to <<<when()>>> method several types of objects:
+ 
++-----------------------
+7.d6 + 1.on_each_die.when(1)
+7.d6 + 1.on_each_die.when([1,3,5])
+7.d6 + 1.on_each_die.when(1..4)
+7.d6 + 1.on_each_die.when(1.d4)
+7.d6 + 1.on_each_die.when{it == 1 || it in [5,6]}
++-----------------------
+
+* Exercises
+
+ [[1]] Roll ten six-sided dice and multiply every die by <<<-2>>>. A:
+ <<<10.d * -2.on_each_die>>>
+ 
+ [[2]] Roll six four-sided dice and plus <<<1>>> to every die equals to
+ <<<1>>> or <<<2>>>. A: <<<6.d4 + 1.on_each_die.when\{it in [1,2]\}>>>

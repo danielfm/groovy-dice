@@ -1,0 +1,10 @@
+Groovy Dice - Changelog
+***********************
+
+groovydice v1.0 - Sat January 5, 2008
+-------------------------------------
+ 
+ + initial release.
+
+
+--EOF

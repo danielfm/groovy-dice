@@ -1,0 +1,273 @@
+ ------
+ Dice arithmetic
+
+Dice arithmetic
+
+ Groovy Dice allows you to create complex dice arithmetic expressions and
+ comparisons.
+
+* + operator
+
+ You can plus a <<<Number>>> to a <<<DiceRollingSpec>>> and vice-versa:
+ 
++-----------------------
+5.d10 + 50
+50 + 5.d10
++-----------------------
+ 
+ Both scripts shown above does the same thing: rolls five ten-sided dice and
+ appends <<<50>>> to the results. Let's say that five ten-sided dice returns
+ <<<[1,10,3,5,9]>>>. Then, the result of those expressions will be
+ <<<[1,10,3,5,9,50]>>>.
+ 
+ You can also plus two <<<DiceRollingSpec>>> objects:
+ 
++-----------------------
+2.d6 + 2.d10
++-----------------------
+ 
+ This script rolls two six-sided dice and two ten-sided dice, joining the
+ results of both rolls. Let's say that two six-sided dice returns <<<[5,3]>>>
+ and the two ten-sided dice returns <<<[7,9]>>>. Then, the result will be
+ <<<[5,3,7,9]>>>.
+ 
+ All these scripts returns <<<DiceRollingSpec>>>s.
+
+* - operator
+
+ This operator works similarly to the <<<+>>> operator. For example:
+ 
++-----------------------
+5.d10 - 50
+-50 + 5.d10
++-----------------------
+ 
+ Both scripts shown above does the same thing: rolls five ten-sided dice and
+ appends <<<-50>>> to the results. Let's say that ten-sided dice returns
+ <<<[1,10,3,5,9]>>>. Then, the result of those expressions will be
+ <<<[1,10,3,5,9,-50]>>>
+ 
+ You can use two <<<DiceRollingSpec>>> objects as operands as well:
+ 
++-----------------------
+2.d6 - 2.d10
++-----------------------
+ 
+ This script rolls two six-sided dice and two ten-sided dice, joining the
+ results of both rolls, but multiplying all dice of second roll by <<<-1>>>.
+ Let's say that two six-sided dice returns <<<[5,3]>>> and two ten-sided dice
+ returns <<<[7,9]>>>. Then, the result will be <<<[5,3,-7,-9]>>>.
+ 
+ All these scripts returns <<<DiceRollingSpec>>>s.
+
+* * operator
+
+ You can multiply a <<<DiceRollingSpec>>> by a <<<Number>>> and vice-versa:
+ 
++-----------------------
+5.d12 * 50
+50 * 5.d12
++-----------------------
+ 
+ Both scripts shown above does the same thing: rolls five twelve-sided dice,
+ sums them, and multiplies the sum by <<<50>>>. Let's say that the sum of five
+ twelve-sided dice is <<<49>>>. Then, the result will be <<<2450>>>
+ (<<<49*50>>>).
+ 
+ You can also multiply two <<<DiceRollingSpec>>> objects:
+ 
++-----------------------
+5.d6 * 2.d10
++-----------------------
+ 
+ This script multiplies the sum of five six-sided dice by the sum of two
+ ten-sided dice. Let's say that the sum of five six-sided dice is <<<23>>> and
+ the sum of two ten-sided dice is <<<7>>>. Then, the result will be <<<161>>>
+ (<<<23*7>>>).
+ 
+ All these scripts returns <<<Number>>>s! So, you will get an error if
+ you try to execute a script like this:
+ 
++-----------------------
+(5.d6 * 2.d10).average
++-----------------------
+
+* ** operator
+
+ You can to perform an exponentiation using a <<<DiceRollingSpec>>> as <base>
+ and a <<<Number>>> as <exponent>:
+ 
++-----------------------
+5.d12 ** 2
++-----------------------
+ 
+ This script rolls five twelve-sided dice and returns the square of the sum.
+ Let's say that the sum of five twelve-sided dice is <<<45>>>. Then, the
+ result will be <<<2025>>> (<<<45^2>>> or <<<45*45>>>).
+ 
+ If you want, you can also use a <<<Number>>> as <base> and a
+ <<<DiceRollingSpec>>> as <exponent>:
+ 
++-----------------------
+10 ** 2.d4
++-----------------------
+ 
+ This script raises <<<10>>> to the power equals to the sum of two four-sided
+ dice. Let's say that the sum of two four-sided dice is <<<6>>>. Then, the
+ result will be <<<1000000>>> (<<<10^6>>> or <<<10*10*10*10*10*10>>>).
+ 
+ It's possible to use a <<<DiceRollingSpec>>> object in either <base> and
+ <exponent>:
+ 
++-----------------------
+5.d10 ** 2.d4
++-----------------------
+ 
+ This script raises the sum of five ten-sided dice to the power equals to the
+ sum of two four-sided dice. Let's say that the sum of five ten-sided dice is
+ <<<25>>> and the sum of two four-sided dice is <<<6>>>. Then, the result will
+ be <<<244140625>>> (<<<25^6>>> or <<<25*25*25*25*25*25>>>).
+ 
+ All these scripts returns <<<Number>>>s.
+
+* / operator
+
+ You can to divide a <<<DiceRollingSpec>>> by a <<<Number>>>:
+ 
++-----------------------
+5.d12 / 2
++-----------------------
+ 
+ This script rolls five twelve-sided dice, sums them, and then divides the sum
+ by <<<2>>>. Let's say that the sum of five twelve-sided dice is <<<30>>>.
+ Then, the result will be <<<15>>> (<<<30/2>>>).
+ 
+ You can also divide a <<<Number>>> by a <<<DiceRollingSpec>>>:
+ 
++-----------------------
+10 / 2.d4
++-----------------------
+ 
+ This script divides <<<10>>> by the sum of two four-sided dice. Let's say that
+ that sum of two four-sided dice is <<<4>>>. Then, the result will be
+ <<<2.5>>> (<<<10/4>>>).
+ 
+ It's possible to divide a <<<DiceRollingSpec>>> by another as well:
+ 
++-----------------------
+5.d10 / 2.d4
++-----------------------
+ 
+ This script divides the sum of five ten-sided dice by the sum of two
+ four-sided dice. Let's say that the sum of five ten-sided dice is <<<40>>> and
+ the sum of two four-sided dice is <<<8>>>. Then, the result will be <<<5>>>
+ (<<<40/8>>>).
+ 
+ All these scripts returns <<<Number>>>s.
+
+* % operator
+
+ You can get the reminder of the division of a <<<DiceRollingSpec>>> by a
+<<<Number>>>:
+ 
++-----------------------
+5.d12 % 2
++-----------------------
+ 
+ This script rolls five twelve-sided dice, sums them, and then get the reminder
+ of the division of the sum by <<<2>>>. Let's say that the sum of five
+ twelve-sided dice is <<<43>>>. Then, the result will be <<<1>>> (<<<43%2>>>).
+ 
+ You can also get the reminder of the division of a <<<Number>>> by a
+ <<<DiceRollingSpec>>>:
+ 
++-----------------------
+10 % 2.d4
++-----------------------
+ 
+ This script gets the reminder of the division of <<<10>>> by the sum of two
+ four-sided dice. Let's say that the sum of two four-sided dice is <<<6>>>.
+ Then, the result will be <<<4>>> (<<<10%6>>>).
+ 
+ It's also possible to get the reminder of the division of a
+ <<<DiceRollingSpec>>> by another:
+ 
++-----------------------
+5.d10 % 2.d4
++-----------------------
+ 
+ This script gets the reminder of the division of the sum of five ten-sided
+ dice by the sum of two four-sided dice. Let's say that the sum of five
+ ten-sided dice is <<<38>>> and the sum of two four-sided dice is <<<5>>>.
+ Then, the result will be <<<3>>> (<<<38%5>>>).
+ 
+ All these scripts returns <<<Number>>>s.
+
+* Comparing dice
+
+ Groovy Dice allows you to evaluate <<<boolean>>> expressions using
+ <<<DiceRollingSpec>>> objects. Here goes a simple example where we test
+ whether the sum of seven ten-sided dice is greater than the sum of five
+ twelve-sided dice:
+ 
++-----------------------
+7.d10 > 5.d12
++-----------------------
+ 
+ Other <<<boolean>>> operators are also available for use:
+ 
++-----------------------
+7.d10 >= 5.d12
+7.d10 == 5.d12
+7.d10 != 5.d12
+7.d10 <= 5.d12
+7.d10 < 5.d12
++-----------------------
+ 
+ You <<cannot>> mix <<<DiceRollingSpec>>> with <<<Number>>>s. To perform
+ comparisons between objects of those types, you must convert the dice to a
+ <<<Number>>> first.
+ 
+ Both scripts below tests whether the sum of ten six-sided dice is greater or
+ equals to <<<45>>>:
+ 
++-----------------------
+10.d6.sum >= 45
+45 < 10.d6.sum
++-----------------------
+ 
+ But, what if you want to check whether two dice contains the <<same>>
+ results regardless its order? In this case, you can use the <<<same_as()>>>
+ method to compare every die of both rolls and get a <<<boolean>>> that
+ indicates whether these rolls contains the same results:
+ 
++-----------------------
+7.d10.same_as(7.d12)
++-----------------------
+ 
+ It's possible to check against other objects, like <<<Number>>>s, <<<Array>>>s
+ or <<<Range>>>s:
+ 
++-----------------------
+1.d6.same_as(2)
+7.d10.same_as([1,5,1,7,6,4,2])
+4.d12.same_as(1..4)
++-----------------------
+
+* Exercises
+
+ [[1]] Divide the sum of five ten-sided dice by <<<3>>>. A: <<<5.d10 / 3>>>
+ 
+ [[2]] Divide the sum of three six-sided dice <<<* 3>>> by a six-sided die. A:
+ <<<3.d6 * 3 / 1.d6>>>
+ 
+ [[3]] Divide <<<6>>> by the sum of two four-sided dice. A: <<<6 / 2.d4>>>
+ 
+ [[4]] Multiply the best three dice of six ten-sided dice by <<<1/2>>>. A:
+ <<<6.d10.best(3) * (1/2)>>>
+ 
+ [[5]] Plus a six-sided die to two ten-sided dice and multiply the sum of the
+ result by a four-sided die. A: <<<(2.d10 + 1.d6) * 1.d4>>>
+ 
+ [[6]] Calculate the average value of six ten-sided dice and test whether it
+ is greater or equals to <<<7>>>. A: <<<6.d10.average >= 7>>>
