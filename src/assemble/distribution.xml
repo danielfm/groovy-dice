@@ -7,7 +7,7 @@
 			<includes>
 				<include>README*</include>
 				<include>LICENSE*</include>
-				<include>NOTICE*</include>
+				<include>CHANGELOG*</include>
 				<include>pom.xml</include>
 			</includes>
 			<useDefaultExcludes>true</useDefaultExcludes>
