@@ -1,7 +1,7 @@
  ------
  groovysh integration
  
-<<<groovysh>>> integration
+groovysh integration
 
  You <<don't>> need to create a full-fledged dice roller application from
  scratch just to play around with Groovy Dice: why not leverage

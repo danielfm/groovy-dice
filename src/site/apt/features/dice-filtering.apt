@@ -30,7 +30,7 @@ Dice filtering
  (inclusive). Finally, the last script rolls five twenty-sided dice and filter
  all dice equals to any dice in two ten-sided dice.
 
- But we can do things even more nicely:
+ But we can do things in a more <idiomatic> way:
  
 +-----------------------
 5.d12.where{it.is_even}
@@ -74,8 +74,8 @@ Dice filtering
  [[5]] Roll seven six-sided dice and count all odd dice; then roll ten-sided
  dice for this number of times: A: <<<7.d6.count_where\{it.is_even\}.d10>>>
  
- [[6]] Let's say you are playing a role-playing game and you decided to attack
- your enemy. So, you'll need to roll six ten-sided dice against a difficulty of
- <<<7>>> (the number of dice equals or greater than <<<7>>> will determine your
- success or failure). How do you express this roll? A:
+ [[6]] Let's pretend you are playing a role-playing game and you decided to
+ attack your enemy. So, you'll need to roll six ten-sided dice against a
+ difficulty of <<<7>>> (the number of dice equals or greater than <<<7>>> will
+ determine your success or failure). How do you express this roll? A:
  <<<6.d10.count_where\{it>=7\}>>>

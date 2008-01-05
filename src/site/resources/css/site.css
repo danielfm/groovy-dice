@@ -22,12 +22,14 @@ h4 {
 
 tt {
 	font-size: 1.2em;
-	color: #666;
+	background: #ffffe0;
+	color: #444;
 }
 
 .source {
+    background: #fafafa;
 	border: 1px #666 dashed;
-	color: #666;
+	color: #444;
 }
 
 #footer {

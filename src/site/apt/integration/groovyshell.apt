@@ -1,7 +1,7 @@
  ------
  Groovy's GroovyShell class
  
-Groovy's <<<GroovyShell>>> class
+Groovy's GroovyShell class
 
  Another easy way to evaluate Groovy Dice scripts from a Java/Groovy
  application is to use the Groovy's <<<GroovyShell>>> class:

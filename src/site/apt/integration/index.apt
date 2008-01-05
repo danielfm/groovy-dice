@@ -9,8 +9,8 @@ Java/Groovy integration
 
 * Groovy Dice initialization
 
- Before show you how to integrate your application with Groovy Dice, we
- <<must>> learn how to initialize the Groovy Dice engine.
+ Before show you how to integrate your application with Groovy Dice, we must
+ learn how to initialize the Groovy Dice engine.
  
  Take a look at the following Java code:
  

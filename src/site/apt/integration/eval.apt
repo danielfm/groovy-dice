@@ -1,7 +1,7 @@
  ------
  Groovy's Eval class
  
-Groovy's <<<Eval>>> class
+Groovy's Eval class
 
  Probably, this is the easiest way to evaluate Groovy Dice scripts from a
  Java/Groovy application. <<<Eval>>> is a Groovy class that allows us to
