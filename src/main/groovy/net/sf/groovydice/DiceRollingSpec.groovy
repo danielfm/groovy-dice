@@ -235,13 +235,13 @@ class DiceRollingSpec implements Comparable {
      * such operation.
      */
     def plus(value) {
-        if (value instanceof Number) {
+        switch(value) {
+        case Number:
             return deriveSpec(allDice + value)
-        }
-        else if (value instanceof DiceRollingSpec) {
-            return deriveSpec(allDice + value.allDice, sides > value.sides ? 0 : value.sides)
-        }
-        else if (value instanceof DieModifier) {
+        case DiceRollingSpec:
+            return deriveSpec(allDice + value.allDice,
+                    sides > value.sides ? 0 : value.sides)
+        case DieModifier:
             return value.applyTo(this.&plus)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
@@ -257,14 +257,12 @@ class DiceRollingSpec implements Comparable {
      * such operation.
      */
     def minus(value) {
-        if (value instanceof Number) {
+        switch(value) {
+        case Number:
+        case DieModifier:
             return plus(-value)
-        }
-        else if (value instanceof DiceRollingSpec) {
+        case DiceRollingSpec:
             return deriveSpec(allDice + -value.allDice)
-        }
-        else if (value instanceof DieModifier) {
-            return plus(-value)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
     }
@@ -281,14 +279,13 @@ class DiceRollingSpec implements Comparable {
      * such operation.
      */
     def multiply(value) {
-        if (value instanceof Number) {
+        switch(value) {
+        case Number:
             return sum * value
-        }
-        else if (value instanceof DiceRollingSpec) {
+        case DiceRollingSpec:
             return sum * value.sum
-        }
-        else if (value instanceof DieModifier) {
-        	return value.applyTo(this.&multiply)
+        case DieModifier:
+            return value.applyTo(this.&multiply)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
     }
@@ -305,14 +302,12 @@ class DiceRollingSpec implements Comparable {
      * such operation.
      */
     def div(value) {
-        if (value instanceof Number) {
+        switch(value) {
+        case Number:
+        case DiceRollingSpec:
             return sum / value
-        }
-        else if (value instanceof DiceRollingSpec) {
-            return sum / value
-        }
-        else if (value instanceof DieModifier) {
-        	return value.applyTo(this.&div)
+        case DieModifier:
+            return value.applyTo(this.&div)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
     }
@@ -329,13 +324,12 @@ class DiceRollingSpec implements Comparable {
      * such operation.
      */
     def power(value) {
-        if (value instanceof Number) {
+        switch(value) {
+        case Number:
             return sum ** value
-        }
-        else if (value instanceof DiceRollingSpec) {
+        case DiceRollingSpec:
             return sum ** value.sum
-        }
-        else if (value instanceof DieModifier) {
+        case DieModifier:
             return value.applyTo(this.&power)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
@@ -353,13 +347,12 @@ class DiceRollingSpec implements Comparable {
      * such operation.
      */
     def mod(value) {
-        if (value instanceof Number) {
+        switch(value) {
+        case Number:
             return sum % value
-        }
-        else if (value instanceof DiceRollingSpec) {
+        case DiceRollingSpec:
             return sum % value.sum
-        }
-        else if (value instanceof DieModifier) {
+        case DieModifier:
             return value.applyTo(this.&mod)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
@@ -417,13 +410,18 @@ class DiceRollingSpec implements Comparable {
      */
     def same_as(spec) {
         def dice
-        if (spec instanceof Number) {
+
+        switch(spec) {
+        case Number:
             dice = [spec]
-        } else if (spec instanceof List) {
+            break
+        case List:
             dice = spec.collect{it}
-        } else if (spec instanceof DiceRollingSpec) {
+            break
+        case DiceRollingSpec:
             dice = spec.allDice
-        } else {
+            break
+        default:
             throw new IllegalArgumentException("${spec?.getClass()} not supported")
         }
 
@@ -441,7 +439,6 @@ class DiceRollingSpec implements Comparable {
         if (spec instanceof DiceRollingSpec) {
             return sum <=> spec.sum
         }
-        false
     }
 
     /**
