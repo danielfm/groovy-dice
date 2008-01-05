@@ -113,7 +113,7 @@ class NumberPatcher {
                 }
 
                 throw new MissingPropertyException(
-                    "No such property: $name for class: ${delegate.class}")
+                        "No such property: $name for class: ${delegate.class}")
             }
         }
     }
