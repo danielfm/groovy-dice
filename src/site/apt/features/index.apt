@@ -40,9 +40,7 @@ def n = new Scanner(System.in).nextLine()
  If you take a look at {{{../apidocs/index.html}the documentation}}, you'll see
  that you are able to extract some useful information from dice, like the
  highest die, the lowest die, the sum of all dice, and so on. Then, all dice
- expressions (except in few cases) returns a
- <<<{{{../apidocs/net/sf/groovydice/DiceRollingSpec.html}DiceRollingSpec}}>>>
- object.
+ expressions (except in few cases) returns a <<<DiceRollingSpec>>> object.
  
  Some examples:
  

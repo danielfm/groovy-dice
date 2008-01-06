@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Groovy Dice">
+<project>
 	<publishDate position="navigation-bottom" format="MM-dd-yy" />
-	<poweredBy>
-		<logo name="SourceForge.net" href="http://sourceforge.net/"
-			img="http://sflogo.sourceforge.net/sflogo.php?group_id=213311&amp;type=1" />
-	</poweredBy>
 	<bannerLeft>
+        <name>Groovy Dice</name>
 		<src>images/logo.png</src>
 		<href>index.html</href>
 	</bannerLeft>
+	<bannerRight>
+		<src>http://sflogo.sourceforge.net/sflogo.php?group_id=213311&amp;type=5</src>
+		<href>http://sourceforge.net/</href>
+	</bannerRight>
 	<body>
 		<menu name="Getting started">
 			<item name="What is Groovy Dice?" href="index.html" />
