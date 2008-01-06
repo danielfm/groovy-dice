@@ -9,7 +9,7 @@ Download
  Groovy Dice in a Java/Groovy application, the complete source code and an
  offline version of this website.
 
-* Maven2 artifact
+* Maven 2 artifact
 
  If you want to add Groovy Dice as a dependency, just put the following snippet
  to your POM:
