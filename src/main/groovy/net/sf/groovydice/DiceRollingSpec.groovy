@@ -81,45 +81,44 @@ class DiceRollingSpec implements Comparable {
     /**
      * Get the sum of all dice.
      * @return A <code>Number</code> which represents the sum of all dice or
-     * zero if no die has been rolled yet.
+     * null if no die has been rolled yet.
      */
     def getSum() {
-        allDice.sum() ?: 0
+        allDice?.sum()
     }
 
     /**
      * Get the highest die.
-     * @return A <code>Number</code> which represents the highest die or zero
+     * @return A <code>Number</code> which represents the highest die or null
      * if no die has been rolled yet.
      */
     def getHighest() {
-        allDice.max() ?: 0
+        allDice?.max()
     }
 
     /**
      * Get the lowest die.
-     * @return A <code>Number</code> which represents the lowest die or zero if
+     * @return A <code>Number</code> which represents the lowest die or null if
      * no die has been rolled yet.
      */
     def getLowest() {
-        allDice.min() ?: 0
+        allDice?.min()
     }
 
     /**
      * Calculate the mean value.
-     * @return A <code>Number</code> which represents the mean or zero if no
+     * @return A <code>Number</code> which represents the mean or null if no
      * die has been rolled yet.
      */
     def getMean() {
         if (allDice) {
             return sum / count
         }
-        0
     }
 
     /**
-     * Calculate the median value.
-     * @return A <code>Number</code> which represents the median or zero if no
+     * Calculate the median.
+     * @return A <code>Number</code> which represents the median or null if no
      * die has been rolled yet.
      */
     def getMedian() {
@@ -130,7 +129,39 @@ class DiceRollingSpec implements Comparable {
 
             return !(n % 2) ? (dice[h-1..h].sum() / 2) : dice[h]
         }
-        0
+    }
+
+    /**
+     * Calculate the mode.
+     * @return A <code>Number</code> which represents the median or null if no
+     * die has been rolled yet.
+     */
+    def getMode() {
+        if (allDice) {
+            def map = [:]
+            allDice.each {
+                map[it] = map[it] ? map[it] + 1 : 1
+            }
+
+            def keys = map.keySet().sort{-map[it]}
+            if (map.values().sum() == map.keySet().size()) {
+                return null
+            }
+
+            def idx = 0
+            for (key in keys) {
+                if (idx++ == 0) continue
+                if (map[keys[idx - 2]] > map[keys[idx - 1]]) break
+            }
+
+            def result = keys[0..idx-2]
+            if (result instanceof Number) {
+                return [result]
+            }
+            else {
+                return result
+            }
+        }
     }
 
     /**

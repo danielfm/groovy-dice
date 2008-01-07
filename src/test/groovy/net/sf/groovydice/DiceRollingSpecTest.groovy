@@ -73,7 +73,7 @@ class DiceRollingSpecTest {
 
     @Test
     void getTheHighestValue() {
-        assert new DiceRollingSpec().highest == 0
+        assert !new DiceRollingSpec().highest
 
         def spec = new DiceRollingSpec(allDice:[1,3,2,3,5,6,1,6])
         assert spec.highest == 6
@@ -81,24 +81,24 @@ class DiceRollingSpecTest {
 
     @Test
     void getTheLowestValue() {
-        assert new DiceRollingSpec().lowest == 0
+        assert !new DiceRollingSpec().lowest
 
         def spec = new DiceRollingSpec(allDice:[1,3,2,3,5,6,1,6])
         assert spec.lowest == 1
     }
 
     @Test
-    void getTheMeanValue() {
-        assert new DiceRollingSpec().mean == 0
+    void getTheMean() {
+        assert !new DiceRollingSpec().mean
 
         def spec = new DiceRollingSpec(allDice:[1,3,2,3,5,6,1,6])
         assert spec.mean == 3.375f
     }
 
     @Test
-    void getTheMedianValue() {
+    void getTheMedian() {
         def spec = new DiceRollingSpec()
-        assert spec.median == 0
+        assert !spec.median
 
         spec = new DiceRollingSpec(allDice:[1,2,4,7,9,10])
         assert spec.median == 5.5
@@ -108,8 +108,26 @@ class DiceRollingSpecTest {
     }
 
     @Test
+    void getTheMode() {
+    	def spec = new DiceRollingSpec()
+        assert !spec.mode
+
+        spec = new DiceRollingSpec(allDice:[1,2,4,7,9,10])
+        assert !spec.mode
+        
+        spec = new DiceRollingSpec(allDice:[1,2,4,7,9,10,4])
+        assert spec.mode == [4]
+
+        spec = new DiceRollingSpec(allDice:[1,2,4,7,9,10,4,7,3])
+        assert spec.mode == [4,7]
+
+    	spec = new DiceRollingSpec(allDice:[1,2,4,7,9,10,4,7,3,1])
+        assert spec.mode == [1,4,7]
+    }
+
+    @Test
     void sumDice() {
-        assert new DiceRollingSpec().sum == 0
+        assert !new DiceRollingSpec().sum
 
         def spec = new DiceRollingSpec(allDice:[1,3,2,3,5,6,1,6])
         assert spec.sum == 27
