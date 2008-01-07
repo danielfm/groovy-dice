@@ -48,7 +48,7 @@ class DiceRollingSpec implements Comparable {
      */
     def roll(n=1) {
         n.abs().times {
-            allDice << generateNumber() * (n < 0 ? -1 : 1)
+            allDice << generateNumber() * ((n < 0) ? -1 : 1)
         }
         this
     }
@@ -71,7 +71,7 @@ class DiceRollingSpec implements Comparable {
             2.times {
                 result += generator.nextInt(10)
             }
-            return result == '00' ? 100 : result.toInteger()
+            return (result == '00') ? 100 : result.toInteger()
         }
         else {
             return generator.nextInt(sides) + 1
@@ -106,13 +106,29 @@ class DiceRollingSpec implements Comparable {
     }
 
     /**
-     * Calculate the average die value.
-     * @return A <code>Number</code> which represents the average die or zero
-     * if no die has been rolled yet.
+     * Calculate the mean value.
+     * @return A <code>Number</code> which represents the mean or zero if no
+     * die has been rolled yet.
      */
     def getMean() {
         if (allDice) {
             return sum / count
+        }
+        0
+    }
+
+    /**
+     * Calculate the median value.
+     * @return A <code>Number</code> which represents the median or zero if no
+     * die has been rolled yet.
+     */
+    def getMedian() {
+        if(allDice) {
+            def dice = allDice.sort()
+            def n = dice.size()
+            def h = n / 2 as int
+
+            return !(n % 2) ? (dice[h-1..h].sum() / 2) : dice[h]
         }
         0
     }
@@ -128,12 +144,12 @@ class DiceRollingSpec implements Comparable {
      */
     def best(n=1) {
         if (!allDice) return 0
-        n = n > 0 ? n : 1
+        n = (n > 0) ? n : 1
 
         def last = count - 1
 
         def first = last - (n-1)
-        first = first < 0 ? 0 : first
+        first = (first < 0) ? 0 : first
         
         if (n == 1) {
             return allDice.sort()[last]
@@ -155,7 +171,7 @@ class DiceRollingSpec implements Comparable {
     def worst(n=1) {
         if (!allDice) return 0
 
-        def last = n > 0 ? n - 1 : 0
+        def last = (n > 0) ? (n - 1) : 0
         last = last >= count ? count - 1 : last
 
         if (last == 0) {
@@ -222,7 +238,7 @@ class DiceRollingSpec implements Comparable {
      * @return New DiceRollingSpec object.
      */
     def deriveSpec(allDice, sides=0) {
-        new DiceRollingSpec(sides:sides == 0 ? this.sides : sides, allDice:allDice)
+        new DiceRollingSpec(sides:(sides == 0) ? this.sides : sides, allDice:allDice)
     }
 
     /**
@@ -240,7 +256,7 @@ class DiceRollingSpec implements Comparable {
             return deriveSpec(allDice + value)
         case DiceRollingSpec:
             return deriveSpec(allDice + value.allDice,
-                    sides > value.sides ? 0 : value.sides)
+                    (sides > value.sides) ? 0 : value.sides)
         case DieModifier:
             return value.apply(this.&plus)
         }

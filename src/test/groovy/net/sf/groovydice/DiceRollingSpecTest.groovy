@@ -96,6 +96,18 @@ class DiceRollingSpecTest {
     }
 
     @Test
+    void getTheMedianValue() {
+        def spec = new DiceRollingSpec()
+        assert spec.median == 0
+
+        spec = new DiceRollingSpec(allDice:[1,2,4,7,9,10])
+        assert spec.median == 5.5
+        
+        spec = new DiceRollingSpec(allDice:[1,3,5,7,9])
+        assert spec.median == 5
+    }
+
+    @Test
     void sumDice() {
         assert new DiceRollingSpec().sum == 0
 
