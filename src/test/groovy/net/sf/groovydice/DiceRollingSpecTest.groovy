@@ -88,11 +88,11 @@ class DiceRollingSpecTest {
     }
 
     @Test
-    void getTheAverageValue() {
-        assert new DiceRollingSpec().average == 0
+    void getTheMeanValue() {
+        assert new DiceRollingSpec().mean == 0
 
         def spec = new DiceRollingSpec(allDice:[1,3,2,3,5,6,1,6])
-        assert spec.average == 3.375f
+        assert spec.mean == 3.375f
     }
 
     @Test

@@ -47,7 +47,7 @@ def n = new Scanner(System.in).nextLine()
 +-----------------------
 10.d6.highest
 5.d12.lowest
-6.d4.average
+6.d4.mean
 5.d20.sum
 5.d10.best(3)
 8.d20.worst(4)

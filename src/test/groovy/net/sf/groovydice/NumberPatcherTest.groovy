@@ -105,7 +105,7 @@ class NumberPatcherTest {
         assert spec.count == 0
 
         assert spec.lowest == 0
-        assert spec.average == 0
+        assert spec.mean == 0
         assert spec.highest == 0
 
         assert spec.best(3) == 0

@@ -89,7 +89,7 @@ Dice arithmetic
  you try to execute a script like this:
  
 +-----------------------
-(5.d6 * 2.d10).average
+(5.d6 * 2.d10).mean
 +-----------------------
 
 * ** operator
@@ -269,5 +269,5 @@ Dice arithmetic
  [[5]] Plus a six-sided die to two ten-sided dice and multiply the sum of the
  result by a four-sided die. A: <<<(2.d10 + 1.d6) * 1.d4>>>
  
- [[6]] Calculate the average value of six ten-sided dice and test whether it
- is greater or equals to <<<7>>>. A: <<<6.d10.average >= 7>>>
+ [[6]] Calculate the mean of six ten-sided dice and test whether it is greater
+ or equals to <<<7>>>. A: <<<6.d10.mean >= 7>>>

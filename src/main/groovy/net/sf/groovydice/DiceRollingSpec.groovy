@@ -107,10 +107,10 @@ class DiceRollingSpec implements Comparable {
 
     /**
      * Calculate the average die value.
-     * @return A <code>Number</code> which represents the averagedie or zero if
-     * no die has been rolled yet.
+     * @return A <code>Number</code> which represents the average die or zero
+     * if no die has been rolled yet.
      */
-    def getAverage() {
+    def getMean() {
         if (allDice) {
             return sum / count
         }

@@ -43,7 +43,7 @@ Here goes a list that shows some Groovy Dice's features:
     - any number of dice sides (5.d6, 10.d10, 6.d15, 2.d100, 3.d(user_input))
     
 + Full support to arithmetic operations and calculations. For example:
-    - (-5.d10 * 4.d6.best(2).average) / (5.d10 + 4).lowest
+    - (-5.d10 * 4.d6.best(2).mean) / (5.d10 + 4).lowest
     
 + Dice filtering and count. For example:
     - 10.d20.where{it.is_even}
