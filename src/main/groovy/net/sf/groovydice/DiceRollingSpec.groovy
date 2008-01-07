@@ -242,7 +242,7 @@ class DiceRollingSpec implements Comparable {
             return deriveSpec(allDice + value.allDice,
                     sides > value.sides ? 0 : value.sides)
         case DieModifier:
-            return value.applyTo(this.&plus)
+            return value.apply(this.&plus)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
     }
@@ -285,7 +285,7 @@ class DiceRollingSpec implements Comparable {
         case DiceRollingSpec:
             return sum * value.sum
         case DieModifier:
-            return value.applyTo(this.&multiply)
+            return value.apply(this.&multiply)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
     }
@@ -307,7 +307,7 @@ class DiceRollingSpec implements Comparable {
         case DiceRollingSpec:
             return sum / value
         case DieModifier:
-            return value.applyTo(this.&div)
+            return value.apply(this.&div)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
     }
@@ -330,7 +330,7 @@ class DiceRollingSpec implements Comparable {
         case DiceRollingSpec:
             return sum ** value.sum
         case DieModifier:
-            return value.applyTo(this.&power)
+            return value.apply(this.&power)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
     }
@@ -353,7 +353,7 @@ class DiceRollingSpec implements Comparable {
         case DiceRollingSpec:
             return sum % value.sum
         case DieModifier:
-            return value.applyTo(this.&mod)
+            return value.apply(this.&mod)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
     }

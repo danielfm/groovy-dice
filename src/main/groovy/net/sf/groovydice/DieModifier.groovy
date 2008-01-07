@@ -63,7 +63,7 @@ class DieModifier {
      * @return A new <code>DiceRollingSpec</code> object which contains the
      * result of the operation.
      */
-    def applyTo(logic) {
+    def apply(logic) {
         def spec = logic.delegate
 
         spec.deriveSpec(spec.allDice.collect {
