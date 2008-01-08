@@ -20,8 +20,8 @@ Introduction
 1.'d%'
 +-----------------------
  
- Except for the last two lines - which means the same thing (<roll a percentile
- die>) - the code is very easy to follow for those who know a bit about
+ Except for the last two lines - which means the same thing (roll a percentile
+ die) - the code is very easy to follow for those who know a bit about
  {{{http://en.wikipedia.org/wiki/Dice_notation}dice notation}}.
 
 * Dynamic dice
@@ -57,10 +57,10 @@ def n = new Scanner(System.in).nextLine()
 
  I'm not going to explain what each line does. Try to figure it out yourself!
 
-* How can I access the dice's results?
+* How can I access the results from a dice roll?
 
- A simple way to see the dice's results is to use the <<<getView()>>> method,
- which returns an <<<Array>>> of <<<Number>>>s:
+ A simple way to see the results is to use the <<<getView()>>> method, which
+ returns an <<<Array>>> of <<<Number>>>s:
  
 +-----------------------
 3.d6.view
