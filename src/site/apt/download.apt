@@ -11,17 +11,6 @@ Download
 
 * Maven 2 artifact
 
- If you want to add Groovy Dice as a dependency, just put the following snippet
- to your POM:
- 
-+---------------------
-<dependency>
-    <groupId>net.sf.groovydice</groupId>
-    <artifactId>groovydice</artifactId>
-    <version>1.0</version>
-</dependency>
-+---------------------
-
  <<Work in progress>>: The artifact is <not yet> available for use. Please have
  patience... We're working on it.
 
