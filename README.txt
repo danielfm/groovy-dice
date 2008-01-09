@@ -1,7 +1,7 @@
 Groovy Dice - A groovier way to roll dice!
 ******************************************
 
-Version 1.0 - Sat January 5, 2008
+Version 1.1 - Wed Jan 9, 2008
 
 This software is distributed under the terms of the Apache v2.0 License
 (see LICENSE.txt).
@@ -87,7 +87,7 @@ great work.
 http://groovy.codehaus.org
 http://g2one.com
 
-This project is built by Maven 2.0.7, which is a very good tool to handle the
+This project is built by Maven 2.0.8, which is a very good tool to handle the
 project dependencies and reports.
 
 http://maven.apache.org

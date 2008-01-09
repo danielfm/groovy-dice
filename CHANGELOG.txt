@@ -1,6 +1,15 @@
 Groovy Dice - Changelog
 ***********************
 
+groovydice v1.1 - Wed Jan 9, 2008
+---------------------------------
+
+ + Some internal API methods were renamed.
+ + DiceRollingSpec.getAverage() renamed to DiceRollingSpec.getMean().
+ + Added the method DiceRollingSpec.getMedian().
+ + Added the method DiceRollingSpec.getMode().
+
+
 groovydice v1.0 - Sat January 5, 2008
 -------------------------------------
  
