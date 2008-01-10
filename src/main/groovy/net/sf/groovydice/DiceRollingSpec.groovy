@@ -175,19 +175,8 @@ class DiceRollingSpec implements Comparable {
      */
     def best(n=1) {
         if (!allDice) return 0
-        n = (n > 0) ? n : 1
-
-        def last = count - 1
-
-        def first = last - (n-1)
-        first = (first < 0) ? 0 : first
-        
-        if (n == 1) {
-            return allDice.sort()[last]
-        }
-        else {
-            return deriveSpec(allDice.sort()[last..first])
-        }
+        n = (n > 0) ? (n > count ? count : n) : 1
+        n == 1 ? allDice.sort()[-n] : deriveSpec(allDice.sort()[-1..-n])
     }
 
      /**
@@ -201,16 +190,8 @@ class DiceRollingSpec implements Comparable {
       */
     def worst(n=1) {
         if (!allDice) return 0
-
-        def last = (n > 0) ? (n - 1) : 0
-        last = last >= count ? count - 1 : last
-
-        if (last == 0) {
-            return allDice.sort()[0]
-        }
-        else {
-            return deriveSpec(allDice.sort()[0..last])
-        }
+        n = (n > 0) ? (n >= count ? (count - 1) : (n - 1)) : 0
+        n == 0 ? allDice.sort()[n] : deriveSpec(allDice.sort()[0..n])
     }
 
     /**
