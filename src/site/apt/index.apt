@@ -4,10 +4,11 @@
 
 A groovier way to roll dice
 
- <<Groovy Dice>> is an open source {{{http://groovy.codehaus.org}Groovy}}-based
- dice rolling API that provides a simple way to perform almost any kind of dice
- roll, making this project a reasonable choice for those who are implementing
- any kind of dice-based game on top of Java platform.
+ <<Groovy Dice>> is an {{{license.html}open source}}
+ {{{http://groovy.codehaus.org}Groovy}}-based dice rolling API that provides
+ a simple way to perform almost any kind of dice roll, making this project a
+ reasonable choice for those who are implementing any kind of dice-based game
+ on top of Java platform.
  
  In fact, this project was born just as an experiment on how to design and
  implement DSLs (Domain Specific Languages) using Groovy. Thus, I invite

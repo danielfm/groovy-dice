@@ -9,10 +9,30 @@ Download
  Groovy Dice in a Java/Groovy application, the complete source code and an
  offline version of this website.
 
-* Maven 2 artifact
+* Maven 2 Artifact
 
- <<Work in progress>>: The artifact is <not yet> available for use. Please have
- patience... We're working on it.
+ If you want to add Groovy Dice as a dependency, just put the following snippet
+ to your POM:
+ 
++---------------------
+<repositories>
+    <repository>
+        <id>groovydice-m2repo</id>
+        <url>http://groovydice.sourceforge.net/m2repo</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>net.sf.groovydice</groupId>
+        <artifactId>groovydice</artifactId>
+        <version>1.1</version>
+    </dependency>
+</dependencies>
++---------------------
 
 * Getting Groovy Dice from the source control server
 
