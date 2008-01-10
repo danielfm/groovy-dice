@@ -104,7 +104,7 @@ class NumberPatcher {
     }
 
     /**
-     * Add the method 'd()' to the given class.
+     * Add the method <code>d()</code> to the given class.
      * @param clazz Class where the method will be added.
      */
     void addDynamicDiceMethods(clazz) {
