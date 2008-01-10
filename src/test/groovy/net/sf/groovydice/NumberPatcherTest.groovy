@@ -147,6 +147,14 @@ class NumberPatcherTest {
         }
     }
 
+    @Test
+    void rollDynamicDiceUsingADiceRollAsSideNumber() {
+        def spec = new DiceRollingSpec(allDice:[1,2,4])
+        (0..50).each {
+            assertDiceInRange(1.d(spec), (1..7))
+        }
+    }
+
     @Test(expected=IllegalArgumentException)
     void rollZeroSidedDynamicDie() {
         5.d(0)

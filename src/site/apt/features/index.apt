@@ -34,6 +34,16 @@ Introduction
 def n = new Scanner(System.in).nextLine()
 5.d(n) // 'n' is a number or a '%'
 +-----------------------
+ 
+ This feature also allows you to use another dice roll as argument to that
+ method:
+ 
++-----------------------
+6.d(3.d4)
++-----------------------
+ 
+ This script rolls three four-sided dice and then rolls six dice of that many
+ sides.
 
 * What is returned by a dice rolling expression?
 
@@ -86,3 +96,6 @@ def n = new Scanner(System.in).nextLine()
  [[4]] Roll two ten-sided dice, get the highest die and roll twenty-sided
  dice for this number of times. Return all dice. A:
  <<<(2.d10.highest).d20.view>>>
+ 
+ [[5]] Roll three four-sided dice and then roll a die of that many sides:
+ A: <<<1.d(3.d4)>>>

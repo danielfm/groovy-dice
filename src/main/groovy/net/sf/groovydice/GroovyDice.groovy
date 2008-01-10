@@ -26,6 +26,6 @@ class GroovyDice {
      * Initialize the Groovy Dice engine.
      */
     void initialize() {
-        NumberPatcher.addMethods()
+        new NumberPatcher().addMethods()
     }
 }
