@@ -41,3 +41,7 @@ tt {
 #leftColumn {
 	background-color: #fafafa;
 }
+
+table.bodyTable th, table.bodyTable td {
+	font-size: 0.8em;
+}

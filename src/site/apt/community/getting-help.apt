@@ -1,0 +1,56 @@
+  ------------
+  Getting help
+
+Getting help
+
+ Something didn't work as you expected it to? You think that Groovy Dice is
+ broken. What should you do?
+ 
+ Here's a list of actions that you can take.
+
+* Have you searched for error messages?
+
+ Most errors in Groovy Dice scripts and integration code can be easily fixed
+ when you pay attention to the error messages given back to you.
+ 
+* Take a look at the forums and open tickets
+
+ If you couldn't solve your problem - even examining carefully the error
+ messages and log files - there's a chance that someone else might have
+ experienced this very situation.
+ 
+ To avoid posting duplicated issues and questions, you might want to search for
+ a solution in the following places:
+ 
+   [[a]] {{{../issue-tracking.html}issue management system}}
+   
+   [[b]] {{{https://sourceforge.net/forum/?group_id=213311}forum pages}}
+ 
+ Don't expect to get an answer right away. Sometimes it takes a couple of days.
+
+* Submit an issue
+
+ If it turns out that there is indeed something wrong with Groovy Dice, you
+ should report it to our {{{../issue-tracking.html}issue management}} system.
+
+ You don't have to be registered at {{{http://sourceforge.net}SourceForge.net}}
+ in order to submit an issue. However, we recommend you to register if you
+ want to be notified when something happen to that issue.
+ 
+** How?
+
+ Usually just describing the problem is not enough. It takes a developer some
+ time to figure out the problem.
+
+ To make our work easier, please attach a working code that we can download
+ and run. You don't need to send us the code of your precious application
+ tough; a sample application that can be used to verify that it is indeed
+ a bug is enough.
+ 
+ Don't forget to tell us more about your environment (operating system, JDK
+ version, Groovy version, Groovy Dice version, your project's dependencies,
+ etc).
+
+* References
+
+ * {{{http://www.catb.org/~esr/faqs/smart-questions.html}How To Ask Questions The Smart Way}}
