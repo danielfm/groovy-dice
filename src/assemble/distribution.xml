@@ -25,7 +25,7 @@
 			<directory>target</directory>
 			<outputDirectory>/doc</outputDirectory>
 			<includes>
-				<include>site/*</include>
+				<include>site/**</include>
 			</includes>
 		</fileSet>
 	</fileSets>
