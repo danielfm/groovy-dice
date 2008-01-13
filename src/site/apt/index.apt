@@ -31,7 +31,7 @@ A groovier way to roll dice
  We can extract some useful information from a dice roll as well:
 
 +---------------------------------------+
-5.d.view     // view the results of five six-sided dice
+5.d.view        // view the results of five six-sided dice
 10.d6.worst_die // get the worst die in this roll
 +---------------------------------------+
 
@@ -40,8 +40,8 @@ A groovier way to roll dice
 +---------------------------------------+
 5.d12 * 5.on_every_die   // multiply each die by 5
 6.d20 + 2.d.on_every_die // multiply each die by the sum of two six-sided dice
-10.d10.best(3)          // filter the three highest dice in this roll
-20.d6.only_if{it.is_odd}  // filter all odd dice of this roll
+10.d10.only_the(3.best)  // filter the three highest dice in this roll
+20.d6.only_if{it.is_odd} // filter all odd dice of this roll
 +---------------------------------------+
 
  Don't be fooled: all these Groovy scripts <works>!

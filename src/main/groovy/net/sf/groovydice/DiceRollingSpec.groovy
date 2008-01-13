@@ -231,6 +231,18 @@ class DiceRollingSpec implements Comparable {
     }
 
     /**
+     * Select the N best or worst dice.
+     * @condition This parameter is a number. If it is a positive number, get the
+     * N best dice. If this is a negative number, get the N.abs() worst dice.
+     * @return New <code>DiceRollingSpec</code> object that contains only the N
+     * best or worst dice if N > 1 or N < -1. If N == 1 or N == -1, this method
+     * returns a Number which represents the best or worst value, respectively.
+     */
+    def only_the(condition) {
+        condition == 0 ? null : (condition < 0 ? worst(-condition) : best(condition))
+    }
+
+    /**
      * Get the number of rolled dice.
      * @return A <code>Number</code> that represents the number of rolled dice.
      */

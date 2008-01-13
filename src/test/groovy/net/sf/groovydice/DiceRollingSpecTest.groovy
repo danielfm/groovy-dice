@@ -442,6 +442,22 @@ class DiceRollingSpecTest {
     }
 
     @Test
+    void selectBestDice() {
+        def spec = new DiceRollingSpec(allDice:[1,2,3,4,5,6,7,8,9])
+
+        assert spec.only_the(2.best).allDice == [9,8]
+        assert spec.only_the(3.0.best).allDice == [9,8,7]
+    }
+
+    @Test
+    void selectWorstDice() {
+        def spec = new DiceRollingSpec(allDice:[1,2,3,4,5,6,7,8,9])
+
+        assert spec.only_the(2.worst).allDice == [1,2]
+        assert spec.only_the(3.0.worst).allDice == [1,2,3]
+    }
+
+    @Test
     void compareTwoDiceRolls() {
     	def spec1 = new DiceRollingSpec(allDice:[1,1,1,1,2,2])
         def spec2 = new DiceRollingSpec(allDice:[1,3,4])

@@ -26,7 +26,7 @@ Applying modifiers
 7.d6 * 2.on_every_die
 7.d6 ** 2.on_every_die // exponentiation
 7.d6 / 2.on_every_die
-7.d6 % 2.on_every_die // modulo
+7.d6 % 2.on_every_die  // modulo
 +-----------------------
  
  It's also possible to use other dice as modifier:
@@ -71,4 +71,4 @@ Applying modifiers
  <<<10.d * -2.on_every_die>>>
  
  [[2]] Roll six four-sided dice and plus <<<1>>> to every die equals to
- <<<1>>> or <<<2>>>. A: <<<6.d4 + 1.on_every_die.when\{it in [1,2]\}>>>
+ <<<1>>> or <<<2>>>. A: <<<6.d4 + 1.on_each_die_if\{it in [1,2]\}>>>

@@ -6,12 +6,11 @@ Dice filtering
  Groovy Dice provides several ways to filter dice of a roll. This is a very
  useful feature for situations where only a few dice matters.
  
- The simplest way to filter dice is to use <<<best()>>> and <<<worst()>>>
- methods:
+ The simplest way to filter dice is to use <<<only_the()>>> method:
  
 +-----------------------
-5.d10.best(2)
-10.d20.worst(5)
+5.d10.only_the(2.best)
+10.d20.only_the(5.worst)
 +-----------------------
  
  You can use the <<<only_if()>>> method to specify more advanced filters:
@@ -52,7 +51,7 @@ Dice filtering
 * Exercises
 
  [[1]] Roll fifteen twenty-sided dice and get the best three odd dice. A:
- <<<15.d20.only_if\{it.is_odd\}.best(3)>>>
+ <<<15.d20.only_if\{it.is_odd\}.only_the(3.best)>>>
  
  [[2]] Roll six ten-sided dice and sum all even dice. A:
  <<<6.d10.only_if\{it.is_even\}.sum>>>

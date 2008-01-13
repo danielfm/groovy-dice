@@ -252,4 +252,28 @@ class NumberPatcherTest {
     	assert 2 in spec1
     	assert !(5 in spec1)
     }
+
+    @Test
+    void createBestFilterFromANumber() {
+        assert 2.best == 2
+        assert 2.0.best == 2.0
+
+        try {
+            0.best
+            fail()
+        }
+        catch (IllegalArgumentException) {}
+    }
+
+    @Test
+    void createWorstFilterFromANumber() {
+        assert 2.worst == -2
+        assert 2.0.worst == -2.0
+        
+        try {
+            0.worst
+            fail()
+        }
+        catch (IllegalArgumentException) {}
+    }
 }

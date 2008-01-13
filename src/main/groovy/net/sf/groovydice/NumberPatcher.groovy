@@ -35,6 +35,9 @@ class NumberPatcher {
             addIsEvenProperty(it)
             addIsOddProperty(it)
 
+            addBestProperty(it)
+            addWorstProperty(it)
+
             addDiceMethods(it)
             addDynamicDiceMethods(it)
 
@@ -85,6 +88,32 @@ class NumberPatcher {
     void addIsOddProperty(clazz) {
         clazz.metaClass.getIs_odd = { ->
             (delegate as int) % 2 != 0
+        }
+    }
+
+    /**
+     * Add the propert <code>best</code> to the given class.
+     * @param clazz Class where the property will be added.
+     */
+    void addBestProperty(clazz) {
+        clazz.metaClass.getBest = { ->
+            if (delegate < 1) {
+                throw new IllegalArgumentException("You can only use the getBest() property on positive numbers. Value: $delegate")
+            }
+            delegate
+        }
+    }
+
+    /**
+     * Add the propert <code>worst</code> to the given class.
+     * @param clazz Class where the property will be added.
+     */
+    void addWorstProperty(clazz) {
+        clazz.metaClass.getWorst = { ->
+            if (delegate < 1) {
+                throw new IllegalArgumentException("You can only use the getWorst() property on positive numbers. Value: $delegate")
+            }
+            -delegate
         }
     }
 
