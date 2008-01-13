@@ -404,15 +404,6 @@ class DiceRollingSpec implements Comparable {
     }
 
     /**
-     * Iterate through the dice of this roll.
-     * @param closure Closure to call for each die.
-     * @return <code>this</code>.
-     */
-    void for_each_die(closure) {
-        allDice.each(closure)
-    }
-
-    /**
      * Whether the sum of this roll is equals to the sum of the given roll.
      * @param spec <code>DiceRollingSpec</code> object.
      * @return Whether the sum of this roll is equals to the sum of the given

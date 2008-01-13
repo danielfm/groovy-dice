@@ -76,14 +76,6 @@ def n = new Scanner(System.in).nextLine()
 3.d6.view
 +-----------------------
  
- Altough it's possible to iterate though all dice using the return value of
- <<<getView()>>> method, you can use the <<<for_each_die()>>> method to get
- better expressivity in your code:
- 
-+-----------------------
-5.d10.for_each_die{println it}
-+-----------------------
-
 * Exercises
 
  [[1]] Roll fifteen six-sided dice. A: <<<15.d6>>>
@@ -91,7 +83,7 @@ def n = new Scanner(System.in).nextLine()
  [[2]] Roll a percentile die for <<<5*4>>> times. A: <<<(5*4).'d%'>>>
  
  [[3]] Roll six twenty-sided dice and print the worst two dice. A:
- <<<6.d20.worst(2).for_each_die\{println it\}>>>
+ <<<6.d20.worst(2).view.each\{println it\}>>>
  
  [[4]] Roll two ten-sided dice, get the best die and roll twenty-sided
  dice for this number of times. Return all dice. A:

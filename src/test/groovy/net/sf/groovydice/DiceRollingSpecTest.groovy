@@ -474,14 +474,6 @@ class DiceRollingSpecTest {
     }
 
     @Test
-    void iterateThroughEachDieOfDiceRoll() {
-        def count = 0
-        new DiceRollingSpec(allDice:[1,2,3,4]).for_each_die{count += it}
-
-        assert count == 10
-    }
-
-    @Test
     void verifyWhetherTwoDiceRollsAreTheSame() {
         def spec1 = new DiceRollingSpec()
         def spec2 = new DiceRollingSpec()
