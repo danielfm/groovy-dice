@@ -1,6 +1,13 @@
 Groovy Dice - Changelog
 ***********************
 
+groovydice v1.2.1 - Sun Jan 13, 2008
+------------------------------------
+
+ + Website fixes.
+ + Modifier methods were renamed to improve readability.
+
+
 groovydice v1.2 - Sun Jan 13, 2008
 ----------------------------------
 

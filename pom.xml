@@ -7,7 +7,7 @@
 	<groupId>net.sf.groovydice</groupId>
 	<artifactId>groovydice</artifactId>
 	<packaging>groovy-jar</packaging>
-	<version>1.2</version>
+	<version>1.2.1</version>
 	<description>
 		Groovy Dice is an advanced Groovy-based dice rolling API
 	</description>
