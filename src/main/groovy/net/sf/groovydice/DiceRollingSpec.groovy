@@ -231,21 +231,6 @@ class DiceRollingSpec implements Comparable {
     }
 
     /**
-     * Return the number of dice that match the given condition.
-     * @param condition Can be any object accepted by <code>grep</code> method,
-     * like a number, an array, a range, a closure etc. You can also pass a
-     * <code>DiceRollingSpec</code> object to use its dice as the condition.
-     * @return A <code>Number</code> that represents the number of dice that
-     * match the given condition.
-     */
-    def count_where(condition) {
-        if (condition instanceof DiceRollingSpec) {
-            condition = condition.allDice
-        }
-        allDice.grep(condition).size()
-    }
-
-    /**
      * Get the number of rolled dice.
      * @return A <code>Number</code> that represents the number of rolled dice.
      */

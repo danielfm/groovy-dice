@@ -49,18 +49,6 @@ Dice filtering
  
  All these filtering methods returns <<<DiceRollingSpec>>> objects.
 
-* Is there a way to count all dice that match a given condition?
-
- Groovy Dice provides a special type of filter, which is called <<Counter>>.
- A Counter is just a simple dice filter, but it returns the number of dice
- that match the given condition. For example:
- 
-+-----------------------
-5.d12.count_where{it.is_even}
-+-----------------------
- 
- A Counter always returns a <<<Number>>>.
- 
 * Exercises
 
  [[1]] Roll fifteen twenty-sided dice and get the best three odd dice. A:
@@ -76,10 +64,10 @@ Dice filtering
  six-sided dice. A: <<<10.d10.where(2.d6.sum)>>>
  
  [[5]] Roll seven six-sided dice and count all odd dice; then roll ten-sided
- dice for this number of times: A: <<<7.d6.count_where\{it.is_odd\}.d10>>>
+ dice for this number of times: A: <<<7.d6.where\{it.is_odd\}.count.d10>>>
  
  [[6]] Let's pretend you are playing a role-playing game and you decided to
  attack your enemy. So, you'll need to roll six ten-sided dice against a
  difficulty of <<<7>>> (the number of dice equals or greater than <<<7>>> will
  determine your success or failure). How do you express this roll? A:
- <<<6.d10.count_where\{it>=7\}>>>
+ <<<6.d10.where\{it>=7\}.count>>>
