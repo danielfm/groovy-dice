@@ -182,13 +182,13 @@ class DiceRollingSpecTest {
 
     @Test
     void createModifierFromDiceRoll() {
-        def modifier = new DiceRollingSpec(allDice:[1,2,3]).on_each_die
+        def modifier = new DiceRollingSpec(allDice:[1,2,3]).on_every_die
         assert modifier.modifier == 6
     }
 
     @Test
     void createConditionalModifierFromDiceRoll() {
-        def modifier = new DiceRollingSpec(allDice:[1,2,3]).on_each_die.when(2)
+        def modifier = new DiceRollingSpec(allDice:[1,2,3]).on_every_die.when(2)
 
         assert modifier.modifier == 6
         assert modifier.condition == 2
@@ -215,7 +215,7 @@ class DiceRollingSpecTest {
     @Test
     void plusModifierToDiceRoll() {
         def spec1 = new DiceRollingSpec(allDice:[1,2,3,4,5,6,7])
-        def result = spec1 + 1.on_each_die
+        def result = spec1 + 1.on_every_die
 
         assert result.allDice == [2,3,4,5,6,7,8]
     }
@@ -223,7 +223,7 @@ class DiceRollingSpecTest {
     @Test
     void plusConditionalModifierToDiceRoll() {
         def spec1 = new DiceRollingSpec(allDice:[1,2,3,4,5,6,7])
-        def result = spec1 + 1.on_each_die.when(1..4)
+        def result = spec1 + 1.on_every_die.when(1..4)
 
         assert result.allDice == [2,3,4,5,5,6,7]
     }
@@ -248,7 +248,7 @@ class DiceRollingSpecTest {
     @Test
     void subtractModifierFromDiceRoll() {
         def spec1 = new DiceRollingSpec(allDice:[1,2,3,4,5])
-        def result = spec1 - 1.on_each_die
+        def result = spec1 - 1.on_every_die
 
         assert result.allDice == [0,1,2,3,4]
     }
@@ -256,7 +256,7 @@ class DiceRollingSpecTest {
     @Test
     void subtractConditionalModifierFromDiceRoll() {
         def spec1 = new DiceRollingSpec(allDice:[1,2,3,4,5,6,7,8,9])
-        def result = spec1 - 1.on_each_die.when{it.is_odd}
+        def result = spec1 - 1.on_every_die.when{it.is_odd}
 
         assert result.allDice == [0,2,2,4,4,6,6,8,8]
     }
@@ -278,7 +278,7 @@ class DiceRollingSpecTest {
     @Test
     void multiplyDiceRollByModifier() {
         def spec1 = new DiceRollingSpec(allDice:[1,2,3,4])
-        def result = spec1 * 2.on_each_die
+        def result = spec1 * 2.on_every_die
 
         assert result.allDice == [2,4,6,8]
     }
@@ -286,7 +286,7 @@ class DiceRollingSpecTest {
     @Test
     void multiplyDiceRollByConditionalModifier() {
         def spec1 = new DiceRollingSpec(allDice:[1,2,3,4,5])
-        def result = spec1 * 2.on_each_die.when(4)
+        def result = spec1 * 2.on_every_die.when(4)
 
         assert result.allDice == [1,2,3,8,5]
     }
@@ -308,7 +308,7 @@ class DiceRollingSpecTest {
     @Test
     void divideDiceRollByModifier() {
         def spec1 = new DiceRollingSpec(allDice:[1,2,3,4])
-        def result = spec1 / 2.on_each_die
+        def result = spec1 / 2.on_every_die
 
         assert result.allDice == [0.5, 1, 1.5, 2]
     }
@@ -316,7 +316,7 @@ class DiceRollingSpecTest {
     @Test
     void divideDiceRollByConditionalModifier() {
         def spec1 = new DiceRollingSpec(allDice:[1,2,3,4])
-        def result = spec1 / 2.on_each_die.when([2,4])
+        def result = spec1 / 2.on_every_die.when([2,4])
 
         assert result.allDice == [1,1,3,2]
     }
@@ -338,7 +338,7 @@ class DiceRollingSpecTest {
     @Test
     void powerModifierToDiceRoll() {
         def spec1 = new DiceRollingSpec(allDice:[1,2,3,4])
-        def result = spec1 ** 10.on_each_die
+        def result = spec1 ** 10.on_every_die
 
         assert result.allDice == [1, 1024, 59049, 1048576]
     }
@@ -346,7 +346,7 @@ class DiceRollingSpecTest {
     @Test
     void powerConditionalModifierToDiceRoll() {
         def spec1 = new DiceRollingSpec(allDice:[1,2,3,4])
-        def result = spec1 ** 10.on_each_die.when(3..4)
+        def result = spec1 ** 10.on_every_die.when(3..4)
 
         assert result.allDice == [1,2,59049,1048576]
     }
@@ -368,7 +368,7 @@ class DiceRollingSpecTest {
     @Test
     void modModifierToDiceRoll() {
         def spec1 = new DiceRollingSpec(allDice:[1,2,3,4])
-        def result = spec1 % 2.on_each_die
+        def result = spec1 % 2.on_every_die
 
         assert result.allDice == [1, 0, 1, 0]
     }
@@ -376,7 +376,7 @@ class DiceRollingSpecTest {
     @Test
     void modConditionalModifierToDiceRoll() {
         def spec1 = new DiceRollingSpec(allDice:[1,2,3,4])
-        def result = spec1 % 2.on_each_die.when(3..4)
+        def result = spec1 % 2.on_every_die.when(3..4)
 
         assert result.allDice == [1,2,1,0]
     }

@@ -30,7 +30,7 @@ class NumberPatcher {
     void addMethods() {
 
         [Integer, Long, BigInteger, Float, Double, BigDecimal].each {
-            addOnEachDieProperty(it)
+            addOnEveryDieProperty(it)
             addIsEvenProperty(it)
             addIsOddProperty(it)
 
@@ -48,11 +48,11 @@ class NumberPatcher {
     }
 
     /**
-     * Add the property <code>on_each_die</code> to the given class.
+     * Add the property <code>on_every_die</code> to the given class.
      * @param clazz Class where the property will be added.
      */
-    void addOnEachDieProperty(clazz) {
-        clazz.metaClass.getOn_each_die = { ->
+    void addOnEveryDieProperty(clazz) {
+        clazz.metaClass.getOn_every_die = { ->
             new DieModifier(modifier:delegate)
         }
     }

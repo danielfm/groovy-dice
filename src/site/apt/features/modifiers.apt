@@ -13,7 +13,7 @@ Applying modifiers
  dice:
  
 +-----------------------
-7.d6 + 1.on_each_die
+7.d6 + 1.on_every_die
 +-----------------------
  
  So, if seven six-sided dice are equals to <<<[1,6,5,3,2,3,6]>>>, then the
@@ -22,18 +22,18 @@ Applying modifiers
  Feel free to use any operator you want:
  
 +-----------------------
-7.d6 - 2.on_each_die
-7.d6 * 2.on_each_die
-7.d6 ** 2.on_each_die // exponentiation
-7.d6 / 2.on_each_die
-7.d6 % 2.on_each_die // modulo
+7.d6 - 2.on_every_die
+7.d6 * 2.on_every_die
+7.d6 ** 2.on_every_die // exponentiation
+7.d6 / 2.on_every_die
+7.d6 % 2.on_every_die // modulo
 +-----------------------
  
  It's also possible to use other dice as modifier:
  
 +-----------------------
-7.d6 + 1.d6.on_each_die
-7.d6 / 3.d6.best_die.on_each_die
+7.d6 + 1.d6.on_every_die
+7.d6 / 3.d6.best_die.on_every_die
 +-----------------------
  
  The first script rolls seven six-sided dice and plus to each die the result of
@@ -48,7 +48,7 @@ Applying modifiers
  specify which dice will be affected by the modifier:
  
 +-----------------------
-7.d6 + 1.on_each_die.when{it.is_even}
+7.d6 + 1.on_every_die.when{it.is_even}
 +-----------------------
  
  In this example, we roll seven six-sided dice and plus <<<1>>> to each <even>
@@ -58,17 +58,17 @@ Applying modifiers
  You can pass to <<<when()>>> method several types of objects:
  
 +-----------------------
-7.d6 + 1.on_each_die.when(1)
-7.d6 + 1.on_each_die.when([1,3,5])
-7.d6 + 1.on_each_die.when(1..4)
-7.d6 + 1.on_each_die.when(1.d4)
-7.d6 + 1.on_each_die.when{it == 1 || it in [5,6]}
+7.d6 + 1.on_every_die.when(1)
+7.d6 + 1.on_every_die.when([1,3,5])
+7.d6 + 1.on_every_die.when(1..4)
+7.d6 + 1.on_every_die.when(1.d4)
+7.d6 + 1.on_every_die.when{it == 1 || it in [5,6]}
 +-----------------------
 
 * Exercises
 
  [[1]] Roll ten six-sided dice and multiply every die by <<<-2>>>. A:
- <<<10.d * -2.on_each_die>>>
+ <<<10.d * -2.on_every_die>>>
  
  [[2]] Roll six four-sided dice and plus <<<1>>> to every die equals to
- <<<1>>> or <<<2>>>. A: <<<6.d4 + 1.on_each_die.when\{it in [1,2]\}>>>
+ <<<1>>> or <<<2>>>. A: <<<6.d4 + 1.on_every_die.when\{it in [1,2]\}>>>

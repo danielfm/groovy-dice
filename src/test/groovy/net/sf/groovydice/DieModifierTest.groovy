@@ -31,18 +31,18 @@ class DieModifierTest {
 
     @Test
     void negativeDieModifier() {
-        assert -5.on_each_die instanceof DieModifier
-        assert (-5).on_each_die.when{it.is_even} instanceof DieModifier
+        assert -5.on_every_die instanceof DieModifier
+        assert (-5).on_every_die.when{it.is_even} instanceof DieModifier
 
-        assert -5.on_each_die.modifier == -5
-        assert (-5).on_each_die.modifier == -5
-        assert -5.on_each_die.when{it.is_even}.modifier == -5
-        assert (-5).on_each_die.when{it.is_even}.modifier == -5
+        assert -5.on_every_die.modifier == -5
+        assert (-5).on_every_die.modifier == -5
+        assert -5.on_every_die.when{it.is_even}.modifier == -5
+        assert (-5).on_every_die.when{it.is_even}.modifier == -5
     }
 
     @Test
     void useADiceRollAsCondition() {
-        def modifier = 2.on_each_die.when(new DiceRollingSpec(allDice:[1,3,5]))
+        def modifier = 2.on_every_die.when(new DiceRollingSpec(allDice:[1,3,5]))
 
         assert modifier.modifier == 2
         assert modifier.condition == [1,3,5]
