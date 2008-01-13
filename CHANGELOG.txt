@@ -1,6 +1,16 @@
 Groovy Dice - Changelog
 ***********************
 
+groovydice v1.2 - Sun Jan 13, 2008
+----------------------------------
+
+ + Huge refactoring on NumberPatcher class;
+ + We can now pass a dice roll as an argument to a 'dynamic dice';
+ + Lots of methods were renamed to improve the readability of the API;
+ + Useless method for_each_die() was removed;
+ + Useless method count_where() was removed;
+
+
 groovydice v1.1 - Wed Jan 9, 2008
 ---------------------------------
 

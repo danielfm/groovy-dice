@@ -1,7 +1,7 @@
 Groovy Dice - A groovier way to roll dice!
 ******************************************
 
-Version 1.1 - Wed Jan 9, 2008
+Version 1.2 - Sun Jan 13, 2008
 
 This software is distributed under the terms of the Apache v2.0 License
 (see LICENSE.txt).
@@ -40,18 +40,17 @@ Here goes a list that shows some Groovy Dice's features:
 
 + Support to all types of dice. For example:
     - percentile dice (1.pd, 1.'d%')
-    - any number of dice sides (5.d6, 10.d10, 6.d15, 2.d100, 3.d(user_input))
+    - any number of dice sides (5.d6, 10.d100, 3.d(user_input), 4.d4(1.d))
     
 + Full support to arithmetic operations and calculations. For example:
-    - (-5.d10 * 4.d6.best(2).mean) / (5.d10 + 4).lowest
+    - (-5.d10 * 4.d6.only_the(2.best).mean) / (5.d10 + 4).worst_die
     
-+ Dice filtering and count. For example:
-    - 10.d20.where{it.is_even}
-    - 20.d50.count_where{it>20}
++ Advanced dice filtering. For example:
+    - 10.d20.only_if{it.is_even}
     
 + Support to simple and conditional modifiers. For example:
-    - 7.d10 + 5.on_each_die
-    - 7.d10 * 2.on_each_die.when{it in 1..3}
+    - 7.d10 + 5.on_every_die
+    - 7.d10 * 2.on_each_die_if{it in 1..3}
 
 
 3. Installation
@@ -96,6 +95,7 @@ The IDE used to develop this project is Eclipse 3.3 and some third-party
 plugins.
 
 http://eclipse.org
+
 
 6. More information
 *******************
