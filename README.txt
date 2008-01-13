@@ -64,7 +64,7 @@ to your CLASSPATH to make the stuff work. Also, if you want to call Groovy Dice
 scripts from a Java application using the Java Scripting API (JSR 223), you'll
 need to add the groovy-engine JAR to your CLASSPATH as well.
 
-All JAR files you need are inside either 'bin' and 'lib' folders. 
+All JAR files you need are inside both 'bin' and 'lib' folders. 
 
 
 4. Brought to you by...
