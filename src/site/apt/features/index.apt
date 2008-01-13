@@ -49,14 +49,14 @@ def n = new Scanner(System.in).nextLine()
 
  If you take a look at {{{../apidocs/index.html}the documentation}}, you'll see
  that you are able to extract some useful information from dice, like the
- highest die, the lowest die, the sum of all dice, and so on. Then, all dice
+ best die, the worst die, the sum of all dice, and so on. Then, all dice
  expressions (except in few cases) returns a <<<DiceRollingSpec>>> object.
  
  Some examples:
  
 +-----------------------
-10.d6.highest
-5.d12.lowest
+10.d6.best_die
+5.d12.worst_die
 5.d20.sum
 6.d4.mean
 12.d.median
@@ -93,9 +93,9 @@ def n = new Scanner(System.in).nextLine()
  [[3]] Roll six twenty-sided dice and print the worst two dice. A:
  <<<6.d20.worst(2).for_each_die\{println it\}>>>
  
- [[4]] Roll two ten-sided dice, get the highest die and roll twenty-sided
+ [[4]] Roll two ten-sided dice, get the best die and roll twenty-sided
  dice for this number of times. Return all dice. A:
- <<<(2.d10.highest).d20.view>>>
+ <<<(2.d10.best_die).d20.view>>>
  
  [[5]] Roll three four-sided dice and then roll a die of that many sides:
  A: <<<1.d(3.d4)>>>

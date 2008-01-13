@@ -72,19 +72,19 @@ class DiceRollingSpecTest {
     }
 
     @Test
-    void getTheHighestValue() {
-        assert !new DiceRollingSpec().highest
+    void getTheBestDie() {
+        assert !new DiceRollingSpec().best_die
 
         def spec = new DiceRollingSpec(allDice:[1,3,2,3,5,6,1,6])
-        assert spec.highest == 6
+        assert spec.best_die == 6
     }
 
     @Test
-    void getTheLowestValue() {
-        assert !new DiceRollingSpec().lowest
+    void getTheWorstDie() {
+        assert !new DiceRollingSpec().worst_die
 
         def spec = new DiceRollingSpec(allDice:[1,3,2,3,5,6,1,6])
-        assert spec.lowest == 1
+        assert spec.worst_die == 1
     }
 
     @Test

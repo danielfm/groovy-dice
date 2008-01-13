@@ -88,20 +88,20 @@ class DiceRollingSpec implements Comparable {
     }
 
     /**
-     * Get the highest die.
-     * @return A <code>Number</code> which represents the highest die or null
+     * Get the best die.
+     * @return A <code>Number</code> which represents the best die or null
      * if no die has been rolled yet.
      */
-    def getHighest() {
+    def getBest_die() {
         allDice?.max()
     }
 
     /**
-     * Get the lowest die.
-     * @return A <code>Number</code> which represents the lowest die or null if
+     * Get the worst die.
+     * @return A <code>Number</code> which represents the worst die or null if
      * no die has been rolled yet.
      */
-    def getLowest() {
+    def getWorst_die() {
         allDice?.min()
     }
 

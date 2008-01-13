@@ -104,9 +104,11 @@ class NumberPatcherTest {
         assert spec.allDice == []
         assert spec.count == 0
 
-        assert !spec.lowest
+        assert !spec.worst_die
+        assert !spec.best_die
         assert !spec.mean
-        assert !spec.highest
+        assert !spec.median
+        assert !spec.mode
         assert !spec.sum
 
         assert spec.best(3) == 0

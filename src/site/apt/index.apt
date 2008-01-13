@@ -32,7 +32,7 @@ A groovier way to roll dice
 
 +---------------------------------------+
 5.d.view     // view the results of five six-sided dice
-10.d6.lowest // get the lowest die in this roll
+10.d6.worst_die // get the worst die in this roll
 +---------------------------------------+
 
  Filtering dice and applying modifiers to them is also possible:

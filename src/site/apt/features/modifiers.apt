@@ -33,12 +33,12 @@ Applying modifiers
  
 +-----------------------
 7.d6 + 1.d6.on_each_die
-7.d6 / 3.d6.highest.on_each_die
+7.d6 / 3.d6.best_die.on_each_die
 +-----------------------
  
  The first script rolls seven six-sided dice and plus to each die the result of
  a six-sided die. The last script rolls seven six-sided dice and divides each
- die by the highest die of three six-sided dice.
+ die by the best die of three six-sided dice.
  
  All these scripts returns <<<DiceRollingSpec>>>s.
 
