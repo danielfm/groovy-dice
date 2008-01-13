@@ -47,10 +47,10 @@ def n = new Scanner(System.in).nextLine()
 
 * What is returned by a dice rolling expression?
 
- If you take a look at {{{../apidocs/index.html}the documentation}}, you'll see
- that you are able to extract some useful information from dice, like the
- best die, the worst die, the sum of all dice, and so on. Then, all dice
- expressions (except in few cases) returns a <<<DiceRollingSpec>>> object.
+ If you take a look at {{{../apidocs/index.html}the documentation}} pages,
+ you'll see that you are able to extract some useful information from dice,
+ like the best die, the worst die, the sum of all dice, and so on. Then, all
+ dice expressions (except in few cases) returns a <<<DiceRollingSpec>>> object.
  
  Some examples:
  
@@ -83,7 +83,7 @@ def n = new Scanner(System.in).nextLine()
  [[2]] Roll a percentile die for <<<5*4>>> times. A: <<<(5*4).'d%'>>>
  
  [[3]] Roll six twenty-sided dice and print the worst two dice. A:
- <<<6.d20.ony_the(2.worst).view.each\{println it\}>>>
+ <<<6.d20.only_the(2.worst).view.each\{println it\}>>>
  
  [[4]] Roll two ten-sided dice, get the best die and roll twenty-sided
  dice for this number of times. Return all dice. A:
