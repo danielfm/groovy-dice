@@ -106,9 +106,9 @@ class DiceRollingSpec implements Comparable {
     }
 
     /**
-     * Calculate the mean value.
-     * @return A <code>Number</code> which represents the mean or null if no
-     * die has been rolled yet.
+     * Calculate the mean of all rolled dice.
+     * @return A <code>Number</code> which represents the mean of all rolled
+     * dice or null if no die has been rolled yet.
      */
     def getMean() {
         if (allDice) {
@@ -117,9 +117,9 @@ class DiceRollingSpec implements Comparable {
     }
 
     /**
-     * Calculate the median.
-     * @return A <code>Number</code> which represents the median or null if no
-     * die has been rolled yet.
+     * Calculate the median of all rolled dice.
+     * @return A <code>Number</code> which represents the median of all rolled
+     * dice or null if no die has been rolled yet.
      */
     def getMedian() {
         if(allDice) {
@@ -132,9 +132,9 @@ class DiceRollingSpec implements Comparable {
     }
 
     /**
-     * Calculate the mode.
-     * @return A <code>Number</code> which represents the median or null if no
-     * die has been rolled yet.
+     * Calculate the mode of all rolled dice.
+     * @return A <code>Number</code> which represents the median of all rolled
+     * dice or null if no die has been rolled yet.
      */
     def getMode() {
         if (allDice) {
@@ -165,50 +165,24 @@ class DiceRollingSpec implements Comparable {
     }
 
     /**
-     * Get the best 'n' dice.
-     * @param n Optional parameter that specify the number of best dice to get.
-     * Defaults to 1.
-     * @return If the given parameter is 1, the method returns a <code>Number</code>
-     * that represents the best die. Otherwise, a new <code>DiceRollingSpec</code> object
-     * containing the best 'n' dice is returned. If no dice has been rolled yet, this method
-     * returns zero.
-     */
-    def best(n=1) {
-        if (!allDice) return 0
-        n = (n > 0) ? (n > count ? count : n) : 1
-        n == 1 ? allDice.sort()[-n] : deriveSpec(allDice.sort()[-1..-n])
-    }
-
-     /**
-      * Get the worst 'n' dice.
-      * @param n Optional parameter that specify the number of worst dice to get.
-      * Defaults to 1.
-      * @return If the given parameter is 1, the method returns an <code>Number</code>
-      * that represents the worst die. Otherwise, a new <code>DiceRollingSpec</code> object
-      * containing the worst 'n' dice is returned. If no dice has been rolled yet, this method
-      * returns zero.
-      */
-    def worst(n=1) {
-        if (!allDice) return 0
-        n = (n > 0) ? (n >= count ? (count - 1) : (n - 1)) : 0
-        n == 0 ? allDice.sort()[n] : deriveSpec(allDice.sort()[0..n])
-    }
-
-    /**
      * Create a simple <code>DieModifier</code> object using the value returned
      * by <code>getSum()</code> method.
-     * @return A <code>DieModifier</code> object, which is used to apply modifier
-     * to rolled dice.
+     * @return A <code>DieModifier</code> object, which is used to apply a
+     * modifier to rolled dice.
      */
     def getOn_every_die() {
         sum.on_every_die
     }
 
     /**
-     * Create a simple <code>DieModifier</code> object using the value returned
-     * by <code>getSum()</code> method.
-     * @return A <code>DieModifier</code> object, which is used to apply modifier
-     * to rolled dice.
+     * Create a conditional <code>DieModifier</code> object using the value
+     * returned by <code>getSum()</code> method.
+     * @param condition Can be any object accepted by <code>grep()</code>
+     * method, like a number, an array, a range, a closure etc. You can also
+     * pass a <code>DiceRollingSpec</code> object to use its dice as the
+     * condition.
+     * @return A <code>DieModifier</code> object, which is used to apply
+     * a modifier to dice that matches the given condition.
      */
     def on_each_die_if(condition) {
         sum.on_each_die_if(condition)
@@ -231,12 +205,43 @@ class DiceRollingSpec implements Comparable {
     }
 
     /**
+     * Get the best 'n' dice.
+     * @param n Optional parameter that specify the number of best dice to get.
+     * Defaults to 1.
+     * @return If the given parameter is 1, the method returns a <code>Number</code>
+     * that represents the best die. Otherwise, a new <code>DiceRollingSpec</code> object
+     * containing the best 'n' dice is returned. If no dice has been rolled yet, this method
+     * returns zero.
+     */
+    private def best(n=1) {
+        if (!allDice) return 0
+        n = (n > 0) ? (n > count ? count : n) : 1
+        n == 1 ? allDice.sort()[-n] : deriveSpec(allDice.sort()[-1..-n])
+    }
+
+    /**
+     * Get the worst 'n' dice.
+     * @param n Optional parameter that specify the number of worst dice to get.
+     * Defaults to 1.
+     * @return If the given parameter is 1, the method returns an <code>Number</code>
+     * that represents the worst die. Otherwise, a new <code>DiceRollingSpec</code> object
+     * containing the worst 'n' dice is returned. If no dice has been rolled yet, this method
+     * returns zero.
+     */
+    private def worst(n=1) {
+        if (!allDice) return 0
+        n = (n > 0) ? (n >= count ? (count - 1) : (n - 1)) : 0
+        n == 0 ? allDice.sort()[n] : deriveSpec(allDice.sort()[0..n])
+    }
+
+    /**
      * Select the N best or worst dice.
-     * @condition This parameter is a number. If it is a positive number, get the
-     * N best dice. If this is a negative number, get the N.abs() worst dice.
+     * @param condition This parameter is a number. If it is a positive number, get the
+     * N best dice. If this is a negative number, get the |N| worst dice.
      * @return New <code>DiceRollingSpec</code> object that contains only the N
-     * best or worst dice if N > 1 or N < -1. If N == 1 or N == -1, this method
-     * returns a Number which represents the best or worst value, respectively.
+     * best or worst dice if N > 1 or N < -1, respectively. If N == 1 or
+     * N == -1, this method returns a Number which represents the best or worst
+     * value, respectively. If N == 0, this method returns null.
      */
     def only_the(condition) {
         condition == 0 ? null : (condition < 0 ? worst(-condition) : best(condition))
