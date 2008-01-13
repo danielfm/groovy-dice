@@ -57,7 +57,7 @@ Here goes a list that shows some Groovy Dice's features:
 ***************
 
 Just drop the groovydice JAR file in your application's CLASSPATH and you're
-done. See the next topic to know about which dependencies you'll need.
+done.
 
 Since this API is written in Groovy 1.5.1, you will need to add the Groovy JARs
 to your CLASSPATH to make the stuff work. Also, if you want to call Groovy Dice
