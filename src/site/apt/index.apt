@@ -41,7 +41,7 @@ A groovier way to roll dice
 5.d12 * 5.on_every_die   // multiply each die by 5
 6.d20 + 2.d.on_every_die // multiply each die by the sum of two six-sided dice
 10.d10.best(3)          // filter the three highest dice in this roll
-20.d6.where{it.is_odd}  // filter all odd dice of this roll
+20.d6.only_if{it.is_odd}  // filter all odd dice of this roll
 +---------------------------------------+
 
  Don't be fooled: all these Groovy scripts <works>!

@@ -401,44 +401,44 @@ class DiceRollingSpecTest {
     }
 
     @Test
-    void selectSubsetOfDiceUsingARangeInWhereMethod() {
+    void selectSubsetOfDiceUsingARange() {
         def spec = new DiceRollingSpec(allDice:[1,2,3,4,5,6,7,8,9])
 
-        assert spec.where(3..5).allDice == [3,4,5]
-        assert spec.where(3..5).count == 3
+        assert spec.only_if(3..5).allDice == [3,4,5]
+        assert spec.only_if(3..5).count == 3
     }
 
     @Test
-    void selectSubsetOfDiceUsingAClosureInWhereMethod() {
+    void selectSubsetOfDiceUsingAClosure() {
         def spec = new DiceRollingSpec(allDice:[1,2,3,4,5,6,7,8,9])
 
-        assert spec.where{it.is_even}.allDice == [2,4,6,8]
-        assert spec.where{it.is_even}.count == 4
+        assert spec.only_if{it.is_even}.allDice == [2,4,6,8]
+        assert spec.only_if{it.is_even}.count == 4
     }
 
     @Test
-    void selectSubsetOfDiceUsingAnArrayInWhereMethod() {
+    void selectSubsetOfDiceUsingAnArray() {
         def spec = new DiceRollingSpec(allDice:[1,2,3,4,5,6,7,8,9])
 
-        assert spec.where([1,3,5,7,9]).allDice == [1,3,5,7,9]
-        assert spec.where([1,3,5,7,9]).count == 5
+        assert spec.only_if([1,3,5,7,9]).allDice == [1,3,5,7,9]
+        assert spec.only_if([1,3,5,7,9]).count == 5
     }
 
     @Test
-    void selectSubsetOfDiceUsingANumberInWhereMethod() {
+    void selectSubsetOfDiceUsingANumber() {
         def spec = new DiceRollingSpec(allDice:[1,2,3,4,5,6,7,8,9])
 
-        assert spec.where(5).allDice == [5]
-        assert spec.where(5).count == 1
+        assert spec.only_if(5).allDice == [5]
+        assert spec.only_if(5).count == 1
     }
 
     @Test
-    void selectSubsetOfDiceUsingDiceInWhereMethod() {
+    void selectSubsetOfDiceUsingDice() {
         def spec1 = new DiceRollingSpec(allDice:[1,2,3,4,5,6,7,8,9])
         def spec2 = new DiceRollingSpec(allDice:[1,3,4])
 
-        assert spec1.where(spec2).allDice == [1,3,4]
-        assert spec1.where(spec2).count == 3
+        assert spec1.only_if(spec2).allDice == [1,3,4]
+        assert spec1.only_if(spec2).count == 3
     }
 
     @Test

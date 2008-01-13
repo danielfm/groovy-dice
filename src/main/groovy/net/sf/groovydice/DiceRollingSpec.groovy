@@ -223,7 +223,7 @@ class DiceRollingSpec implements Comparable {
      * @return New <code>DiceRollingSpec</code> object that contains only the dice
      * that match the given condition.
      */
-    def where(condition) {
+    def only_if(condition) {
         if (condition instanceof DiceRollingSpec) {
             condition = condition.allDice
         }

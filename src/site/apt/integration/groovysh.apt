@@ -29,5 +29,5 @@ new net.sf.groovydice.GroovyDice().initialize()
  console. For example:
  
 +----------------------------
-10.d20.where{it.is_even}.view
+10.d20.only_if{it.is_even}.view
 +----------------------------
