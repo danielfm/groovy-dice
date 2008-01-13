@@ -61,8 +61,8 @@ def n = new Scanner(System.in).nextLine()
 6.d4.mean
 12.d.median
 20.d10.mode
-5.d10.only_the(3.best)
-8.d20.only_the(4.worst)
+5.d10.the(3.best)
+8.d20.the(4.worst)
 +-----------------------
 
  I'm not going to explain what each line does. Try to figure it out yourself!
@@ -83,7 +83,7 @@ def n = new Scanner(System.in).nextLine()
  [[2]] Roll a percentile die for <<<5*4>>> times. A: <<<(5*4).'d%'>>>
  
  [[3]] Roll six twenty-sided dice and print the worst two dice. A:
- <<<6.d20.only_the(2.worst).view.each\{println it\}>>>
+ <<<6.d20.the(2.worst).view.each\{println it\}>>>
  
  [[4]] Roll two ten-sided dice, get the best die and roll twenty-sided
  dice for this number of times. Return all dice. A:

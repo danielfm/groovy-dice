@@ -6,11 +6,11 @@ Dice filtering
  Groovy Dice provides several ways to filter dice of a roll. This is a very
  useful feature for situations where only a few dice matters.
  
- The simplest way to filter dice is to use <<<only_the()>>> method:
+ The simplest way to filter dice is to use the <<<the()>>> method:
  
 +-----------------------
-5.d10.only_the(2.best)
-10.d20.only_the(5.worst)
+5.d10.the(2.best)
+10.d20.the(5.worst)
 +-----------------------
  
  You can use the <<<only_if()>>> method to specify more advanced filters:
@@ -29,29 +29,21 @@ Dice filtering
  (inclusive). Finally, the last script rolls five twenty-sided dice and filter
  all dice equals to any dice in two ten-sided dice.
 
- But we can do things in a more <idiomatic> way:
+ Although these scripts work fine, we can do things in a more <idiomatic> way:
  
 +-----------------------
-5.d12.only_if{it.is_even}
-10.d20.only_if{it in [1,3,5]}
-10.d10.only_if{it > 8 || it in 1..3}
-5.d6.only_if{it+1 in 2.d6}
+5.d6.only_if{it == 2}
+10.d12.only_if{it in [1,3,5,7]}
+5.d20.only_if{it in 1..4}
+5.d20.only_if{it in 2.d10}
 +-----------------------
  
- The first script rolls five twelve-sided dice and filter all even dice. The
- second script rolls ten twenty-sided dice and filter all dice equals to
- <<<1>>>, <<<3>>> or <<<5>>>. The third script rolls ten ten-sided dice and
- filter all dice greater than <<<8>>> or between <<<1>>> and <<<3>>>
- (inclusive). Finally, the last script rolls five six-sided dice and filter
- each die where it plus <<<1>>> is equals to any die in two six-sided dice
- roll.
- 
- All these filtering methods returns <<<DiceRollingSpec>>> objects.
+ All filtering methods return <<<DiceRollingSpec>>> objects.
 
 * Exercises
 
  [[1]] Roll fifteen twenty-sided dice and get the best three odd dice. A:
- <<<15.d20.only_if\{it.is_odd\}.only_the(3.best)>>>
+ <<<15.d20.only_if\{it.is_odd\}.the(3.best)>>>
  
  [[2]] Roll six ten-sided dice and sum all even dice. A:
  <<<6.d10.only_if\{it.is_even\}.sum>>>

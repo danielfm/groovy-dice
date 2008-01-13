@@ -170,8 +170,8 @@ class DiceRollingSpec implements Comparable {
      * @return A <code>DieModifier</code> object, which is used to apply a
      * modifier to rolled dice.
      */
-    def getOn_every_die() {
-        sum.on_every_die
+    def getTo_every_die() {
+        sum.to_every_die
     }
 
     /**
@@ -184,8 +184,8 @@ class DiceRollingSpec implements Comparable {
      * @return A <code>DieModifier</code> object, which is used to apply
      * a modifier to dice that matches the given condition.
      */
-    def on_each_die_if(condition) {
-        sum.on_each_die_if(condition)
+    def to_each_die_if(condition) {
+        sum.to_each_die_if(condition)
     }
 
     /**
@@ -243,7 +243,7 @@ class DiceRollingSpec implements Comparable {
      * N == -1, this method returns a Number which represents the best or worst
      * value, respectively. If N == 0, this method returns null.
      */
-    def only_the(condition) {
+    def the(condition) {
         condition == 0 ? null : (condition < 0 ? worst(-condition) : best(condition))
     }
 

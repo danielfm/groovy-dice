@@ -233,13 +233,13 @@ class NumberPatcherTest {
 
     @Test
     void createModifierFromANumber() {
-        def modifier = 5.on_every_die
+        def modifier = 5.to_every_die
         assert modifier.modifier == 5
     }
 
     @Test
     void createConditionalModifierFromANumber() {
-        def modifier = 5.on_each_die_if(2)
+        def modifier = 5.to_each_die_if(2)
 
         assert modifier.modifier == 5
         assert modifier.condition == 2

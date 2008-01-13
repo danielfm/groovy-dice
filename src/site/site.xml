@@ -17,11 +17,6 @@
 			<item name="Download" href="download.html" />
 		</menu>
 
-        <menu name="Community">
-            <item name="How to contribute" href="community/how-to-contribute.html" />
-            <item name="Getting help" href="community/getting-help.html" />
-        </menu>
-
 		<menu name="Documentation">
 			<item name="Introduction" href="features/index.html" />
 			<item name="Dice filtering"
@@ -41,6 +36,11 @@
 					href="integration/jsr223.html" />
 			</item>
 		</menu>
+
+		<menu name="Community">
+            <item name="How to contribute" href="community/how-to-contribute.html" />
+            <item name="Getting help" href="community/getting-help.html" />
+        </menu>
 
 		<menu ref="reports" />
 	</body>
