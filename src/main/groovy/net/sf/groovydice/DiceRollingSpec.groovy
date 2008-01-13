@@ -195,13 +195,23 @@ class DiceRollingSpec implements Comparable {
     }
 
     /**
-     * Create a <code>DieModifier</code> object using the value returned by
-     * <code>getSum()</code> method.
+     * Create a simple <code>DieModifier</code> object using the value returned
+     * by <code>getSum()</code> method.
      * @return A <code>DieModifier</code> object, which is used to apply modifier
      * to rolled dice.
      */
     def getOn_every_die() {
         sum.on_every_die
+    }
+
+    /**
+     * Create a simple <code>DieModifier</code> object using the value returned
+     * by <code>getSum()</code> method.
+     * @return A <code>DieModifier</code> object, which is used to apply modifier
+     * to rolled dice.
+     */
+    def on_each_die_if(condition) {
+        sum.on_each_die_if(condition)
     }
 
     /**

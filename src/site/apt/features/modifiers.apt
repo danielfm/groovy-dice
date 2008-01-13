@@ -48,7 +48,7 @@ Applying modifiers
  specify which dice will be affected by the modifier:
  
 +-----------------------
-7.d6 + 1.on_every_die.when{it.is_even}
+7.d6 + 1.on_each_die_if{it.is_even}
 +-----------------------
  
  In this example, we roll seven six-sided dice and plus <<<1>>> to each <even>
@@ -58,11 +58,11 @@ Applying modifiers
  You can pass to <<<when()>>> method several types of objects:
  
 +-----------------------
-7.d6 + 1.on_every_die.when(1)
-7.d6 + 1.on_every_die.when([1,3,5])
-7.d6 + 1.on_every_die.when(1..4)
-7.d6 + 1.on_every_die.when(1.d4)
-7.d6 + 1.on_every_die.when{it == 1 || it in [5,6]}
+7.d6 + 1.on_each_die_if(1)
+7.d6 + 1.on_each_die_if([1,3,5])
+7.d6 + 1.on_each_die_if(1..4)
+7.d6 + 1.on_each_die_if(1.d4)
+7.d6 + 1.on_each_die_if{it == 1 || it in [5,6]}
 +-----------------------
 
 * Exercises

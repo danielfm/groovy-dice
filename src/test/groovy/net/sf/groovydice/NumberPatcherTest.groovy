@@ -239,7 +239,7 @@ class NumberPatcherTest {
 
     @Test
     void createConditionalModifierFromANumber() {
-        def modifier = 5.on_every_die.when(2)
+        def modifier = 5.on_each_die_if(2)
 
         assert modifier.modifier == 5
         assert modifier.condition == 2

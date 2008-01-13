@@ -35,16 +35,14 @@ class DieModifier {
      * of dice.
      * @param condition An object that express an condition which all dice must fit in order
      * to be 'modified'. Any object that fit into a <code>grep()</code> call can be used here.
-     * You can pass a <code>DiceRollingSpec</code> object to apply this modifier only to dice
-     * equals to any dice of the given roll.
-     * @return <code>this</code>.
+     * You can also pass a <code>DiceRollingSpec</code> object to apply this modifier only to
+     * dice equals to any dice of the given roll.
      */
-    def when(condition) {
+    void setCondition(condition) {
         if (condition instanceof DiceRollingSpec) {
              condition = condition.allDice
         }
         this.condition = condition
-        this
     }
 
     /**
