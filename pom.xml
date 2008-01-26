@@ -47,14 +47,14 @@
 	<!-- source control management (subversion) -->
 	<scm>
 		<connection>
-			scm:svn:https://groovydice.svn.sourceforge.net/svnroot/groovydice
+			scm:svn:https://groovydice.svn.sourceforge.net/svnroot/groovydice/trunk
 		</connection>
 		<developerConnection>
-			scm:svn:https://groovydice.svn.sourceforge.net/svnroot/groovydice
+			scm:svn:https://groovydice.svn.sourceforge.net/svnroot/groovydice/trunk
 		</developerConnection>
 		<tag>HEAD</tag>
 		<url>
-			http://groovydice.svn.sourceforge.net/viewvc/groovydice/
+			http://groovydice.svn.sourceforge.net/viewvc/groovydice/trunk
 		</url>
 	</scm>
 
