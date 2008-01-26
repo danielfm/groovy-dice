@@ -7,7 +7,7 @@ groovysh integration
  scratch just to play around with Groovy Dice: why not leverage
  <<<groovysh>>> and <<<groovyConsole>>>? :-)
  
- The following procedure works for either <<<groovysh>>> and
+ The following procedure works for both <<<groovysh>>> and
  <<<groovyConsole>>>:
  
    [[1]] Type one of the following command lines in the terminal (bash,
