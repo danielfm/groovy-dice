@@ -22,7 +22,7 @@ import org.junit.*
  *
  * @author Daniel F. Martins
  */
-class NumberPatcherTest {
+class DefaultNumberPatcherTest {
 
     @Before
     void initialize()  {
@@ -30,16 +30,48 @@ class NumberPatcherTest {
     }
 
     /**
-     * Check whether the DiceRollingSpec dice are inside the expected range.
-     * @param spec A DiceRollingSpec object.
+     * Check whether the DefaultDiceRollingSpec dice are inside the expected range.
+     * @param spec A DefaultDiceRollingSpec object.
      * @param range Range of values which all dice must fit in.
-     * @return Whether the given DiceRollingSpec dice are valid.
+     * @return Whether the given DefaultDiceRollingSpec dice are valid.
      */
     private assertDiceInRange(spec, range) {
         assert spec.view.size() > 0
         spec.view.each {
             assert it in range
         }
+    }
+
+    @Test
+    void getDefaultSpecClass() {
+        assert new DefaultNumberPatcher().specClass == DefaultDiceRollingSpec
+    }
+
+    @Test
+    void getDefaultModifierClass() {
+        assert new DefaultNumberPatcher().modifierClass == DieModifier
+    }
+
+    @Test
+    void rollSpec() {
+        def spec = new DefaultNumberPatcher().rollSpec(5, 6)
+
+        assert spec.sides == 5
+        assert spec.count == 6
+    }
+
+    @Test
+    void createSimpleModifier() {
+        def m = new DefaultNumberPatcher().createModifier(-5)
+        assert m.modifier == -5
+    }
+
+    @Test
+    void createConditionalModifier() {
+        def m = new DefaultNumberPatcher().createModifier(-5, 'condition')
+
+        assert m.modifier == -5
+        assert m.condition == 'condition'
     }
 
     @Test
@@ -88,11 +120,12 @@ class NumberPatcherTest {
         def spec1 = (-5).d10
         def spec2 = -5.d10
 
-        assert spec1 instanceof DiceRollingSpec
+        assert spec1 instanceof DefaultDiceRollingSpec
         assert spec1.view.size() == 5
         assert spec1.view.findAll{it > 0}.size == 0
 
-        assert spec2 instanceof DiceRollingSpec
+        println spec2.class
+        assert spec2 instanceof DefaultDiceRollingSpec
         assert spec2.view.size() == 5
         assert spec2.view.findAll{it > 0}.size == 0
     }
@@ -151,7 +184,7 @@ class NumberPatcherTest {
 
     @Test
     void rollDynamicDiceUsingADiceRollAsSideNumber() {
-        def spec = new DiceRollingSpec(allDice:[1,2,4])
+        def spec = new DefaultDiceRollingSpec(allDice:[1,2,4])
         (0..50).each {
             assertDiceInRange(1.d(spec), (1..7))
         }
@@ -201,7 +234,7 @@ class NumberPatcherTest {
 
     @Test
     void subtractANumberFromDiceRoll() {
-        def spec1 = new DiceRollingSpec(allDice:[1,2,3,4])
+        def spec1 = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
         def result = 5 - spec1
 
         assert result.sum == -5
@@ -209,25 +242,25 @@ class NumberPatcherTest {
 
     @Test
     void multiplyANumberByDiceRoll() {
-        def spec1 = new DiceRollingSpec(allDice:[1,2,3,4])
+        def spec1 = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
         assert 5 * spec1 == 50
     }
 
     @Test
     void divideANumberByDiceRoll() {
-        def spec1 = new DiceRollingSpec(allDice:[1,2,3,4])
+        def spec1 = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
         assert 5 / spec1 == 0.5
     }
 
     @Test
     void powerANumberByDiceRoll() {
-        def spec1 = new DiceRollingSpec(allDice:[1,2,3,4])
+        def spec1 = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
         assert 5 ** spec1 == 9765625
     }
 
     @Test
     void modANumberByDiceRoll() {
-        def spec1 = new DiceRollingSpec(allDice:[1,2,3,4])
+        def spec1 = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
         assert 14 % spec1 == 4
     }
 
@@ -247,10 +280,10 @@ class NumberPatcherTest {
 
     @Test
     void isNumberInDiceRoll() {
-    	def spec1 = new DiceRollingSpec(allDice:[1,2,3,4])
+        def spec1 = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
 
-    	assert 2 in spec1
-    	assert !(5 in spec1)
+        assert 2 in spec1
+        assert !(5 in spec1)
     }
 
     @Test
@@ -269,7 +302,7 @@ class NumberPatcherTest {
     void createWorstFilterFromANumber() {
         assert 2.worst == -2
         assert 2.0.worst == -2.0
-        
+
         try {
             0.worst
             fail()

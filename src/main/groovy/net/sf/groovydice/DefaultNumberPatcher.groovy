@@ -16,39 +16,40 @@
 package net.sf.groovydice
 
 /**
- * This class only contains one method, which is used to "patch" the number
- * classes, adding properties and methods to them.
+ * This class implements the template methods used by its superclass.
  *
  * @author Daniel F. Martins
  */
-class NumberPatcher {
+class DefaultNumberPatcher extends NumberPatcherTemplate {
+
+    def specClass = DefaultDiceRollingSpec
+    def modifierClass = DieModifier
+
 
     /**
-     * Call this method to modify Number instances at runtime, enabling its
-     * instances to respond to lots of new methods and properties.
+     * Create and roll a dice rolling specification object.
+     * @param sides Number of sides of the dice.
+     * @param rolls Number of dice to roll.
+     * @return The dice rolling specification object.
      */
-    void addMethods() {
+    def rollSpec(sides, rolls) {
+        def spec = specClass.newInstance()
+        spec.sides = sides
+        spec.roll(rolls)
+    }
 
-        [Integer, Long, BigInteger, Float, Double, BigDecimal].each {
-            addOnEveryDieProperty(it)
-            addOnEachDieIfMethod(it)
-            addIsEvenProperty(it)
-            addIsOddProperty(it)
+    /**
+     * Create a die modifier object.
+     * @param number Modifier number
+     * @param condition Modifier condition.
+     * @return Die modifier object.
+     */
+    def createModifier(number, condition = null) {
+        def m = modifierClass.newInstance()
 
-            addBestProperty(it)
-            addWorstProperty(it)
-
-            addDiceMethods(it)
-            addDynamicDiceMethods(it)
-
-            overridePlusOperator(it)
-            overrideMinusOperator(it)
-            overrideMultiplyOperator(it)
-            overrideDivOperator(it)
-
-            overridePowerOperator(it)
-            overrideModOperator(it)
-        }
+        m.modifier = number
+        m.condition = condition
+        m
     }
 
     /**
@@ -57,7 +58,7 @@ class NumberPatcher {
      */
     void addOnEveryDieProperty(clazz) {
         clazz.metaClass.getTo_every_die = { ->
-            new DieModifier(modifier:delegate)
+            createModifier(delegate)
         }
     }
 
@@ -67,7 +68,7 @@ class NumberPatcher {
      */
     void addOnEachDieIfMethod(clazz) {
         clazz.metaClass.to_each_die_if = { condition ->
-            new DieModifier(modifier:delegate, condition:condition)
+            createModifier(delegate, condition)
         }
     }
 
@@ -123,7 +124,7 @@ class NumberPatcher {
      * @param clazz Class that will receive such methods.
      */
     void addDiceMethods(clazz) {
-    	clazz.metaClass.propertyMissing = { name ->
+        clazz.metaClass.propertyMissing = { name ->
 
             if (name =~ /^(d|D)$/) {
                 name = 'd6' // 6-sided dice is the default dice type
@@ -131,11 +132,10 @@ class NumberPatcher {
 
             /* intercept calls to 'dX' properties */
             if (name =~ /^(d|D)\d+$/) {
-                def sides = name.substring(1).toInteger()
-                return new DiceRollingSpec(sides:sides).roll(delegate)
+                return rollSpec(name.substring(1).toInteger(), delegate)
             }
             if (name =~ /^((p|P)(d|D)|(d|D)%)$/) {
-                return new DiceRollingSpec(sides:'%').roll(delegate)
+                return rollSpec('%', delegate)
             }
 
             throw new MissingPropertyException(
@@ -150,13 +150,13 @@ class NumberPatcher {
     void addDynamicDiceMethods(clazz) {
         clazz.metaClass.d = { sides ->
             try {
-                if (sides instanceof DiceRollingSpec) {
+                if (sides instanceof AbstractDiceRollingSpec) {
                     sides = sides.sum
                 }
-                sides = sides.toFloat() as int                      
+                sides = sides.toFloat() as int
             }
             catch (NumberFormatException) {}
-            new DiceRollingSpec(sides:sides).roll(delegate)
+            rollSpec(sides, delegate)
         }
 
         clazz.metaClass.D = { sides ->
@@ -170,7 +170,7 @@ class NumberPatcher {
      */
     void overridePlusOperator(clazz) {
         clazz.metaClass.plus = { n ->
-            if (n instanceof DiceRollingSpec) {
+            if (n instanceof AbstractDiceRollingSpec) {
                 return n + delegate
             }
         }
@@ -182,7 +182,7 @@ class NumberPatcher {
      */
     void overrideMinusOperator(clazz) {
         clazz.metaClass.minus = { n ->
-            if (n instanceof DiceRollingSpec) {
+            if (n instanceof AbstractDiceRollingSpec) {
                 return -n + delegate
             }
         }
@@ -194,7 +194,7 @@ class NumberPatcher {
      */
     void overrideMultiplyOperator(clazz) {
         clazz.metaClass.multiply = { n ->
-            if (n instanceof DiceRollingSpec) {
+            if (n instanceof AbstractDiceRollingSpec) {
                 return n * delegate
             }
         }
@@ -206,7 +206,7 @@ class NumberPatcher {
      */
     void overrideDivOperator(clazz) {
         clazz.metaClass.div = { n ->
-            if (n instanceof DiceRollingSpec) {
+            if (n instanceof AbstractDiceRollingSpec) {
                 return delegate / n.sum
             }
         }
@@ -218,7 +218,7 @@ class NumberPatcher {
      */
     void overridePowerOperator(clazz) {
         clazz.metaClass.power = { n ->
-            if (n instanceof DiceRollingSpec) {
+            if (n instanceof AbstractDiceRollingSpec) {
                 return delegate ** n.sum
             }
         }
@@ -230,7 +230,7 @@ class NumberPatcher {
      */
     void overrideModOperator(clazz) {
         clazz.metaClass.mod = { n ->
-            if (n instanceof DiceRollingSpec) {
+            if (n instanceof AbstractDiceRollingSpec) {
                 return delegate % n.sum
             }
         }

@@ -42,7 +42,7 @@ class DieModifierTest {
 
     @Test
     void useADiceRollAsCondition() {
-        def modifier = 2.to_each_die_if(new DiceRollingSpec(allDice:[1,3,5]))
+        def modifier = 2.to_each_die_if(new DefaultDiceRollingSpec(allDice:[1,3,5]))
 
         assert modifier.modifier == 2
         assert modifier.condition == [1,3,5]

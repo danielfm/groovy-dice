@@ -16,9 +16,10 @@
 package net.sf.groovydice
 
 /**
- * This class is used to specify a modifier to each die of a <code>DiceRollingSpec</code>
- * object. A modifier can also hold a <em>condition</em> object, which is used when applying
- * the modifier in such a way that only matching dice are modified.
+ * This class is used to specify a modifier to each die of a dice rolling
+ * specification object. A modifier can also hold a <em>condition</em> object,
+ * which is used when applying the modifier in such a way that only matching
+ * dice are modified.
  *
  * @author Daniel F. Martins
  */
@@ -31,22 +32,23 @@ class DieModifier {
     def condition
 
     /**
-     * Set the condition, which restricts the modifier to be applied only to a specific set
-     * of dice.
-     * @param condition An object that express an condition which all dice must fit in order
-     * to be 'modified'. Any object that fit into a <code>grep()</code> call can be used here.
-     * You can also pass a <code>DiceRollingSpec</code> object to apply this modifier only to
-     * dice equals to any dice of the given roll.
+     * Set the condition, which restricts the modifier to be applied only to a
+     * specific set of dice.
+     * @param condition An object that express an condition which all dice must
+     * fit in order to be 'modified'. Any object that fit into a <code>grep()</code>
+     * call can be used here. You can also pass a dice rolling specification object
+     * to apply this modifier only to dice equals to any dice of the given roll.
      */
     void setCondition(condition) {
-        if (condition instanceof DiceRollingSpec) {
+        if (condition instanceof AbstractDiceRollingSpec) {
              condition = condition.allDice
         }
         this.condition = condition
     }
 
     /**
-     * Multiply the modifier value by '-1' when the unary '-' operator is used in this object.
+     * Multiply the modifier value by '-1' when the unary '-' operator is used in
+     * this object.
      * @return <code>this</code>.
      */
     def negative() {
