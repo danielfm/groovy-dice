@@ -29,7 +29,7 @@ abstract class AbstractDiceRollingSpec implements Comparable {
     def allDice = []
 
     /** Random number generator. */
-    static final def generator = new Random()
+    def numberGenerator = new SimpleRandomNumberGenerator()
 
 
     /**
@@ -48,34 +48,10 @@ abstract class AbstractDiceRollingSpec implements Comparable {
      */
     def roll(n=1) {
         n.abs().times {
-            allDice << generateNumber() * ((n < 0) ? -1 : 1)
+            allDice << numberGenerator.generateNumber(sides) * ((n < 0) ? -1 : 1)
         }
+        if (sides == '%') sides = 100
         this
-    }
-
-    /**
-     * Generate a random number, considering the constraints specified by
-     * this object.
-     * @return Random <code>Integer</code>.
-     * @throws IllegalArgumentException if the 'sides' field is invalid.
-     */
-    def generateNumber() {
-        if (!(sides == '%' || sides > 0)) {
-            throw new IllegalArgumentException("Invalid side value: $sides")
-        }
-
-        if (sides == '%') {
-            sides = 100
-            def result = ''
-
-            2.times {
-                result += generator.nextInt(10)
-            }
-            return (result == '00') ? 100 : result.toInteger()
-        }
-        else {
-            return generator.nextInt(sides) + 1
-        }
     }
 
     /**
@@ -184,6 +160,7 @@ abstract class AbstractDiceRollingSpec implements Comparable {
 
         spec.sides = (sides == 0) ? this.sides : sides
         spec.allDice = allDice
+        spec.numberGenerator = numberGenerator
         spec
     }
 

@@ -22,10 +22,19 @@ package net.sf.groovydice
  */
 class GroovyDice {
 
+    /** Random number generator to use */
+    def numberGenerator = new SimpleRandomNumberGenerator()
+
+    /** Dice rolling specification implementation to use */
+    def specClass = DefaultDiceRollingSpec
+
+    /** Die modifier implementation to use */
+    def modifierClass = DieModifier
+
     /**
      * Initialize the Groovy Dice engine.
      */
     void initialize() {
-    	new DefaultNumberPatcher().addMethods()
+        new DefaultNumberPatcher(config:this).addMethods()
     }
 }

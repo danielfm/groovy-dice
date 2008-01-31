@@ -22,11 +22,8 @@ package net.sf.groovydice
  */
 class DefaultNumberPatcher extends NumberPatcherTemplate {
 
-    /** Dice rolling specification implementation to use */
-    def specClass = DefaultDiceRollingSpec
-
-    /** Die modifier implementation to use */
-    def modifierClass = DieModifier
+    /** GroovyDice instance. This attribute is mandatory. */
+    def config
 
 
     /**
@@ -36,8 +33,10 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
      * @return The dice rolling specification object.
      */
     def rollSpec(sides, rolls) {
-        def spec = specClass.newInstance()
+        def spec = config.specClass.newInstance()
         spec.sides = sides
+
+        spec.numberGenerator = config.numberGenerator
         spec.roll(rolls)
     }
 
@@ -48,7 +47,7 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
      * @return Die modifier object.
      */
     def createModifier(number, condition = null) {
-        def m = modifierClass.newInstance()
+        def m = config.modifierClass.newInstance()
 
         m.modifier = number
         m.condition = condition
@@ -135,10 +134,10 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
 
             /* intercept calls to 'dX' properties */
             if (name =~ /^(d|D)\d+$/) {
-                return rollSpec(name.substring(1).toInteger(), delegate)
+                return delegate.d(name.substring(1).toInteger())
             }
             if (name =~ /^((p|P)(d|D)|(d|D)%)$/) {
-                return rollSpec('%', delegate)
+                return delegate.d('%')
             }
 
             throw new MissingPropertyException(

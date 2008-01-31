@@ -24,37 +24,25 @@ import org.junit.*
  */
 class DefaultNumberPatcherTest {
 
+    def config
+
     @Before
     void initialize()  {
-        new GroovyDice().initialize()
+        config = new GroovyDice()
+        config.numberGenerator = new StubGenerator()
+        config.initialize()
     }
 
-    /**
-     * Check whether the DefaultDiceRollingSpec dice are inside the expected range.
-     * @param spec A DefaultDiceRollingSpec object.
-     * @param range Range of values which all dice must fit in.
-     * @return Whether the given DefaultDiceRollingSpec dice are valid.
-     */
-    private assertDiceInRange(spec, range) {
-        assert spec.view.size() > 0
+    private void assertDice(spec) {
+        assert spec instanceof AbstractDiceRollingSpec
         spec.view.each {
-            assert it in range
+            assert it == spec.sides
         }
     }
 
     @Test
-    void getDefaultSpecClass() {
-        assert new DefaultNumberPatcher().specClass == DefaultDiceRollingSpec
-    }
-
-    @Test
-    void getDefaultModifierClass() {
-        assert new DefaultNumberPatcher().modifierClass == DieModifier
-    }
-
-    @Test
     void rollSpec() {
-        def spec = new DefaultNumberPatcher().rollSpec(5, 6)
+        def spec = new DefaultNumberPatcher(config:config).rollSpec(5, 6)
 
         assert spec.sides == 5
         assert spec.count == 6
@@ -62,13 +50,13 @@ class DefaultNumberPatcherTest {
 
     @Test
     void createSimpleModifier() {
-        def m = new DefaultNumberPatcher().createModifier(-5)
+        def m = new DefaultNumberPatcher(config:config).createModifier(-5)
         assert m.modifier == -5
     }
 
     @Test
     void createConditionalModifier() {
-        def m = new DefaultNumberPatcher().createModifier(-5, 'condition')
+        def m = new DefaultNumberPatcher(config:config).createModifier(-5, 'condition')
 
         assert m.modifier == -5
         assert m.condition == 'condition'
@@ -94,25 +82,19 @@ class DefaultNumberPatcherTest {
 
     @Test
     void rollOneDefaultDie() {
-        (0..50).each {
-            assertDiceInRange(1.d, (1..6))
-            assertDiceInRange(1.D, (1..6))
-        }
+        assertDice(1.d)
+        assertDice(1.D)
     }
 
     @Test
     void rollOneTenSidedDie() {
-        (0..50).each {
-            assertDiceInRange(1.d10, (1..10))
-            assertDiceInRange(1.D10, (1..10))
-        }
+        assertDice(1.d10)
+        assertDice(1.D10)
     }
 
     @Test
     void rollTwoTwelveSidedDice() {
-        (0..100).each {
-            assertDiceInRange(2.d12, (1..12))
-        }
+        assertDice(2.d12)
     }
 
     @Test
@@ -124,7 +106,6 @@ class DefaultNumberPatcherTest {
         assert spec1.view.size() == 5
         assert spec1.view.findAll{it > 0}.size == 0
 
-        println spec2.class
         assert spec2 instanceof DefaultDiceRollingSpec
         assert spec2.view.size() == 5
         assert spec2.view.findAll{it > 0}.size == 0
@@ -148,11 +129,6 @@ class DefaultNumberPatcherTest {
         assert spec.worst(3) == 0
     }
 
-    @Test(expected=IllegalArgumentException)
-    void rollZeroSidedDie() {
-        5.d0
-    }
-
     @Test(expected=MissingPropertyException)
     void rollXSidedDie() {
         5.dx
@@ -160,44 +136,26 @@ class DefaultNumberPatcherTest {
 
     @Test
     void rollDynamicDice() {
-        (0..50).each {
-            assertDiceInRange(1.d(6), (1..6))
-            assertDiceInRange(1.D(6.5), (1..6))
-        }
+        assertDice(1.d(6))
+        assertDice(1.D(6.5))
     }
 
     @Test
     void rollDynamicDiceUsingStringAsSideNumber() {
-        (0..50).each {
-            assertDiceInRange(1.d('6'), (1..6))
-            assertDiceInRange(1.D('6.5'), (1..6))
-        }
+        assertDice(1.d('6'))
+        assertDice(1.D('6.5'))
     }
 
     @Test
     void rollDynamicPercentileDice() {
-    	(0..50).each {
-            assertDiceInRange(1.d('%'), (1..100))
-            assertDiceInRange(1.D('%'), (1..100))
-        }
+        assertDice(1.d('%'))
+        assertDice(1.D('%'))
     }
 
     @Test
     void rollDynamicDiceUsingADiceRollAsSideNumber() {
         def spec = new DefaultDiceRollingSpec(allDice:[1,2,4])
-        (0..50).each {
-            assertDiceInRange(1.d(spec), (1..7))
-        }
-    }
-
-    @Test(expected=IllegalArgumentException)
-    void rollZeroSidedDynamicDie() {
-        5.d(0)
-    }
-
-    @Test(expected=IllegalArgumentException)
-    void rollMinusOneSidedDynamicDie() {
-        5.D(-1)
+        assertDice(1.d(spec))
     }
 
     @Test(expected=MissingPropertyException)
@@ -214,14 +172,9 @@ class DefaultNumberPatcherTest {
         assert 2.Pd
         assert 2.PD
 
-        (0..50).each {
-            assert assertDiceInRange(1.'d%', 1..100)
-            assert assertDiceInRange(1.'D%', 1..100)
-        }
-
-        (0..50).each {
-            assert assertDiceInRange(2.pd, 1..100)
-        }
+        assertDice(1.'d%')
+        assertDice(1.'D%')
+        assertDice(2.pd)
     }
 
     @Test
@@ -308,5 +261,16 @@ class DefaultNumberPatcherTest {
             fail()
         }
         catch (IllegalArgumentException) {}
+    }
+}
+
+/**
+ * Dumb number generator.
+ *
+ * @author Daniel F. Martins
+ */
+class StubGenerator implements RandomNumberGenerator {
+    def generateNumber(number) {
+        number == '%' ? 100 : number
     }
 }
