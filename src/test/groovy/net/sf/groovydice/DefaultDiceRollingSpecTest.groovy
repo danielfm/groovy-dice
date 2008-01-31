@@ -18,7 +18,7 @@ package net.sf.groovydice
 import org.junit.*
 
 /**
- * DiceRollingSpec test cases.
+ * DefaultDiceRollingSpec test cases.
  *
  * @author Daniel F. Martins
  */

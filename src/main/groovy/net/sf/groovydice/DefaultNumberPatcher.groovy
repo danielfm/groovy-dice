@@ -22,7 +22,10 @@ package net.sf.groovydice
  */
 class DefaultNumberPatcher extends NumberPatcherTemplate {
 
+    /** Dice rolling specification implementation to use */
     def specClass = DefaultDiceRollingSpec
+
+    /** Die modifier implementation to use */
     def modifierClass = DieModifier
 
 

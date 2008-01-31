@@ -22,12 +22,10 @@ package net.sf.groovydice
  */
 class GroovyDice {
 
-    def numberPatcher = new DefaultNumberPatcher()
-
     /**
      * Initialize the Groovy Dice engine.
      */
     void initialize() {
-        numberPatcher.addMethods()
+    	new DefaultNumberPatcher().addMethods()
     }
 }

@@ -18,7 +18,7 @@ package net.sf.groovydice
 import org.junit.*
 
 /**
- * NumberPatcher test cases.
+ * DefaultNumberPatcher test cases.
  *
  * @author Daniel F. Martins
  */
