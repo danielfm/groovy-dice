@@ -29,8 +29,6 @@ abstract class NumberPatcherTemplate {
      * enabling its instances to respond to lots of new methods and properties.
      */
     void addMethods() {
-
-        /* implement this methods in a subclass */
         numberClasses.each {
             addOnEveryDieProperty(it)
             addOnEachDieIfMethod(it)
@@ -61,4 +59,25 @@ abstract class NumberPatcherTemplate {
     def getNumberClasses() {
         [Integer, Long, BigInteger, Float, Double, BigDecimal]
     }
+
+    /* please override these methods in a subclass */
+
+    void addOnEveryDieProperty(clazz) {}
+    void addOnEachDieIfMethod(clazz) {}
+    void addIsEvenProperty(clazz) {}
+    void addIsOddProperty(clazz) {}
+
+    void addBestProperty(clazz) {}
+    void addWorstProperty(clazz) {}
+
+    void addDiceMethods(clazz) {}
+    void addDynamicDiceMethods(clazz) {}
+
+    void overridePlusOperator(clazz) {}
+    void overrideMinusOperator(clazz) {}
+    void overrideMultiplyOperator(clazz) {}
+    void overrideDivOperator(clazz) {}
+
+    void overridePowerOperator(clazz) {}
+    void overrideModOperator(clazz) {}
 }
