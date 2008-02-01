@@ -39,7 +39,7 @@
             <item name="Extending Groovy Dice"
                 href="extend/index.html">
                 <item name="Random Number Generator" href="extend/generator.html" />
-                <item name="Die Modifier" href="extend/modifier.html" />
+                <item name="Dice Modifier" href="extend/modifier.html" />
                 <item name="Dice Rolling Specification" href="extend/spec.html" />
                 <item name="Number Patcher" href="extend/patcher.html" />
                 <item name="A Complete ExamplePatcher" href="extend/example.html" />

@@ -33,9 +33,14 @@ class SimpleRandomNumberGeneratorTest {
 
     @Test
     void checkRandomNumberInterval() {
-        def n = 1000
-        n.times {
-            generator.generateNumber(100) in 1..n
+        def results = [1,50,100]
+        while(results) {
+            def value = generator.generateNumber(100)
+            assert value in 1..100
+
+            if (value in results) {
+                results -= value
+            }
         }
     }
 }

@@ -27,7 +27,7 @@ class DefaultDiceRollingSpecTest {
     @Before
     void initialize() {
         new GroovyDice().initialize()
-	}
+    }
 
     @Test
     void createConditionalModifierFromDiceRoll() {
@@ -35,6 +35,12 @@ class DefaultDiceRollingSpecTest {
 
         assert modifier.modifier == 6
         assert modifier.condition == 2
+    }
+
+    @Test(expected=IllegalArgumentException)
+    void plusInvalidObjectToDiceRoll() {
+        def spec = new DefaultDiceRollingSpec(sides:6, allDice:[5,6,4,2,3,1])
+        spec + '10'
     }
 
     @Test
@@ -71,6 +77,12 @@ class DefaultDiceRollingSpecTest {
         assert result.allDice == [2,3,4,5,5,6,7]
     }
 
+    @Test(expected=IllegalArgumentException)
+    void subtractInvalidObjectFromDiceRoll() {
+        def spec = new DefaultDiceRollingSpec(sides:6, allDice:[5,6,4,2,3,1])
+        spec - '10'
+    }
+
     @Test
     void subtractTwoDiceRolls() {
         def spec1 = new DefaultDiceRollingSpec(allDice:[1,2,3,4,5])
@@ -104,6 +116,12 @@ class DefaultDiceRollingSpecTest {
         assert result.allDice == [0,2,2,4,4,6,6,8,8]
     }
 
+    @Test(expected=IllegalArgumentException)
+    void nultiplyDiceRollByInvalidObject() {
+        def spec = new DefaultDiceRollingSpec(sides:6, allDice:[5,6,4,2,3,1])
+        spec * '10'
+    }
+
     @Test
     void multiplyTwoDiceRolls() {
         def spec1 = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
@@ -132,6 +150,12 @@ class DefaultDiceRollingSpecTest {
         def result = spec1 * 2.to_each_die_if(4)
 
         assert result.allDice == [1,2,3,8,5]
+    }
+
+    @Test(expected=IllegalArgumentException)
+    void divideDiceRollByInvalidObject() {
+        def spec = new DefaultDiceRollingSpec(sides:6, allDice:[5,6,4,2,3,1])
+        spec / '10'
     }
 
     @Test
@@ -164,6 +188,12 @@ class DefaultDiceRollingSpecTest {
         assert result.allDice == [1,1,3,2]
     }
 
+    @Test(expected=IllegalArgumentException)
+    void powerDiceRollByInvalidObject() {
+        def spec = new DefaultDiceRollingSpec(sides:6, allDice:[5,6,4,2,3,1])
+        spec ** '10'
+    }
+
     @Test
     void powerTwoDiceRolls() {
         def spec1 = new DefaultDiceRollingSpec(sides:6, allDice:[1,2,3,4])
@@ -173,7 +203,7 @@ class DefaultDiceRollingSpecTest {
     }
 
     @Test
-    void powerANumberToDiceRoll() {
+    void powerNumberToDiceRoll() {
         def spec1 = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
         assert spec1 ** 10 == 10000000000
     }
@@ -192,6 +222,12 @@ class DefaultDiceRollingSpecTest {
         def result = spec1 ** 10.to_each_die_if(3..4)
 
         assert result.allDice == [1,2,59049,1048576]
+    }
+
+    @Test(expected=IllegalArgumentException)
+    void modDiceRollByInvalidObject() {
+        def spec = new DefaultDiceRollingSpec(sides:6, allDice:[5,6,4,2,3,1])
+        spec % '10'
     }
 
     @Test
@@ -298,22 +334,36 @@ class DefaultDiceRollingSpecTest {
         assert (spec1 <=> spec2) > 0
     }
 
+    @Test(expected=ClassCastException)
+    void compareDiceRollWithInvalidObject() {
+        def spec = new DefaultDiceRollingSpec(allDice:[1,1,1,1])
+        spec <=> '10'
+    }
+
     @Test
     void isDiceRollsEquals() {
         def spec1 = new DefaultDiceRollingSpec(allDice:[1,1,1,1,2,2])
         def spec2 = new DefaultDiceRollingSpec(allDice:[1,3,4])
 
-        assert spec1 == spec2
-        assert spec1 >= spec2
-        assert spec1 <= spec2
+        assert spec1.equals(spec2)
 
         spec1 = new DefaultDiceRollingSpec(allDice:[1,1,1,1])
-        assert spec1 < spec2
-        assert spec1 <= spec2
+        assert !spec1.equals(spec2)
 
         spec2 = new DefaultDiceRollingSpec(allDice:[1,1])
-        assert spec1 > spec2
-        assert spec1 >= spec2
+        assert !spec1.equals(spec2)
+    }
+
+    @Test(expected=ClassCastException)
+    void isDiceRollEqualToInvalidObject() {
+        def spec = new DefaultDiceRollingSpec(allDice:[1,1,1,1])
+        spec.equals('10')
+    }
+
+    @Test(expected=IllegalArgumentException)
+    void passInvalidArgumentToSameMethod() {
+        def spec1 = new DefaultDiceRollingSpec()
+        assert spec1.same_as('10')
     }
 
     @Test
@@ -364,7 +414,7 @@ class DefaultDiceRollingSpecTest {
 
     @Test(expected=IllegalArgumentException)
     void verifyWhetherADIceRollAndSomethingElseAreTheSame() {
-        def spec = new DefaultDiceRollingSpec()
+        def spec = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
         spec.same_as([:])
     }
 }

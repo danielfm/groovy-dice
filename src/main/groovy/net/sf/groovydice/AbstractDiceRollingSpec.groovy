@@ -124,7 +124,13 @@ abstract class AbstractDiceRollingSpec implements Comparable {
      * dice or null if no die has been rolled yet.
      */
     def getMode() {
-        if (allDice) {
+        if (count == 0) {
+            return []
+        }
+        else if (count <= 1) {
+            return [allDice[0]]
+        }
+        else {
             def map = [:]
             allDice.each {
                 map[it] = map[it] ? map[it] + 1 : 1
@@ -132,22 +138,22 @@ abstract class AbstractDiceRollingSpec implements Comparable {
 
             def keys = map.keySet().sort{-map[it]}
             if (map.values().sum() == map.keySet().size()) {
-                return null
+                return []
             }
 
-            def idx = 0
-            for (key in keys) {
-                if (idx++ == 0) continue
-                if (map[keys[idx - 2]] > map[keys[idx - 1]]) break
+            def last = 0
+            def keyList = keys.toList()
+
+            for (int i = 0; i < keyList.size() - 1; i++) {
+                if (map[keyList[i]] > map[keyList[i+1]]) {
+                    break
+                }
+                else {
+                    last++
+                }
             }
 
-            def result = keys[0..idx-2]
-            if (result instanceof Number) {
-                return [result]
-            }
-            else {
-                return result
-            }
+            return keys[0..last]
         }
     }
 

@@ -91,7 +91,10 @@ class AbstractDiceRollingSpecTest {
     void getTheMean() {
         assert !new DefaultDiceRollingSpec().mean
 
-        def spec = new DefaultDiceRollingSpec(allDice:[1,3,2,3,5,6,1,6])
+        def spec = new DefaultDiceRollingSpec(allDice:[2])
+        assert spec.mean == 2
+
+        spec = new DefaultDiceRollingSpec(allDice:[1,3,2,3,5,6,1,6])
         assert spec.mean == 3.375f
     }
 
@@ -99,6 +102,9 @@ class AbstractDiceRollingSpecTest {
     void getTheMedian() {
         def spec = new DefaultDiceRollingSpec()
         assert !spec.median
+
+        spec = new DefaultDiceRollingSpec(allDice:[2])
+        assert spec.median == 2
 
         spec = new DefaultDiceRollingSpec(allDice:[1,2,4,7,9,10])
         assert spec.median == 5.5
@@ -110,19 +116,22 @@ class AbstractDiceRollingSpecTest {
     @Test
     void getTheMode() {
         def spec = new DefaultDiceRollingSpec()
-        assert !spec.mode
+        assert spec.mode == []
 
-        spec = new DefaultDiceRollingSpec(allDice:[1,2,4,7,9,10])
-        assert !spec.mode
+        spec = new DefaultDiceRollingSpec(allDice:[1,2])
+        assert spec.mode == []
 
-        spec = new DefaultDiceRollingSpec(allDice:[1,2,4,7,9,10,4])
-        assert spec.mode == [4]
+        spec = new DefaultDiceRollingSpec(allDice:[1])
+        assert spec.mode == [1]
 
-        spec = new DefaultDiceRollingSpec(allDice:[1,2,4,7,9,10,4,7,3])
-        assert spec.mode == [4,7]
+        spec = new DefaultDiceRollingSpec(allDice:[1,2,1])
+        assert spec.mode == [1]
 
-        spec = new DefaultDiceRollingSpec(allDice:[1,2,4,7,9,10,4,7,3,1])
-        assert spec.mode == [1,4,7]
+        spec = new DefaultDiceRollingSpec(allDice:[1,2,1,2])
+        assert spec.mode == [1,2]
+
+        spec = new DefaultDiceRollingSpec(allDice:[1,2,1,2,3])
+        assert spec.mode == [1,2]
     }
 
     @Test
@@ -200,5 +209,10 @@ class AbstractDiceRollingSpecTest {
 
         assert spec.the(2.worst).allDice == [1,2]
         assert spec.the(3.0.worst).allDice == [1,2,3]
+    }
+
+    @Test
+    void getDiceRollingHashCode() {
+        assert new DefaultDiceRollingSpec(allDice:[1,2,3,4,5,6]).hashCode()
     }
 }

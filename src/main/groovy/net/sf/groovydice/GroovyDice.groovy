@@ -31,7 +31,7 @@ class GroovyDice {
     def specClass = DefaultDiceRollingSpec
 
     /** Die modifier implementation to use */
-    def modifierClass = DieModifier
+    def modifierClass = DiceModifier
 
     /** Number patcher to use */
     def numberPatcher = new DefaultNumberPatcher()

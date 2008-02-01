@@ -111,7 +111,7 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
         case AbstractDiceRollingSpec:
             return deriveSpec(allDice + value.allDice,
                     (sides > value.sides) ? 0 : value.sides)
-        case DieModifier:
+        case DiceModifier:
             return value.apply(this.&plus)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
@@ -129,7 +129,7 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
     def minus(value) {
         switch(value) {
         case Number:
-        case DieModifier:
+        case DiceModifier:
             return plus(-value)
         case AbstractDiceRollingSpec:
             return deriveSpec(allDice + -value.allDice)
@@ -154,7 +154,7 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
             return sum * value
         case AbstractDiceRollingSpec:
             return sum * value.sum
-        case DieModifier:
+        case DiceModifier:
             return value.apply(this.&multiply)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
@@ -175,7 +175,7 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
         case Number:
         case AbstractDiceRollingSpec:
             return sum / value
-        case DieModifier:
+        case DiceModifier:
             return value.apply(this.&div)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
@@ -197,7 +197,7 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
             return sum ** value
         case AbstractDiceRollingSpec:
             return sum ** value.sum
-        case DieModifier:
+        case DiceModifier:
             return value.apply(this.&power)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
@@ -220,7 +220,7 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
             return sum % value
         case AbstractDiceRollingSpec:
             return sum % value.sum
-        case DieModifier:
+        case DiceModifier:
             return value.apply(this.&mod)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
@@ -253,11 +253,11 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
      * @param spec Dice rolling specification object.
      * @return Whether the sum of this roll is equals to the sum of the given
      * roll.
+     * @throws ClassCastException if the given object is unexpected.
      */
     boolean equals(spec) {
         this.compareTo(spec) == 0
     }
-
 
     /**
      * Compare the sum of this roll to the sum of the given roll.
@@ -265,11 +265,13 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
      * @return < 0 if the sum of this roll is lesser than the sum of the given
      * roll; = 0 if the sum of this roll is equals to the sum of the given roll;
      * > 0 if the sum of this roll is greater than the sum of the given roll.
+     * @throws ClassCastException if the given object is unexpected.
      */
     int compareTo(spec) {
         if (spec instanceof AbstractDiceRollingSpec) {
             return sum <=> spec.sum
         }
+        throw new ClassCastException('Expecting an instance of AbstractDiceRollingSpec')
     }
 
     /**
