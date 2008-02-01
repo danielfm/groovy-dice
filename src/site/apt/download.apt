@@ -3,7 +3,9 @@
 
 Download
 
- The latest package of Groovy Dice is available for
+ <<Groovy Dice 1.3>> is the latest official stable release.
+
+ Groovy Dice is available for
  {{{http://sourceforge.net/project/showfiles.php?group_id=213311}download}} at
  the project's website. This package contains all JAR files needed to use
  Groovy Dice in a Java/Groovy application, the complete source code and an
@@ -29,7 +31,7 @@ Download
     <dependency>
         <groupId>net.sf.groovydice</groupId>
         <artifactId>groovydice</artifactId>
-        <version>1.2.1</version>
+        <version>1.3</version>
     </dependency>
 </dependencies>
 +---------------------

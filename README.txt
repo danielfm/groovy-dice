@@ -1,7 +1,7 @@
 Groovy Dice - A groovier way to roll dice!
 ******************************************
 
-Version 1.2.1 - Sun Jan 13, 2008
+Version 1.3 - Wee Mon dd, yyyy
 
 This software is distributed under the terms of the Apache v2.0 License
 (see LICENSE.txt).

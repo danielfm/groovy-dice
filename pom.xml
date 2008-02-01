@@ -1,189 +1,189 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<name>Groovy Dice</name>
-	<groupId>net.sf.groovydice</groupId>
-	<artifactId>groovydice</artifactId>
-	<packaging>groovy-jar</packaging>
-	<version>1.2.1</version>
-	<description>
-		Groovy Dice is an advanced Groovy-based dice rolling API
-	</description>
-	<url>http://groovydice.sourceforge.net</url>
-	<inceptionYear>2008</inceptionYear>
-	<organization>
-		<name>Daniel F. Martins</name>
-		<url>http://danielfmartins.com</url>
-	</organization>
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>Groovy Dice</name>
+    <groupId>net.sf.groovydice</groupId>
+    <artifactId>groovydice</artifactId>
+    <packaging>groovy-jar</packaging>
+    <version>1.3-SNAPSHOT</version>
+    <description>
+        Groovy Dice is an advanced Groovy-based dice rolling API
+    </description>
+    <url>http://groovydice.sourceforge.net</url>
+    <inceptionYear>2008</inceptionYear>
+    <organization>
+        <name>Daniel F. Martins</name>
+        <url>http://danielfmartins.com</url>
+    </organization>
 
-	<developers>
-		<developer>
-			<name>Daniel Martins</name>
-			<email>daniel_martins@users.sourceforge.net</email>
-			<url>http://danielfmartins.com</url>
-			<roles>
-				<role>Lead developer</role>
-			</roles>
-			<timezone>-3</timezone>
-			<properties />
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <name>Daniel Martins</name>
+            <email>daniel_martins@users.sourceforge.net</email>
+            <url>http://danielfmartins.com</url>
+            <roles>
+                <role>Lead developer</role>
+            </roles>
+            <timezone>-3</timezone>
+            <properties />
+        </developer>
+    </developers>
 
-	<issueManagement>
-		<system>SourceForge.net</system>
-		<url>https://sourceforge.net/tracker/?group_id=213311</url>
-	</issueManagement>
+    <issueManagement>
+        <system>SourceForge.net</system>
+        <url>https://sourceforge.net/tracker/?group_id=213311</url>
+    </issueManagement>
 
-	<licenses>
-		<license>
-			<name>Apache 2</name>
-			<url>LICENSE.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>LICENSE.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
-	<!-- source control management (subversion) -->
-	<scm>
-		<connection>
-			scm:svn:https://groovydice.svn.sourceforge.net/svnroot/groovydice/trunk
-		</connection>
-		<developerConnection>
-			scm:svn:https://groovydice.svn.sourceforge.net/svnroot/groovydice/trunk
-		</developerConnection>
-		<tag>HEAD</tag>
-		<url>
-			http://groovydice.svn.sourceforge.net/viewvc/groovydice/trunk
-		</url>
-	</scm>
+    <!-- source control management (subversion) -->
+    <scm>
+        <connection>
+            scm:svn:https://groovydice.svn.sourceforge.net/svnroot/groovydice/trunk
+        </connection>
+        <developerConnection>
+            scm:svn:https://groovydice.svn.sourceforge.net/svnroot/groovydice/trunk
+        </developerConnection>
+        <tag>HEAD</tag>
+        <url>
+            http://groovydice.svn.sourceforge.net/viewvc/groovydice/trunk
+        </url>
+    </scm>
 
-	<!-- needed for javax.script -->
-	<repositories>
-		<repository>
-			<id>mule-deps</id>
-			<name>Mule Dependencies</name>
-			<url>http://dist.codehaus.org/mule/dependencies/maven2</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+    <!-- needed for javax.script -->
+    <repositories>
+        <repository>
+            <id>mule-deps</id>
+            <name>Mule Dependencies</name>
+            <url>http://dist.codehaus.org/mule/dependencies/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
-	<!-- Groovy Dice website -->
-	<distributionManagement>
-		<repository>
-			<id>sourceforge.net</id>
-			<url>
-				scp://shell.sourceforge.net/home/groups/g/gr/groovydice/htdocs/m2repo
-			</url>
-		</repository>
-		<snapshotRepository>
-			<id>sourceforge.net</id>
-			<url>
-				scp://shell.sourceforge.net/home/groups/g/gr/groovydice/htdocs/m2snapshot
-			</url>
-		</snapshotRepository>
-		<site>
-			<id>sourceforge.net</id>
-			<name>Groovy Dice website</name>
-			<url>
-				scp://shell.sourceforge.net/home/groups/g/gr/groovydice/htdocs/
-			</url>
-		</site>
-	</distributionManagement>
+    <!-- Groovy Dice website -->
+    <distributionManagement>
+        <repository>
+            <id>sourceforge.net</id>
+            <url>
+                scp://shell.sourceforge.net/home/groups/g/gr/groovydice/htdocs/m2repo
+            </url>
+        </repository>
+        <snapshotRepository>
+            <id>sourceforge.net</id>
+            <url>
+                scp://shell.sourceforge.net/home/groups/g/gr/groovydice/htdocs/m2snapshot
+            </url>
+        </snapshotRepository>
+        <site>
+            <id>sourceforge.net</id>
+            <name>Groovy Dice website</name>
+            <url>
+                scp://shell.sourceforge.net/home/groups/g/gr/groovydice/htdocs/
+            </url>
+        </site>
+    </distributionManagement>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-all</artifactId>
-			<version>1.5.1</version>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>1.5.3</version>
+        </dependency>
 
-		<!-- file added to the distribution ZIP, but not required in runtime/compilation -->
-		<dependency>
-			<groupId>javax.script</groupId>
-			<artifactId>groovy-engine</artifactId>
-			<version>1.1</version>
-			<classifier>jdk14</classifier>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
+        <!-- file added to the distribution ZIP, but not required in runtime/compilation -->
+        <dependency>
+            <groupId>javax.script</groupId>
+            <artifactId>groovy-engine</artifactId>
+            <version>1.1</version>
+            <classifier>jdk14</classifier>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.4</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.4</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo.groovy</groupId>
-				<artifactId>groovy-maven-plugin</artifactId>
-				<extensions>true</extensions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<descriptors>
-						<descriptor>
-							src/assemble/distribution.xml
-						</descriptor>
-					</descriptors>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo.groovy</groupId>
+                <artifactId>groovy-maven-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>
+                            src/assemble/distribution.xml
+                        </descriptor>
+                    </descriptors>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>javadoc</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<artifactId>
-					maven-project-info-reports-plugin
-				</artifactId>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>summary</report>
-							<report>dependencies</report>
-							<report>project-team</report>
-							<report>issue-tracking</report>
-							<report>license</report>
-							<report>scm</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-		</plugins>
-	</reporting>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>javadoc</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <artifactId>
+                    maven-project-info-reports-plugin
+                </artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>summary</report>
+                            <report>dependencies</report>
+                            <report>project-team</report>
+                            <report>issue-tracking</report>
+                            <report>license</report>
+                            <report>scm</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>

@@ -30,7 +30,7 @@ import net.sf.groovydice.GroovyDice;
 /**
  * Test the Groovy Dice integration with Java applications.
  * 
- * @author Daniel F. Martins
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  */
 public class GroovyDiceJavaIntegrationTest {
 

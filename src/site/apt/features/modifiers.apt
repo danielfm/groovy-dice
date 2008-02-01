@@ -1,7 +1,7 @@
- ------
- Applying modifiers
- 
-Applying modifiers
+ ------------------
+ Applying Modifiers
+
+Applying Modifiers
 
  Sometimes you might want to apply modifiers to one or more dice of a roll.
  To do this, Groovy Dice provides  <simple> modifiers and <conditional>
@@ -29,7 +29,7 @@ Applying modifiers
 7.d6 % 2.to_every_die  // modulo
 +-----------------------
  
- It's also possible to use other dice as modifier:
+ It's also possible to use a dice as modifier:
  
 +-----------------------
 7.d6 + 1.d6.to_every_die
@@ -40,7 +40,7 @@ Applying modifiers
  a six-sided die. The last script rolls seven six-sided dice and divides each
  die by the best die of three six-sided dice.
  
- All these scripts returns <<<DiceRollingSpec>>>s.
+ All these scripts returns dice rolling specification objects.
 
 * Conditional modifiers
 

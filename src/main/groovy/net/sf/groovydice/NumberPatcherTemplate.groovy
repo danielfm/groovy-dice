@@ -16,22 +16,24 @@
 package net.sf.groovydice
 
 /**
- * This class only contains one method, which is used to "patch"
- * <code>Number</code> classes, adding properties and methods which
- * triggers the creation of dice rolling specification objects.
+ * This abstract class provides a way to "patch" <code>Number</code> classes,
+ * adding properties and methods to those classes which triggers the creation of
+ * dice rolling specification objects.
  *
- * @author Daniel F. Martins
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @since 1.3
+ * @version 1
  */
 abstract class NumberPatcherTemplate {
 
     /**
-     * Call this method to modify <code>Number</code> instances at runtime,
-     * enabling its instances to respond to lots of new methods and properties.
+     * Modify <code>Number</code> instances at runtime, enabling its instances
+     * to respond to new methods and properties.
      */
     void addMethods() {
         numberClasses.each {
-            addOnEveryDieProperty(it)
-            addOnEachDieIfMethod(it)
+            addToEveryDieProperty(it)
+            addToEachDieIfMethod(it)
             addIsEvenProperty(it)
             addIsOddProperty(it)
 
@@ -62,22 +64,102 @@ abstract class NumberPatcherTemplate {
 
     /* please override these methods in a subclass */
 
-    void addOnEveryDieProperty(clazz) {}
-    void addOnEachDieIfMethod(clazz) {}
-    void addIsEvenProperty(clazz) {}
-    void addIsOddProperty(clazz) {}
+    /**
+     * Add the property <code>to_every_die</code> to the given class.
+     * @param clazz Class where the property will be added.
+     */
+    void addToEveryDieProperty(clazz) {
+    }
 
-    void addBestProperty(clazz) {}
-    void addWorstProperty(clazz) {}
+    /**
+     * Add the method <code>to_each_die_if</code> to the given class.
+     * @param clazz Class where the method will be added.
+     */
+    void addToEachDieIfMethod(clazz) {
+    }
 
-    void addDiceMethods(clazz) {}
-    void addDynamicDiceMethods(clazz) {}
+    /**
+     * Add the property <code>is_even</code> to the given class.
+     * @param clazz Class where the property will be added.
+     */
+    void addIsEvenProperty(clazz) {
+    }
 
-    void overridePlusOperator(clazz) {}
-    void overrideMinusOperator(clazz) {}
-    void overrideMultiplyOperator(clazz) {}
-    void overrideDivOperator(clazz) {}
+    /**
+     * Add the property <code>is_odd</code> to the given class.
+     * @param clazz Class where the property will be added.
+     */
+    void addIsOddProperty(clazz) {
+    }
 
-    void overridePowerOperator(clazz) {}
-    void overrideModOperator(clazz) {}
+    /**
+     * Add the propert <code>best</code> to the given class.
+     * @param clazz Class where the property will be added.
+     */
+    void addBestProperty(clazz) {
+    }
+
+    /**
+     * Add the propert <code>worst</code> to the given class.
+     * @param clazz Class where the property will be added.
+     */
+    void addWorstProperty(clazz) {
+    }
+
+    /**
+     * Modify the given class to make it support dice rolling methods,
+     * like <code>n.dX</code>, <code>n.pd</code> and <code>n.'d%'</code>.
+     * @param clazz Class that will receive such methods.
+     */
+    void addDiceMethods(clazz) {
+    }
+
+    /**
+     * Add the method <code>d()</code> to the given class.
+     * @param clazz Class where the method will be added.
+     */
+    void addDynamicDiceMethods(clazz) {
+    }
+
+    /**
+     * Override the <code>+</code> (plus) operator of the given class.
+     * @param clazz Class which plus method should be overridden.
+     */
+    void overridePlusOperator(clazz) {
+    }
+
+    /**
+     * Override the <code>-</code> (minus) operator of the given class.
+     * @param clazz Class which minus method should be overridden.
+     */
+    void overrideMinusOperator(clazz) {
+    }
+
+    /**
+     * Override the <code>*</code> (multiply) operator of the given class.
+     * @param clazz Class which multiply method should be overridden.
+     */
+    void overrideMultiplyOperator(clazz) {
+    }
+
+    /**
+     * Override the <code>/</code> (div) operator of the given class.
+     * @param clazz Class which div method should be overridden.
+     */
+    void overrideDivOperator(clazz) {
+    }
+
+    /**
+     * Override the <code>**</code> (power) operator of the given class.
+     * @param clazz Class which power method should be overridden.
+     */
+    void overridePowerOperator(clazz) {
+    }
+
+    /**
+     * Override the <code>%</code> (mod) operator of the given class.
+     * @param clazz Class which mod method should be overridden.
+     */
+    void overrideModOperator(clazz) {
+    }
 }

@@ -16,9 +16,12 @@
 package net.sf.groovydice
 
 /**
- * This class adds some goodies to the AbstractDiceRollingSpec class.
+ * This class adds some goodies to the AbstractDiceRollingSpec class, like
+ * arithmetic operators support, dice comparison and modifiers.
  *
- * @author Daniel F. Martins
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @since 1.3
+ * @version 1
  */
 class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
 

@@ -18,7 +18,9 @@ package net.sf.groovydice
 /**
  * Simple implementation of the <code>RandomNumberGenerator</code> interface.
  *
- * @author Daniel F. Martins
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @since 1.3
+ * @version 1
  */
 class SimpleRandomNumberGenerator implements RandomNumberGenerator {
 

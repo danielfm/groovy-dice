@@ -1,7 +1,7 @@
- ------
- Dice filtering
+ --------------
+ Dice Filtering
 
-Dice filtering
+Dice Filtering
 
  Groovy Dice provides several ways to filter dice of a roll. This is a very
  useful feature for situations where only a few dice matters.
@@ -38,7 +38,7 @@ Dice filtering
 5.d20.only_if{it in 2.d10}
 +-----------------------
  
- All filtering methods return <<<DiceRollingSpec>>> objects.
+ All filtering methods return dice rolling specification objects.
 
 * Exercises
 

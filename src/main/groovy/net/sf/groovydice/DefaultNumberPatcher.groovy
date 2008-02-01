@@ -16,13 +16,15 @@
 package net.sf.groovydice
 
 /**
- * This class implements the template methods used by its superclass.
+ * This class overrides the template methods defined by its superclass.
  *
- * @author Daniel F. Martins
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @since 1.3
+ * @version 1
  */
 class DefaultNumberPatcher extends NumberPatcherTemplate {
 
-    /** GroovyDice instance. This attribute is mandatory. */
+    /** GroovyDice instance. */
     def config
 
 
@@ -54,50 +56,30 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
         m
     }
 
-    /**
-     * Add the property <code>to_every_die</code> to the given class.
-     * @param clazz Class where the property will be added.
-     */
-    void addOnEveryDieProperty(clazz) {
+    void addToEveryDieProperty(clazz) {
         clazz.metaClass.getTo_every_die = { ->
             createModifier(delegate)
         }
     }
 
-    /**
-     * Add the method <code>to_each_die_if</code> to the given class.
-     * @param clazz Class where the method will be added.
-     */
-    void addOnEachDieIfMethod(clazz) {
+    void addToEachDieIfMethod(clazz) {
         clazz.metaClass.to_each_die_if = { condition ->
             createModifier(delegate, condition)
         }
     }
 
-    /**
-     * Add the property <code>is_even</code> to the given class.
-     * @param clazz Class where the property will be added.
-     */
     void addIsEvenProperty(clazz) {
         clazz.metaClass.getIs_even = { ->
             (delegate as int) % 2 == 0
         }
     }
 
-    /**
-     * Add the property <code>is_odd</code> to the given class.
-     * @param clazz Class where the property will be added.
-     */
     void addIsOddProperty(clazz) {
         clazz.metaClass.getIs_odd = { ->
             (delegate as int) % 2 != 0
         }
     }
 
-    /**
-     * Add the propert <code>best</code> to the given class.
-     * @param clazz Class where the property will be added.
-     */
     void addBestProperty(clazz) {
         clazz.metaClass.getBest = { ->
             if (delegate < 1) {
@@ -107,10 +89,6 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
         }
     }
 
-    /**
-     * Add the propert <code>worst</code> to the given class.
-     * @param clazz Class where the property will be added.
-     */
     void addWorstProperty(clazz) {
         clazz.metaClass.getWorst = { ->
             if (delegate < 1) {
@@ -120,11 +98,6 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
         }
     }
 
-    /**
-     * Modify the given class to make it support dice rolling methods,
-     * like <code>n.dX</code>, <code>n.pd</code> and <code>n.'d%'</code>.
-     * @param clazz Class that will receive such methods.
-     */
     void addDiceMethods(clazz) {
         clazz.metaClass.propertyMissing = { name ->
 
@@ -145,10 +118,6 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
         }
     }
 
-    /**
-     * Add the method <code>d()</code> to the given class.
-     * @param clazz Class where the method will be added.
-     */
     void addDynamicDiceMethods(clazz) {
         clazz.metaClass.d = { sides ->
             try {
@@ -166,10 +135,6 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
         }
     }
 
-    /**
-     * Override the <code>+</code> (plus) operator of the given class.
-     * @param clazz Class which plus method should be overridden.
-     */
     void overridePlusOperator(clazz) {
         clazz.metaClass.plus = { n ->
             if (n instanceof AbstractDiceRollingSpec) {
@@ -178,10 +143,6 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
         }
     }
 
-    /**
-     * Override the <code>-</code> (minus) operator of the given class.
-     * @param clazz Class which minus method should be overridden.
-     */
     void overrideMinusOperator(clazz) {
         clazz.metaClass.minus = { n ->
             if (n instanceof AbstractDiceRollingSpec) {
@@ -190,10 +151,6 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
         }
     }
 
-    /**
-     * Override the <code>*</code> (multiply) operator of the given class.
-     * @param clazz Class which multiply method should be overridden.
-     */
     void overrideMultiplyOperator(clazz) {
         clazz.metaClass.multiply = { n ->
             if (n instanceof AbstractDiceRollingSpec) {
@@ -202,10 +159,6 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
         }
     }
 
-    /**
-     * Override the <code>/</code> (div) operator of the given class.
-     * @param clazz Class which div method should be overridden.
-     */
     void overrideDivOperator(clazz) {
         clazz.metaClass.div = { n ->
             if (n instanceof AbstractDiceRollingSpec) {
@@ -214,10 +167,6 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
         }
     }
 
-    /**
-     * Override the <code>**</code> (power) operator of the given class.
-     * @param clazz Class which power method should be overridden.
-     */
     void overridePowerOperator(clazz) {
         clazz.metaClass.power = { n ->
             if (n instanceof AbstractDiceRollingSpec) {
@@ -226,10 +175,6 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
         }
     }
 
-    /**
-     * Override the <code>%</code> (mod) operator of the given class.
-     * @param clazz Class which mod method should be overridden.
-     */
     void overrideModOperator(clazz) {
         clazz.metaClass.mod = { n ->
             if (n instanceof AbstractDiceRollingSpec) {

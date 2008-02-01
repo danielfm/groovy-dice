@@ -18,7 +18,9 @@ package net.sf.groovydice
 /**
  * Groovy Dice main class.
  * 
- * @author Daniel F. Martins
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @since 1.0
+ * @version 2
  */
 class GroovyDice {
 

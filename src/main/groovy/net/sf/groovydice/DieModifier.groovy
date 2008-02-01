@@ -21,7 +21,9 @@ package net.sf.groovydice
  * which is used when applying the modifier in such a way that only matching
  * dice are modified.
  *
- * @author Daniel F. Martins
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @since 1.0
+ * @version 3
  */
 class DieModifier {
 

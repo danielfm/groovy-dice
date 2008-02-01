@@ -1,47 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-	<publishDate position="navigation-bottom" format="MM-dd-yy" />
-	<bannerLeft>
+    <publishDate position="navigation-bottom" format="MM-dd-yy" />
+    <bannerLeft>
         <name>Groovy Dice</name>
-		<src>images/logo.png</src>
-		<href>index.html</href>
-	</bannerLeft>
-	<bannerRight>
-		<src>http://sflogo.sourceforge.net/sflogo.php?group_id=213311&amp;type=5</src>
-		<href>http://sourceforge.net/</href>
-	</bannerRight>
-	<body>
-		<menu name="Getting started">
-			<item name="What is Groovy Dice?" href="index.html" />
-			<item name="Download" href="download.html" />
-		</menu>
-
-		<menu name="Documentation">
-			<item name="Introduction" href="features/index.html" />
-			<item name="Dice filtering"
-				href="features/dice-filtering.html" />
-			<item name="Dice arithmetic"
-				href="features/dice-arithmetic.html" />
-			<item name="Applying modifiers"
-				href="features/modifiers.html" />
-
-			<item name="Java/Groovy integration"
-				href="integration/index.html">
-				<item name="groovysh" href="integration/groovysh.html" />
-				<item name="Eval class" href="integration/eval.html" />
-				<item name="GroovyShell class"
-					href="integration/groovyshell.html" />
-				<item name="Java Scripting API"
-					href="integration/jsr223.html" />
-			</item>
-		</menu>
-
-		<menu name="Community">
-            <item name="How to contribute" href="community/how-to-contribute.html" />
-            <item name="Getting help" href="community/getting-help.html" />
+        <src>images/logo.png</src>
+        <href>index.html</href>
+    </bannerLeft>
+    <bannerRight>
+        <src>http://sflogo.sourceforge.net/sflogo.php?group_id=213311&amp;type=5</src>
+        <href>http://sourceforge.net/</href>
+    </bannerRight>
+    <body>
+        <menu name="Getting started">
+            <item name="What is Groovy Dice?" href="index.html" />
+            <item name="Download" href="download.html" />
         </menu>
 
-		<menu ref="reports" />
-	</body>
+        <menu name="Documentation">
+            <item name="Introduction" href="features/index.html" />
+            <item name="Dice Filtering"
+                href="features/dice-filtering.html" />
+            <item name="Dice Arithmetic"
+                href="features/dice-arithmetic.html" />
+            <item name="Applying Modifiers"
+                href="features/modifiers.html" />
+
+            <item name="Java/Groovy Integration"
+                href="integration/index.html">
+                <item name="groovysh" href="integration/groovysh.html" />
+                <item name="Eval Class" href="integration/eval.html" />
+                <item name="GroovyShell Class"
+                    href="integration/groovyshell.html" />
+                <item name="Java Scripting API"
+                    href="integration/jsr223.html" />
+            </item>
+
+            <item name="Extending Groovy Dice"
+                href="extend/index.html">
+                <item name="Random Number Generator" href="extend/generator.html" />
+                <item name="Die Modifier" href="extend/modifier.html" />
+                <item name="Dice Rolling Specification" href="extend/spec.html" />
+                <item name="Number Patcher" href="extend/patcher.html" />
+                <item name="A Complete ExamplePatcher" href="extend/example.html" />
+            </item>
+        </menu>
+
+        <menu name="Community">
+            <item name="How to Contribute" href="community/how-to-contribute.html" />
+            <item name="Getting Help" href="community/getting-help.html" />
+        </menu>
+
+        <menu ref="reports" />
+    </body>
 </project>

@@ -19,7 +19,9 @@ package net.sf.groovydice
  * This interface represents the behavior of being capable to generate random
  * numbers.
  *
- * @author Daniel F. Martins
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @since 1.3
+ * @version 1
  */
 interface RandomNumberGenerator {
 

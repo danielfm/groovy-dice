@@ -20,7 +20,7 @@ import org.junit.*
 /**
  * DieModifier test cases.
  *
- * @author Daniel F. Martins
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  */
 class DieModifierTest {
 

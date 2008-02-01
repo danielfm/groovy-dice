@@ -1,6 +1,13 @@
 Groovy Dice - Changelog
 ***********************
 
+groovydice v1.3 - Wee Mon dd, yyyy
+----------------------------------
+ + xxxxxxxxxxxxxxxxxxxxxxxxxx
+ + xxxxxxxxxxxxxxxxxxxxxxxxxx
+ + xxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
 groovydice v1.2.1 - Sun Jan 13, 2008
 ------------------------------------
 

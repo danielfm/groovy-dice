@@ -1,8 +1,7 @@
- ------
- Java/Groovy integration
+ -----------------------
+ Java/Groovy Integration
 
-
-Java/Groovy integration
+Java/Groovy Integration
 
  Groovy Dice leverage the Groovy's dynamic capabilities to create a better way
  to express dice rolls.
@@ -48,3 +47,6 @@ public class MyDiceRollerApp {
  
  That's why the initialization step is necessary; all the "magic" needed to
  add such methods (among other things) is done here.
+ 
+ Don't forget to learn to use the <<<GroovyDice>>> class to easily
+ {{{../extend/index.html}extend}} the Groovy Dice API.

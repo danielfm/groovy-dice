@@ -16,9 +16,12 @@
 package net.sf.groovydice
 
 /**
- * This abstract class represents the main functions of a dice rolling specification.
+ * This abstract class defines the basic shape of a dice rolling
+ * specification object.
  *
- * @author Daniel F. Martins
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @since 1.3
+ * @version 1
  */
 abstract class AbstractDiceRollingSpec implements Comparable {
 
@@ -28,7 +31,7 @@ abstract class AbstractDiceRollingSpec implements Comparable {
     /** Already rolled dice. */
     def allDice = []
 
-    /** Random number generator. */
+    /** Random number generator object used to simulate dice rolls. */
     def numberGenerator = new SimpleRandomNumberGenerator()
 
 
