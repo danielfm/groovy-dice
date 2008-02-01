@@ -91,11 +91,6 @@ project dependencies and reports.
 
 http://maven.apache.org
 
-The IDE used to develop this project is Eclipse 3.3 and some third-party
-plugins.
-
-http://eclipse.org
-
 
 6. More information
 *******************
