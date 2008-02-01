@@ -31,10 +31,14 @@ class GroovyDice {
     /** Die modifier implementation to use */
     def modifierClass = DieModifier
 
+    /** Number patcher to use */
+    def numberPatcher = new DefaultNumberPatcher()
+
     /**
      * Initialize the Groovy Dice engine.
      */
     void initialize() {
-        new DefaultNumberPatcher(config:this).addMethods()
+        numberPatcher.config = this
+        numberPatcher.addMethods()
     }
 }
