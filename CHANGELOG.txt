@@ -1,11 +1,12 @@
 Groovy Dice - Changelog
 ***********************
 
-groovydice v1.3 - Wee Mon dd, yyyy
-----------------------------------
- + xxxxxxxxxxxxxxxxxxxxxxxxxx
- + xxxxxxxxxxxxxxxxxxxxxxxxxx
- + xxxxxxxxxxxxxxxxxxxxxxxxxx
+groovydice v1.3 - Sat Feb 2, 2008
+---------------------------------
+
+ + Test coverage report added to the website.
+ + Improvements on test coverage.
+ + Extension points added to allow the user easily change the default API.
 
 
 groovydice v1.2.1 - Sun Jan 13, 2008
