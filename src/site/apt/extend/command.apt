@@ -35,14 +35,14 @@ class MyDiceRollingCommand extends DefaultDiceRollingCommand {
 +----------------------------
  
  Here we're extending the default API by adding a new property called
- <<<is_the_answer_to_life_the_universe_and_everything>>>, which returns true when
- the sum of all dice is equals to <<<42>>>.
+ <<<is_the_answer_to_life_the_universe_and_everything>>>, which returns <<<true>>>
+ when the sum of all dice is equals to <<<42>>>.
 
 ** Replacing the default dice rolling command
 
- But we're not done here. To make Groovy Dice use <your> implementation instead the
- default one, we need to pass the <<<MyDiceRollingCommand>>> class to
- <<<commandClass>>> property, on the <<<GroovyDice>>> object:
+ To make Groovy Dice use <your> implementation instead the default one, we need to
+ pass the <<<MyDiceRollingCommand>>> class to <<<commandClass>>> property, on the
+ <<<GroovyDice>>> object:
  
 +----------------------------
 new GroovyDice(commandClass:MyDiceRollingCommand).initialize()

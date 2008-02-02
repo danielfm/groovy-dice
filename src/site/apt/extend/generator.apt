@@ -21,7 +21,7 @@ class MyNumberGenerator implements RandomNumberGenerator {
             throw new IllegalArgumentException("Invalid number: $number")
         }
 
-        /* '%' means a percentile die (2d10) */
+        /* '%' means a percentile die */
         generator.nextInt(number == '%' ? 100 : number) + 1
     }
 }

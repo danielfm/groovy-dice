@@ -47,8 +47,9 @@ def n = new Scanner(System.in).nextLine()
 
 * What is returned by a dice rolling expression?
 
- If you take a look at {{{../apidocs/index.html}the documentation}} pages,
- you'll see that you are able to extract some useful information from dice,
+ If you take a look at
+ {{{../apidocs/net/sf/groovydice/DefaultDiceRollingCommand.html}the documentation}}
+ pages, you'll see that you are able to extract some useful information from dice,
  like the best die, the worst die, the sum of all dice, and so on. Then, all
  dice expressions (except in few cases) returns a dice rolling command.
  

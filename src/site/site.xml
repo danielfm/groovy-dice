@@ -13,7 +13,7 @@
     </bannerRight>
     <body>
         <menu name="Getting started">
-            <item name="What is Groovy Dice?" href="index.html" />
+            <item name="What is Groovy Dice?" href="/index.html" />
             <item name="Download" href="download.html" />
         </menu>
 

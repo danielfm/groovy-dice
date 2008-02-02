@@ -4,7 +4,7 @@
 
 A groovier way to roll dice
 
- <<Groovy Dice>> is an {{{license.html}open source}}
+ <<Groovy Dice>> is an extensible {{{license.html}open source}}
  {{{http://groovy.codehaus.org}Groovy}}-based dice rolling API that provides
  a simple way to perform almost any kind of dice roll, making this project a
  reasonable choice for those who are implementing any kind of dice-based game
@@ -15,7 +15,7 @@ A groovier way to roll dice
  anyone interested in this subject to {{{download.html}download}} and study the
  source code. It's not state-of-art stuff, but might help. :-)
 
-* Show me some code!
+* How it works?
 
  Groovy Dice provides a DSL-like syntax that allows us to express dice rolls
  more effectively. Some examples:
@@ -38,10 +38,10 @@ A groovier way to roll dice
  Filtering dice and applying modifiers to them is also possible:
 
 +---------------------------------------+
+10.d10.the(3.best)       // filter the three best dice in this roll
+20.d6.only_if{it.is_odd} // filter all odd dice of this roll
 5.d12 * 5.to_every_die   // multiply each die by 5
 6.d20 + 2.d.to_every_die // multiply each die by the sum of two six-sided dice
-10.d10.the(3.best)  // filter the three best dice in this roll
-20.d6.only_if{it.is_odd} // filter all odd dice of this roll
 +---------------------------------------+
 
  Don't be fooled: all these Groovy scripts <works>!
