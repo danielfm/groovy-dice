@@ -8,8 +8,7 @@ Dice Arithmetic
 
 * + operator
 
- You can plus a <<<Number>>> to a dice rolling specification object and
- vice-versa:
+ You can plus a <<<Number>>> to a dice rolling command and vice-versa:
  
 +-----------------------
 5.d10 + 50
@@ -21,7 +20,7 @@ Dice Arithmetic
  <<<[1,10,3,5,9]>>>. Then, the result of those expressions will be
  <<<[1,10,3,5,9,50]>>>.
  
- You can also plus two dice rolling specification objects:
+ You can also plus two dice rolling commands:
  
 +-----------------------
 2.d6 + 2.d10
@@ -32,8 +31,7 @@ Dice Arithmetic
  and the two ten-sided dice returns <<<[7,9]>>>. Then, the result will be
  <<<[5,3,7,9]>>>.
  
- All these scripts returns dice rolling specification objects -
- <<<AbstractDiceRollingSpec>>> subclasses.
+ All these scripts returns dice rolling commands.
 
 * - operator
 
@@ -49,7 +47,7 @@ Dice Arithmetic
  <<<[1,10,3,5,9]>>>. Then, the result of those expressions will be
  <<<[1,10,3,5,9,-50]>>>
  
- You can use two dice rolling specification objects as operands as well:
+ You can use two dice rolling commands as operands as well:
  
 +-----------------------
 2.d6 - 2.d10
@@ -60,11 +58,11 @@ Dice Arithmetic
  Let's say that two six-sided dice returns <<<[5,3]>>> and two ten-sided dice
  returns <<<[7,9]>>>. Then, the result will be <<<[5,3,-7,-9]>>>.
  
- All these scripts returns dice rolling specification objects.
+ All these scripts returns dice rolling commands.
 
 * * operator
 
- You can multiply a dice rolling specification object by a <<<Number>>> and
+ You can multiply a dice rolling command by a <<<Number>>> and
  vice-versa:
  
 +-----------------------
@@ -77,7 +75,7 @@ Dice Arithmetic
  twelve-sided dice is <<<49>>>. Then, the result will be <<<2450>>>
  (<<<49*50>>>).
  
- You can also multiply two dice rolling specification objects:
+ You can also multiply two dice rolling commands:
  
 +-----------------------
 5.d6 * 2.d10
@@ -97,8 +95,8 @@ Dice Arithmetic
 
 * ** operator
 
- You can to perform an exponentiation using a dice rolling specification object
- as <base> and a <<<Number>>> as <exponent>:
+ You can to perform an exponentiation using a dice rolling command as
+ <base> and a <<<Number>>> as <exponent>:
  
 +-----------------------
 5.d12 ** 2
@@ -109,7 +107,7 @@ Dice Arithmetic
  result will be <<<2025>>> (<<<45^2>>> or <<<45*45>>>).
  
  If you want, you can also use a <<<Number>>> as <base> and a dice rolling
- specification object as <exponent>:
+ command as <exponent>:
  
 +-----------------------
 10 ** 2.d4
@@ -119,8 +117,7 @@ Dice Arithmetic
  dice. Let's say that the sum of two four-sided dice is <<<6>>>. Then, the
  result will be <<<1000000>>> (<<<10^6>>> or <<<10*10*10*10*10*10>>>).
  
- It's possible to use a dice rolling specification object in both <base> and
- <exponent>:
+ It's possible to use a dice rolling command in both <base> and <exponent>:
  
 +-----------------------
 5.d10 ** 2.d4
@@ -135,7 +132,7 @@ Dice Arithmetic
 
 * / operator
 
- You can to divide a dice rolling specification object by a <<<Number>>>:
+ You can to divide a dice rolling command by a <<<Number>>>:
  
 +-----------------------
 5.d12 / 2
@@ -145,7 +142,7 @@ Dice Arithmetic
  by <<<2>>>. Let's say that the sum of five twelve-sided dice is <<<30>>>.
  Then, the result will be <<<15>>> (<<<30/2>>>).
  
- You can also divide a <<<Number>>> by a dice rolling specification object:
+ You can also divide a <<<Number>>> by a dice rolling command:
  
 +-----------------------
 10 / 2.d4
@@ -155,7 +152,7 @@ Dice Arithmetic
  that sum of two four-sided dice is <<<4>>>. Then, the result will be
  <<<2.5>>> (<<<10/4>>>).
  
- It's possible to divide a dice rolling specification object by another:
+ It's possible to divide a dice rolling command by another:
  
 +-----------------------
 5.d10 / 2.d4
@@ -170,8 +167,8 @@ Dice Arithmetic
 
 * % operator
 
- You can get the reminder of the division of a dice rolling specification by a
-<<<Number>>>:
+ You can get the reminder of the division of a dice rolling command by a
+ <<<Number>>>:
  
 +-----------------------
 5.d12 % 2
@@ -182,7 +179,7 @@ Dice Arithmetic
  twelve-sided dice is <<<43>>>. Then, the result will be <<<1>>> (<<<43%2>>>).
  
  You can also get the reminder of the division of a <<<Number>>> by a
- dice rolling specification object:
+ dice rolling command:
  
 +-----------------------
 10 % 2.d4
@@ -193,7 +190,7 @@ Dice Arithmetic
  Then, the result will be <<<4>>> (<<<10%6>>>).
  
  It's also possible to get the reminder of the division of a dice rolling
- specification object by another:
+ command by another:
  
 +-----------------------
 5.d10 % 2.d4
@@ -209,7 +206,7 @@ Dice Arithmetic
 * Comparing dice
 
  Groovy Dice allows you to evaluate <<<boolean>>> expressions using
- dice rolling specification objects. Here goes a simple example where we test
+ dice rolling commands. Here goes a simple example where we test
  whether the sum of seven ten-sided dice is greater than the sum of five
  twelve-sided dice:
  
@@ -227,9 +224,9 @@ Dice Arithmetic
 7.d10 < 5.d12
 +-----------------------
  
- You <<cannot>> mix dice rolling specification objects with <<<Number>>>s. To
- perform comparisons between objects of those types, you must convert the dice
- to a <<<Number>>> first.
+ You <<cannot>> mix dice rolling commands with <<<Number>>>s. To perform
+ comparisons between objects of those types, you must convert the dice to a
+ <<<Number>>> first.
  
  Both scripts below tests whether the sum of ten six-sided dice is greater or
  equals to <<<45>>>:

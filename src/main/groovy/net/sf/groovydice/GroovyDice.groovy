@@ -20,27 +20,27 @@ package net.sf.groovydice
  * 
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  * @since 1.0
- * @version 2
+ * @version 3
  */
 class GroovyDice {
 
-    /** Random number generator to use */
+    /** Random number generator to use. */
     def numberGenerator = new SimpleRandomNumberGenerator()
 
-    /** Dice rolling specification implementation to use */
-    def specClass = DefaultDiceRollingSpec
+    /** Dice rolling command implementation to use. */
+    def commandClass = DefaultDiceRollingCommand
 
-    /** Die modifier implementation to use */
-    def modifierClass = DiceModifier
-
-    /** Number patcher to use */
-    def numberPatcher = new DefaultNumberPatcher()
+    /**
+     * Expression trigger instance to apply to Groovy standard API at
+     * the initialization step.
+     */
+    def expressionTrigger = new ExpressionTrigger()
 
     /**
      * Initialize the Groovy Dice engine.
      */
     void initialize() {
-        numberPatcher.config = this
-        numberPatcher.addMethods()
+        expressionTrigger.config = this
+        expressionTrigger.addMethods()
     }
 }

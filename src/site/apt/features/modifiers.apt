@@ -40,7 +40,7 @@ Applying Modifiers
  a six-sided die. The last script rolls seven six-sided dice and divides each
  die by the best die of three six-sided dice.
  
- All these scripts returns dice rolling specification objects.
+ All these scripts returns dice rolling command.
 
 * Conditional modifiers
 

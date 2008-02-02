@@ -35,18 +35,18 @@ tt {
 
 #footer {
     border-top: 1px #666 solid;
-    margin-top: 3px;
+    margin-top: 10px;
     padding-top: 5px;
 }
 
 #bodyColumn {
-    margin-left: 220px;
+    margin-left: 190px;
     margin-right: 0;
 }
 
 #leftColumn {
     background-color: #fafafa;
-    width: 210px;
+    width: 180px;
 }
 
 table.bodyTable th, table.bodyTable td {

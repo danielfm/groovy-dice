@@ -16,14 +16,13 @@
 package net.sf.groovydice
 
 /**
- * This abstract class defines the basic shape of a dice rolling
- * specification object.
+ * This abstract class defines the basic shape of a dice rolling command.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  * @since 1.3
  * @version 1
  */
-abstract class AbstractDiceRollingSpec implements Comparable {
+abstract class AbstractDiceRollingCommand implements Comparable {
 
     /** Sides of the die or '%' to represent a percentile die. */
     def sides = 6
@@ -158,19 +157,19 @@ abstract class AbstractDiceRollingSpec implements Comparable {
     }
 
     /**
-     * Create a new dice rolling specification object based on this one.
+     * Create a new dice rolling command based on this one.
      * @param allDice Specify the set of already rolled dice.
      * @param sides Optional parameter to specify the number of sides.
-     * @return New DiceRollingSpec object.
+     * @return New dice rolling command.
      */
-    def deriveSpec(allDice, sides=0) {
+    def deriveCommand(allDice, sides=0) {
         /* reflection used here to work nicely with subclasses */
-        def spec = this.class.newInstance()
+        def command = this.class.newInstance()
 
-        spec.sides = (sides == 0) ? this.sides : sides
-        spec.allDice = allDice
-        spec.numberGenerator = numberGenerator
-        spec
+        command.sides = (sides == 0) ? this.sides : sides
+        command.allDice = allDice
+        command.numberGenerator = numberGenerator
+        command
     }
 
     /**
@@ -178,14 +177,14 @@ abstract class AbstractDiceRollingSpec implements Comparable {
      * @param n Optional parameter that specify the number of best dice to get.
      * Defaults to 1.
      * @return If the given parameter is 1, the method returns a <code>Number</code>
-     * that represents the best die. Otherwise, a new dice rolling specification
-     * object containing the best 'n' dice is returned. If no dice has been rolled
+     * that represents the best die. Otherwise, a new dice rolling command 
+     * containing the best 'n' dice is returned. If no dice has been rolled
      * yet, this method returns zero.
      */
     def best(n=1) {
         if (!allDice) return 0
         n = (n > 0) ? (n > count ? count : n) : 1
-        n == 1 ? allDice.sort()[-n] : deriveSpec(allDice.sort()[-1..-n])
+        n == 1 ? allDice.sort()[-n] : deriveCommand(allDice.sort()[-1..-n])
     }
 
     /**
@@ -193,23 +192,23 @@ abstract class AbstractDiceRollingSpec implements Comparable {
      * @param n Optional parameter that specify the number of worst dice to get.
      * Defaults to 1.
      * @return If the given parameter is 1, the method returns an <code>Number</code>
-     * that represents the worst die. Otherwise, a new dice rolling spec object
+     * that represents the worst die. Otherwise, a new dice rolling command
      * containing the worst 'n' dice is returned. If no dice has been rolled yet,
      * this method returns zero.
      */
     def worst(n=1) {
         if (!allDice) return 0
         n = (n > 0) ? (n >= count ? (count - 1) : (n - 1)) : 0
-        n == 0 ? allDice.sort()[n] : deriveSpec(allDice.sort()[0..n])
+        n == 0 ? allDice.sort()[n] : deriveCommand(allDice.sort()[0..n])
     }
 
     /**
      * Select the N best or worst dice.
      * @param condition This parameter is a number. If it is a positive number,
      * get the N best dice. If this is a negative number, get the |N| worst dice.
-     * @return New dice rolling specification object that contains only the N
-     * best or worst dice if N > 1 or N < -1, respectively. If N == 1 or
-     * N == -1, this method returns a Number which represents the best or worst
+     * @return New dice rolling command that contains only the N best or worst
+     * dice if N > 1 or N < -1, respectively. If N == 1 or N == -1, this method
+     * returns a <code>Number</code> which represents the best or worst
      * value, respectively. If N == 0, this method returns null.
      */
     def the(condition) {

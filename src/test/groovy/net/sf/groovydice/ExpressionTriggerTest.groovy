@@ -18,7 +18,7 @@ package net.sf.groovydice
 import org.junit.*
 
 /**
- * DefaultNumberPatcher test cases.
+ * ExpressionTrigger test cases.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  */
@@ -28,35 +28,46 @@ class DefaultNumberPatcherTest {
 
     @Before
     void initialize()  {
-        config = new GroovyDice()
-        config.numberGenerator = new StubGenerator()
+        config = new GroovyDice(numberGenerator:new StubGenerator())
         config.initialize()
     }
 
-    private void assertDice(spec) {
-        assert spec instanceof AbstractDiceRollingSpec
-        spec.view.each {
-            assert it == spec.sides
+    /**
+     * Assert that the given dice rolling command is valid.
+     * @param command Dice rolling command.
+     */
+    private void assertDice(command) {
+        assert command instanceof AbstractDiceRollingCommand
+        command.view.each {
+            assert it == command.sides
         }
     }
 
-    @Test
-    void rollSpec() {
-        def spec = new DefaultNumberPatcher(config:config).rollSpec(5, 6)
+    /**
+     * Create a new <code>ExpressionTrigger</code> object.
+     * @return A new <code>ExpressionTrigger</code> object.
+     */
+    private def getTrigger() {
+        new ExpressionTrigger(config:config)
+    }
 
-        assert spec.sides == 5
-        assert spec.count == 6
+    @Test
+    void rollCommand() {
+        def command = getTrigger().rollCommand(5, 6)
+
+        assert command.sides == 5
+        assert command.count == 6
     }
 
     @Test
     void createSimpleModifier() {
-        def m = new DefaultNumberPatcher(config:config).createModifier(-5)
+        def m = getTrigger().createModifier(-5)
         assert m.modifier == -5
     }
 
     @Test
     void createConditionalModifier() {
-        def m = new DefaultNumberPatcher(config:config).createModifier(-5, 'condition')
+        def m = getTrigger().createModifier(-5, 'condition')
 
         assert m.modifier == -5
         assert m.condition == 'condition'
@@ -99,34 +110,34 @@ class DefaultNumberPatcherTest {
 
     @Test
     void rollDiceWithNegativeMultiplier() {
-        def spec1 = (-5).d10
-        def spec2 = -5.d10
+        def command1 = (-5).d10
+        def command2 = -5.d10
 
-        assert spec1 instanceof DefaultDiceRollingSpec
-        assert spec1.view.size() == 5
-        assert spec1.view.findAll{it > 0}.size == 0
+        assert command1 instanceof DefaultDiceRollingCommand
+        assert command1.view.size() == 5
+        assert command1.view.findAll{it > 0}.size == 0
 
-        assert spec2 instanceof DefaultDiceRollingSpec
-        assert spec2.view.size() == 5
-        assert spec2.view.findAll{it > 0}.size == 0
+        assert command2 instanceof DefaultDiceRollingCommand
+        assert command2.view.size() == 5
+        assert command2.view.findAll{it > 0}.size == 0
     }
 
     @Test
     void rollDiceZeroTimes() {
-        def spec = 0.d10
+        def command = 0.d10
 
-        assert spec.allDice == []
-        assert spec.count == 0
+        assert command.allDice == []
+        assert command.count == 0
 
-        assert !spec.worst_die
-        assert !spec.best_die
-        assert !spec.mean
-        assert !spec.median
-        assert !spec.mode
-        assert !spec.sum
+        assert !command.worst_die
+        assert !command.best_die
+        assert !command.mean
+        assert !command.median
+        assert !command.mode
+        assert !command.sum
 
-        assert spec.best(3) == 0
-        assert spec.worst(3) == 0
+        assert command.best(3) == 0
+        assert command.worst(3) == 0
     }
 
     @Test(expected=MissingPropertyException)
@@ -154,8 +165,8 @@ class DefaultNumberPatcherTest {
 
     @Test
     void rollDynamicDiceUsingADiceRollAsSideNumber() {
-        def spec = new DefaultDiceRollingSpec(allDice:[1,2,4])
-        assertDice(1.d(spec))
+        def command = new DefaultDiceRollingCommand(allDice:[1,2,4])
+        assertDice(1.d(command))
     }
 
     @Test(expected=MissingPropertyException)
@@ -179,42 +190,42 @@ class DefaultNumberPatcherTest {
 
     @Test
     void plusANumberToDiceRoll() {
-        def spec1 = 10.d20
-        def result = 5 + spec1
+        def command1 = 10.d20
+        def result = 5 + command1
 
-        assert result.sum == 5 + spec1.sum
+        assert result.sum == 5 + command1.sum
     }
 
     @Test
     void subtractANumberFromDiceRoll() {
-        def spec1 = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
-        def result = 5 - spec1
+        def command1 = new DefaultDiceRollingCommand(allDice:[1,2,3,4])
+        def result = 5 - command1
 
         assert result.sum == -5
     }
 
     @Test
     void multiplyANumberByDiceRoll() {
-        def spec1 = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
-        assert 5 * spec1 == 50
+        def command1 = new DefaultDiceRollingCommand(allDice:[1,2,3,4])
+        assert 5 * command1 == 50
     }
 
     @Test
     void divideANumberByDiceRoll() {
-        def spec1 = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
-        assert 5 / spec1 == 0.5
+        def command1 = new DefaultDiceRollingCommand(allDice:[1,2,3,4])
+        assert 5 / command1 == 0.5
     }
 
     @Test
     void powerANumberByDiceRoll() {
-        def spec1 = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
-        assert 5 ** spec1 == 9765625
+        def command1 = new DefaultDiceRollingCommand(allDice:[1,2,3,4])
+        assert 5 ** command1 == 9765625
     }
 
     @Test
     void modANumberByDiceRoll() {
-        def spec1 = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
-        assert 14 % spec1 == 4
+        def command1 = new DefaultDiceRollingCommand(allDice:[1,2,3,4])
+        assert 14 % command1 == 4
     }
 
     @Test
@@ -233,10 +244,10 @@ class DefaultNumberPatcherTest {
 
     @Test
     void isNumberInDiceRoll() {
-        def spec1 = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
+        def command1 = new DefaultDiceRollingCommand(allDice:[1,2,3,4])
 
-        assert 2 in spec1
-        assert !(5 in spec1)
+        assert 2 in command1
+        assert !(5 in command1)
     }
 
     @Test

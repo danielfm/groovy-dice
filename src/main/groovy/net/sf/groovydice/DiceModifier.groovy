@@ -17,9 +17,9 @@ package net.sf.groovydice
 
 /**
  * This class is used to specify a modifier to each die of a dice rolling
- * specification object. A modifier can also hold a <em>condition</em> object,
- * which is used when applying the modifier in such a way that only matching
- * dice are modified.
+ * command. A modifier can also hold a <em>condition</em> object, which is
+ * used when applying the modifier in such a way that only matching dice are
+ * modified.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  * @since 1.3
@@ -38,11 +38,11 @@ class DiceModifier {
      * specific set of dice.
      * @param condition An object that express an condition which all dice must
      * fit in order to be 'modified'. Any object that fit into a <code>grep()</code>
-     * call can be used here. You can also pass a dice rolling specification object
-     * to apply this modifier only to dice equals to any dice of the given roll.
+     * call can be used here. You can also pass a dice rolling command object to
+     * apply this modifier only to dice equals to any dice of the given roll.
      */
     void setCondition(condition) {
-        if (condition instanceof AbstractDiceRollingSpec) {
+        if (condition instanceof AbstractDiceRollingCommand) {
              condition = condition.allDice
         }
         this.condition = condition
@@ -61,14 +61,14 @@ class DiceModifier {
     /**
      * Apply this modifier using the given logic closure.
      * @param logic Closure which is used to apply this modifier. This closure
-     * should be a method borrowed from a <code>DiceRollingSpec</code> object.
-     * @return A new <code>DiceRollingSpec</code> object which contains the
-     * result of the operation.
+     * should be a method borrowed from a dice rolling command.
+     * @return A new dice rolling command which contains the result of the
+     * operation.
      */
     def apply(logic) {
-        def spec = logic.delegate
+        def command = logic.delegate
 
-        spec.deriveSpec(spec.allDice.collect {
+        command.deriveCommand(command.allDice.collect {
             if (condition && !it.grep(condition)) {
                 return it
             }

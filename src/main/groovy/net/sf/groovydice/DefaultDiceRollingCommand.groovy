@@ -16,14 +16,14 @@
 package net.sf.groovydice
 
 /**
- * This class adds some goodies to the AbstractDiceRollingSpec class, like
- * arithmetic operators support, dice comparison and modifiers.
+ * This class adds some goodies to the <code>AbstractDiceRollingCommand</code>
+ * class, like arithmetic operators support, dice comparison and modifiers.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  * @since 1.3
  * @version 1
  */
-class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
+class DefaultDiceRollingCommand extends AbstractDiceRollingCommand {
 
     /**
      * Create a simple die modifier object using the value returned
@@ -40,55 +40,54 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
      * returned by <code>getSum()</code> method.
      * @param condition Can be any object accepted by <code>grep()</code>
      * method, like a number, an array, a range, a closure etc. You can also
-     * pass a dice rolling specification object to use its dice as the
-     * condition.
-     * @return A die modifier object, which is used to apply
-     * a modifier to dice that matches the given condition.
+     * pass a dice rolling command to use its dice as the condition.
+     * @return A die modifier object, which is used to apply a modifier to
+     * dice that matches the given condition.
      */
     def to_each_die_if(condition) {
         sum.to_each_die_if(condition)
     }
 
     /**
-     * Returns a new dice rolling spec object that contains only the dice
-     * that match the given condition.
+     * Returns a new dice rolling command that contains only the dice that
+     * match the given condition.
      * @param condition Can be any object accepted by <code>grep()</code> method,
      * like a number, an array, a range, a closure etc. You can also pass a dice
-     * rolling spec object to use its dice as the condition.
-     * @return New dice rolling spec object that contains only the dice that
-     * match the given condition.
+     * rolling command to use its dice as the condition.
+     * @return New dice rolling command that contains only the dice that match
+     * the given condition.
      */
     def only_if(condition) {
-        if (condition instanceof AbstractDiceRollingSpec) {
+        if (condition instanceof AbstractDiceRollingCommand) {
             condition = condition.allDice
         }
-        deriveSpec(allDice.grep(condition))
+        deriveCommand(allDice.grep(condition))
     }
 
     /**
      * Whether this roll contains the same results of the given roll regardless
      * its order.
-     * @param spec Dice rolling specification, <code>Number</code>,
+     * @param command Dice rolling specification, <code>Number</code>,
      * <code>List</code> or <code>Range</code> object, which contains the results
      * to be checked.
      * @return Whether this roll contains the same results of the given roll
      * regardless its order.
      */
-    def same_as(spec) {
+    def same_as(command) {
         def dice
 
-        switch(spec) {
+        switch(command) {
         case Number:
-            dice = [spec]
+            dice = [command]
             break
         case List:
-            dice = spec.collect{it}
+            dice = command.collect{it}
             break
-        case AbstractDiceRollingSpec:
-            dice = spec.allDice
+        case AbstractDiceRollingCommand:
+            dice = command.allDice
             break
         default:
-            throw new IllegalArgumentException("${spec?.getClass()} not supported")
+            throw new IllegalArgumentException("${command?.getClass()} not supported")
         }
 
         allDice.sort() == dice.sort()
@@ -97,19 +96,18 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
     /**
      * Add support to the '+' operator, allowing this object to be used in such
      * expression with other objects, like numbers, die modifiers and other dice
-     * rolling specification objects.
+     * rolling command.
      * @param value Object.
-     * @return A dice rolling specification object that contains the calculation
-     * result.
+     * @return A dice rolling command that contains the calculation result.
      * @throws IllegalArgumentException if this object can't handle the given
      * object in such operation.
      */
     def plus(value) {
         switch(value) {
         case Number:
-            return deriveSpec(allDice + value)
-        case AbstractDiceRollingSpec:
-            return deriveSpec(allDice + value.allDice,
+            return deriveCommand(allDice + value)
+        case AbstractDiceRollingCommand:
+            return deriveCommand(allDice + value.allDice,
                     (sides > value.sides) ? 0 : value.sides)
         case DiceModifier:
             return value.apply(this.&plus)
@@ -120,9 +118,9 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
     /**
      * Add support to the '-' operator, allowing this object to be used in such
      * expression with other objects, like numbers, die modifiers and other
-     * dice rolling specification objects.
+     * dice rolling commands.
      * @param value Object.
-     * @return A dice rolling specification that contains the calculation result.
+     * @return A dice rolling command that contains the calculation result.
      * @throws IllegalArgumentException if this object can't handle the given object in
      * such operation.
      */
@@ -131,8 +129,8 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
         case Number:
         case DiceModifier:
             return plus(-value)
-        case AbstractDiceRollingSpec:
-            return deriveSpec(allDice + -value.allDice)
+        case AbstractDiceRollingCommand:
+            return deriveCommand(allDice + -value.allDice)
         }
         throw new IllegalArgumentException("Invalid argument: $value")
     }
@@ -140,9 +138,9 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
     /**
      * Add support to the '*' operator, allowing this object to be used in such
      * expression with other objects, like numbers, die modifiers and other
-     * dice rolling specification objects.
+     * dice rolling command.
      * @param value Object.
-     * @return A dice rolling specification when this object is being multiplied
+     * @return A dice rolling command when this object is being multiplied
      * by a die modifier object. Otherwise, returns a plain number containing the
      * result.
      * @throws IllegalArgumentException if this object can't handle the given
@@ -152,7 +150,7 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
         switch(value) {
         case Number:
             return sum * value
-        case AbstractDiceRollingSpec:
+        case AbstractDiceRollingCommand:
             return sum * value.sum
         case DiceModifier:
             return value.apply(this.&multiply)
@@ -163,9 +161,9 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
     /**
      * Add support to the '/' operator, allowing this object to be used in such
      * expression with other objects, like numbers, die modifiers and other
-     * dice rolling specification objects.
+     * dice rolling command.
      * @param value Object.
-     * @return A dice rolling specification when this object is being divided by a
+     * @return A dice rolling command when this object is being divided by a
      * die modifier object. Otherwise, returns a plain number containing the result.
      * @throws IllegalArgumentException if this object can't handle the given object
      * in such operation.
@@ -173,7 +171,7 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
     def div(value) {
         switch(value) {
         case Number:
-        case AbstractDiceRollingSpec:
+        case AbstractDiceRollingCommand:
             return sum / value
         case DiceModifier:
             return value.apply(this.&div)
@@ -184,9 +182,9 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
     /**
      * Add support to the '**' operator, allowing this object to be used in such
      * expression with other objects, like numbers, die modifiers and
-     * other dice rolling specification objects.
+     * other dice rolling command.
      * @param value Object.
-     * @return A dice rolling specification when this object is being powered by a
+     * @return A dice rolling command when this object is being powered by a
      * die modifier object. Otherwise, returns a plain number containing the result.
      * @throws IllegalArgumentException if this object can't handle the given object
      * in such operation.
@@ -195,7 +193,7 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
         switch(value) {
         case Number:
             return sum ** value
-        case AbstractDiceRollingSpec:
+        case AbstractDiceRollingCommand:
             return sum ** value.sum
         case DiceModifier:
             return value.apply(this.&power)
@@ -206,9 +204,9 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
     /**
      * Add support to the '%' operator, allowing this object to be used in such
      * expression with other objects, like numbers, die modifiers and
-     * other dice rolling specification objects.
+     * other dice rolling command.
      * @param value Object.
-     * @return A dice rolling specification when this object is being mod'ed by a
+     * @return A dice rolling command when this object is being mod'ed by a
      * die modifier object. Otherwise, returns a plain number containing the
      * result.
      * @throws IllegalArgumentException if this object can't handle the given object
@@ -218,7 +216,7 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
         switch(value) {
         case Number:
             return sum % value
-        case AbstractDiceRollingSpec:
+        case AbstractDiceRollingCommand:
             return sum % value.sum
         case DiceModifier:
             return value.apply(this.&mod)
@@ -227,22 +225,22 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
     }
 
     /**
-     * Returns a new dice rolling specification object with all dice multiplied by -1.
-     * @Return A new dice rolling specification object with all dice multiplied by -1.
+     * Returns a new dice rolling command with all dice multiplied by -1.
+     * @Return A new dice rolling command with all dice multiplied by -1.
      */
     def negative() {
-        deriveSpec(allDice.collect{-it})
+        deriveCommand(allDice.collect{-it})
     }
 
     /**
      * Returns whether the given parameter is found in the dice of this roll.
      * @param condition Can be any object accepted by <code>grep()</code> method,
      * like a number, an array, a range, a closure etc. You can also pass a
-     * dice rolling specification object to use its dice as the condition.
+     * dice rolling command to use its dice as the condition.
      * @return Whether the given parameter is found in the dice of this roll.
      */
     def isCase(condition) {
-         if (condition instanceof AbstractDiceRollingSpec) {
+         if (condition instanceof AbstractDiceRollingCommand) {
              condition = condition.sum
          }
          condition in allDice
@@ -250,28 +248,28 @@ class DefaultDiceRollingSpec extends AbstractDiceRollingSpec {
 
     /**
      * Whether the sum of this roll is equals to the sum of the given roll.
-     * @param spec Dice rolling specification object.
+     * @param command Dice rolling command.
      * @return Whether the sum of this roll is equals to the sum of the given
      * roll.
      * @throws ClassCastException if the given object is unexpected.
      */
-    boolean equals(spec) {
-        this.compareTo(spec) == 0
+    boolean equals(command) {
+        this.compareTo(command) == 0
     }
 
     /**
      * Compare the sum of this roll to the sum of the given roll.
-     * @param spec Dice rolling specification object.
+     * @param command Dice rolling command.
      * @return < 0 if the sum of this roll is lesser than the sum of the given
      * roll; = 0 if the sum of this roll is equals to the sum of the given roll;
      * > 0 if the sum of this roll is greater than the sum of the given roll.
      * @throws ClassCastException if the given object is unexpected.
      */
-    int compareTo(spec) {
-        if (spec instanceof AbstractDiceRollingSpec) {
-            return sum <=> spec.sum
+    int compareTo(command) {
+        if (command instanceof AbstractDiceRollingCommand) {
+            return sum <=> command.sum
         }
-        throw new ClassCastException('Expecting an instance of AbstractDiceRollingSpec')
+        throw new ClassCastException('Expecting an instance of AbstractDiceRollingCommand')
     }
 
     /**

@@ -42,28 +42,28 @@ class DiceModifierTest {
 
     @Test
     void useADiceRollAsCondition() {
-        def modifier = 2.to_each_die_if(new DefaultDiceRollingSpec(allDice:[1,3,5]))
+        def modifier = 2.to_each_die_if(new DefaultDiceRollingCommand(allDice:[1,3,5]))
 
         assert modifier.modifier == 2
         assert modifier.condition == [1,3,5]
     }
 
     @Test
-    void applySimpleModifierToDiceRollingSpecClosure() {
-        def spec = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
-        def result = new DiceModifier(modifier:1).apply(spec.&plus)
+    void applySimpleModifierToDiceRollingCommandClosure() {
+        def command = new DefaultDiceRollingCommand(allDice:[1,2,3,4])
+        def result = new DiceModifier(modifier:1).apply(command.&plus)
 
-        assert spec.allDice == [1,2,3,4]
+        assert command.allDice == [1,2,3,4]
         assert result.allDice == [2,3,4,5]
     }
 
     @Test
-    void applyConditionalModifierToDiceRollingSpecClosure() {
-        def spec = new DefaultDiceRollingSpec(allDice:[1,2,3,4])
+    void applyConditionalModifierToDiceRollingCommandClosure() {
+        def command = new DefaultDiceRollingCommand(allDice:[1,2,3,4])
         def result = new DiceModifier(modifier:1, condition:{it%2 == 0})
-                .apply(spec.&plus)
+                .apply(command.&plus)
 
-        assert spec.allDice == [1,2,3,4]
+        assert command.allDice == [1,2,3,4]
         assert result.allDice == [1,3,3,5]
     }
 }

@@ -16,44 +16,85 @@
 package net.sf.groovydice
 
 /**
- * This class overrides the template methods defined by its superclass.
+ * This class dinamically adds methods and properties to the Groovy standard
+ * API in order to intercept expressions that looks like a dice rolling
+ * command.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  * @since 1.3
  * @version 1
  */
-class DefaultNumberPatcher extends NumberPatcherTemplate {
+class ExpressionTrigger {
 
     /** GroovyDice instance. */
     def config
 
-
     /**
-     * Create and roll a dice rolling specification object.
-     * @param sides Number of sides of the dice.
-     * @param rolls Number of dice to roll.
-     * @return The dice rolling specification object.
+     * Modify <code>Number</code> instances at runtime, enabling its instances
+     * to respond to new methods and properties.
      */
-    def rollSpec(sides, rolls) {
-        def spec = config.specClass.newInstance()
-        spec.sides = sides
+    void addMethods() {
+        numberClasses.each {
+            addToEveryDieProperty(it)
+            addToEachDieIfMethod(it)
+            addIsEvenProperty(it)
+            addIsOddProperty(it)
 
-        spec.numberGenerator = config.numberGenerator
-        spec.roll(rolls)
+            addBestProperty(it)
+            addWorstProperty(it)
+
+            addDiceMethods(it)
+            addDynamicDiceMethods(it)
+
+            overridePlusOperator(it)
+            overrideMinusOperator(it)
+            overrideMultiplyOperator(it)
+            overrideDivOperator(it)
+
+            overridePowerOperator(it)
+            overrideModOperator(it)
+        }
     }
 
     /**
-     * Create a die modifier object.
+     * Check whether the given object is a dice rolling command.
+     * @param obj Object to check.
+     */
+    def isCommand(obj) {
+        obj instanceof AbstractDiceRollingCommand
+    }
+
+    /**
+     * Get a list of <code>Number</code> classes that will receive the
+     * methods this patcher needs to provide.
+     * @return List of <code>Number</code> classes.
+     */
+    def getNumberClasses() {
+        [Integer, Long, BigInteger, Float, Double, BigDecimal]
+    }
+
+    /**
+     * Create and roll a dice rolling command.
+     * @param sides Number of sides of the dice.
+     * @param rolls Number of dice to roll.
+     * @return The dice rolling command .
+     */
+    def rollCommand(sides, rolls) {
+        def command = config.commandClass.newInstance()
+        command.sides = sides
+
+        command.numberGenerator = config.numberGenerator
+        command.roll(rolls)
+    }
+
+    /**
+     * Create a dice modifier object.
      * @param number Modifier number
      * @param condition Modifier condition.
      * @return Die modifier object.
      */
     def createModifier(number, condition = null) {
-        def m = config.modifierClass.newInstance()
-
-        m.modifier = number
-        m.condition = condition
-        m
+        new DiceModifier(modifier:number, condition:condition)
     }
 
     void addToEveryDieProperty(clazz) {
@@ -121,13 +162,13 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
     void addDynamicDiceMethods(clazz) {
         clazz.metaClass.d = { sides ->
             try {
-                if (sides instanceof AbstractDiceRollingSpec) {
+                if (isCommand(sides)) {
                     sides = sides.sum
                 }
                 sides = sides.toFloat() as int
             }
             catch (NumberFormatException) {}
-            rollSpec(sides, delegate)
+            rollCommand(sides, delegate)
         }
 
         clazz.metaClass.D = { sides ->
@@ -137,7 +178,7 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
 
     void overridePlusOperator(clazz) {
         clazz.metaClass.plus = { n ->
-            if (n instanceof AbstractDiceRollingSpec) {
+            if (isCommand(n)) {
                 return n + delegate
             }
         }
@@ -145,7 +186,7 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
 
     void overrideMinusOperator(clazz) {
         clazz.metaClass.minus = { n ->
-            if (n instanceof AbstractDiceRollingSpec) {
+            if (isCommand(n)) {
                 return -n + delegate
             }
         }
@@ -153,7 +194,7 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
 
     void overrideMultiplyOperator(clazz) {
         clazz.metaClass.multiply = { n ->
-            if (n instanceof AbstractDiceRollingSpec) {
+            if (isCommand(n)) {
                 return n * delegate
             }
         }
@@ -161,7 +202,7 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
 
     void overrideDivOperator(clazz) {
         clazz.metaClass.div = { n ->
-            if (n instanceof AbstractDiceRollingSpec) {
+            if (isCommand(n)) {
                 return delegate / n.sum
             }
         }
@@ -169,7 +210,7 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
 
     void overridePowerOperator(clazz) {
         clazz.metaClass.power = { n ->
-            if (n instanceof AbstractDiceRollingSpec) {
+            if (isCommand(n)) {
                 return delegate ** n.sum
             }
         }
@@ -177,7 +218,7 @@ class DefaultNumberPatcher extends NumberPatcherTemplate {
 
     void overrideModOperator(clazz) {
         clazz.metaClass.mod = { n ->
-            if (n instanceof AbstractDiceRollingSpec) {
+            if (isCommand(n)) {
                 return delegate % n.sum
             }
         }
