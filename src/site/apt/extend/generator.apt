@@ -5,8 +5,10 @@ Random Number Generator
 
  Groovy Dice provides a simple random number generator, which is enough for most cases.
  But, if you want, you can provide your own.
- 
- A simple Random Number Generator looks like this:
+
+* A simple example
+
+ A simple random number generator might looks like this:
  
 +---------------------------
 import net.sf.groovydice.*
@@ -24,12 +26,10 @@ class MyNumberGenerator implements RandomNumberGenerator {
     }
 }
 +---------------------------
- 
- In this simple example, we rely on Java's
- {{{http://java.sun.com/j2se/1.5.0/docs/api/java/util/Random.html}Random class}}
- to generate pseudorandom numbers.
- 
- Then, to make Groovy Dice use <your> implementation instead the default one, we need
+
+** Replacing the default random number generator
+
+ To make Groovy Dice use <your> implementation instead the default one, we need
  to pass an instance of <<<MyNumberGenerator>>> to <<<numberGenerator>>> property,
  on the <<<GroovyDice>>> object:
  
@@ -37,12 +37,12 @@ class MyNumberGenerator implements RandomNumberGenerator {
 new GroovyDice(numberGenerator:new MyNumberGenerator()).initialize()
 +---------------------------
  
- That's it. After initialize the Groovy Dice engine, the provided random number
- generator will be used.
+ That's it. The provided random number generator will be used after the engine
+ initialization.
 
-* But if I want to replace the number generator after the initialization?
+** Can I replace the number generator after the initialization?
 
- You can replace the number generator any time you want:
+ Yes, any time you want:
  
 +---------------------------
 def config = new GroovyDice()

@@ -2,3 +2,67 @@
  Dice Rolling Command
 
 Dice Rolling Command
+
+ If you take a look at the {{{../apidocs/index.html}documentation}}, you'll notice
+ that the core functionality of Groovy Dice is within an abstraction we call
+ <dice rolling commands>. For example, the following Groovy Dice script creates
+ a dice rolling command and executes it:
+ 
++----------------------------
+1.d12 // same as new DefaultDiceRollingCommand(sides:12).roll()
++----------------------------
+ 
+ At this time, Groovy Dice contains two classes that represents this abstraction:
+ <<<AbstractDiceRollingCommand>>> and <<<DefaultDiceRollingCommand>>>. Read the
+ {{{../apidocs/net/sf/groovydice/DefaultDiceRollingCommand.html}documentation}}
+ to know the differences between them.
+
+* A simple example
+
+ Let's say you are addicted to
+ {{{http://en.wikipedia.org/wiki/The_Hitchhiker's_Guide_to_the_Galaxy}The Hitchhiker's Guide to the Galaxy}}
+ and want to express your love to it in a dice rolling expression. The way to do this
+ is to extend one of the dice rolling command classes:
+
++----------------------------
+import net.sf.groovydice.*
+
+class MyDiceRollingCommand extends DefaultDiceRollingCommand {
+    def getIs_the_answer_to_life_the_universe_and_everything() {
+        sum == 42
+    }
+}
++----------------------------
+ 
+ Here we're extending the default API by adding a new property called
+ <<<is_the_answer_to_life_the_universe_and_everything>>>, which returns true when
+ the sum of all dice is equals to <<<42>>>.
+
+** Replacing the default dice rolling command
+
+ But we're not done here. To make Groovy Dice use <your> implementation instead the
+ default one, we need to pass the <<<MyDiceRollingCommand>>> class to
+ <<<commandClass>>> property, on the <<<GroovyDice>>> object:
+ 
++----------------------------
+new GroovyDice(commandClass:MyDiceRollingCommand).initialize()
++----------------------------
+ 
+ That's it. The provided dice rolling command class will be used after the engine
+ initialization.
+
+** Can I replace the dice rolling command class after the initialization?
+
+ Yes, any time you want:
+ 
++---------------------------
+def config = new GroovyDice()
+config.initialize()
+
+5.d10.is_the_answer_to_life_the_universe_and_everything // error
+
+// after a while...
+config.commandClass = MyDiceRollingCommand
+
+5.d10.is_the_answer_to_life_the_universe_and_everything // ok, returns a boolean
++---------------------------

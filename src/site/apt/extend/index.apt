@@ -3,8 +3,11 @@
 
 Extending Groovy Dice
 
- Groovy Dice is especially designed to make easier for its users to extend and modify
+ Groovy Dice was especially designed to make easier for its users to extend and modify
  the already implemented API.
  
- In the following pages you'll see how to ajust Groovy Dice API in order to make it fit
- your needs.
+   [[*]] {{{generator.html}Random Number Generator}}
+
+   [[*]] {{{command.html}Dice Rolling Command}}
+
+   [[*]] {{{trigger.html}Expression Trigger}}
