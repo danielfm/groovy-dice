@@ -13,34 +13,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.sf.groovydice
+package net.sf.groovydice.plugin
 
 import org.junit.*
 
+import net.sf.groovydice.*
+
 /**
- * SimpleRandomNumberGenerator test cases.
+ * GroovyDiceAPI test cases.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  */
-class SimpleRandomNumberGeneratorTest {
+class GroovyDiceAPITest {
 
-    private def generator
-
-    @Before
-    void setUp() {
-        generator = new SimpleRandomNumberGenerator()
+    @BeforeClass
+    static void initialize() {
+        new GroovyDice().initialize()
     }
 
-    @Test
-    void checkRandomNumberInterval() {
-        def results = [1,50,100]
-        while(results) {
-            def value = generator.generateNumber(100)
-            assert value in 1..100
+    @Test(expected=MissingPropertyException)
+    void invokeMissingProperty() {
+        42.is_the_answer_to_life_the_universe_and_everything
+    }
 
-            if (value in results) {
-                results -= value
-            }
-        }
+    @Test(expected=MissingPropertyException)
+    void invokeAnotherMissingProperty() {
+        /* no-arg methods is recognized as properties */
+        42.is_the_answer_to_life_the_universe_and_everything()
+    }
+
+    @Test(expected=MissingMethodException)
+    void invokeMissingMethod() {
+        42.is_equals_to(42)
     }
 }

@@ -15,32 +15,37 @@
  */
 package net.sf.groovydice
 
+import net.sf.groovydice.plugin.*
+
 /**
- * Groovy Dice main class.
- * 
+ * Groovy Dice configuration context.
+ *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  * @since 1.0
  * @version 3
  */
 class GroovyDice {
 
-    /** Random number generator to use. */
+    /** Random number generator. */
     def numberGenerator = new SimpleRandomNumberGenerator()
 
-    /** Dice rolling command implementation to use. */
-    def commandClass = DefaultDiceRollingCommand
-
-    /**
-     * Expression trigger instance to apply to Groovy standard API at
-     * the initialization step.
-     */
-    def expressionTrigger = new ExpressionTrigger()
+    /** PluginManager instance. */
+    def pluginManager = new PluginManager()
 
     /**
      * Initialize the Groovy Dice engine.
      */
     void initialize() {
-        expressionTrigger.config = this
-        expressionTrigger.addMethods()
+        pluginManager.registerBuiltInPlugins()
+        pluginManager.onInitialize(this)
+    }
+
+    /**
+     * Register the given plugin instances within the
+     * <code>PluginManager</code> object.
+     * @param plugins Plugin instances to register.
+     */
+    void registerPlugins(plugins) {
+        pluginManager.register(plugins)
     }
 }

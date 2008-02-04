@@ -35,13 +35,6 @@
                 <item name="Java Scripting API"
                     href="integration/jsr223.html" />
             </item>
-
-            <item name="Extending Groovy Dice"
-                href="extend/index.html">
-                <item name="Random Number Generator" href="extend/generator.html" />
-                <item name="Dice Rolling Command" href="extend/command.html" />
-                <item name="Expression Trigger" href="extend/trigger.html" />
-            </item>
         </menu>
 
         <menu name="Community">

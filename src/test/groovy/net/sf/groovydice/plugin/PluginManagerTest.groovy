@@ -13,26 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.sf.groovydice
+package net.sf.groovydice.plugin
+
+import org.junit.*
 
 /**
- * Simple random number generation implementation that rely on the Java's
- * <code>Random</code> class.
+ * PluginManager test cases.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
- * @since 1.3
- * @version 1
  */
-class SimpleRandomNumberGenerator {
+class PluginManagerTest {
 
-    /** Simple random number generator. */
-    def generator = new Random()
+    @Test
+    void registerPlugin() {
+        def manager = new PluginManager()
+        manager.register('plugin')
+        assert manager.pluginList[0] == 'plugin'
 
-    /**
-     * This closure is called in order to generate a random number between
-     * 1 and the given number.
-     */
-    def next = {
-        generator.nextInt(it) + 1
+        manager.register('other')
+        assert manager.pluginList[0] == 'other'
+        assert manager.pluginList[1] == 'plugin'
     }
 }

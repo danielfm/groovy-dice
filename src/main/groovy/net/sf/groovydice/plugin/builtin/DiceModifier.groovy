@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.sf.groovydice
+package net.sf.groovydice.plugin.builtin
 
 /**
  * This class is used to specify a modifier to each die of a dice rolling
@@ -22,7 +22,7 @@ package net.sf.groovydice
  * modified.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
- * @since 1.3
+ * @since 1.0
  * @version 4
  */
 class DiceModifier {
@@ -42,9 +42,6 @@ class DiceModifier {
      * apply this modifier only to dice equals to any dice of the given roll.
      */
     void setCondition(condition) {
-        if (condition instanceof AbstractDiceRollingCommand) {
-             condition = condition.allDice
-        }
         this.condition = condition
     }
 
@@ -68,7 +65,7 @@ class DiceModifier {
     def apply(logic) {
         def command = logic.delegate
 
-        command.deriveCommand(command.allDice.collect {
+        command.derive(command.allDice.collect {
             if (condition && !it.grep(condition)) {
                 return it
             }

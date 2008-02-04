@@ -13,26 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.sf.groovydice
+package net.sf.groovydice.plugin.builtin
 
 /**
- * Simple random number generation implementation that rely on the Java's
- * <code>Random</code> class.
+ * This plugin adds methods to make easier to the user specify constraints
+ * based on odd/even numbers.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  * @since 1.3
  * @version 1
  */
-class SimpleRandomNumberGenerator {
-
-    /** Simple random number generator. */
-    def generator = new Random()
+class OddEvenPlugin {
 
     /**
-     * This closure is called in order to generate a random number between
-     * 1 and the given number.
+     * This closure adds new methods to the API.
+     * @param api GroovyDiceAPI object.
+     * @see net.sf.groovydice.plugin.GroovyDice.API
      */
-    def next = {
-        generator.nextInt(it) + 1
+    def dynamicMethods = { api ->
+
+        /* 5.is_even */
+        api.add(method:'is_even', to:api.numberClasses) { number ->
+            (number as int) % 2 == 0
+        }
+
+        /* 5.is_odd */
+        api.add(method:'is_odd', to:api.numberClasses) { number ->
+            (number as int) % 2 != 0
+        }
     }
 }

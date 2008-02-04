@@ -13,25 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.sf.groovydice
+package net.sf.groovydice.plugin.builtin
+
+import org.junit.*
+
+import net.sf.groovydice.*
 
 /**
- * This interface represents the behavior of being capable to generate random
- * numbers.
+ * OddEvenPlugin test cases.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
- * @since 1.3
- * @version 1
  */
-interface RandomNumberGenerator {
+class OddEvenPluginTest {
 
-    /**
-     * Generate a random number between 1 and the given number.
-     * @param number Object that represents the higher number. Usually the number
-     * is represented by a <code>Number</code> instance or by a "%" which represents
-     * a percentile dice (two 10-sided dice that represents a number between 1 and
-     * 100.
-     * @return A random-generated number.
-     */
-    def generateNumber(number)
+    @BeforeClass
+    static void initialize()  {
+        new GroovyDice().initialize()
+    }
+
+    @Test
+    void numberIsEven() {
+        assert !5.is_even
+        assert !5.5.is_even
+
+        assert 6.is_even
+        assert 6.6.is_even
+    }
+
+    @Test
+    void numberIsOdd() {
+        assert !10.is_odd
+        assert !10.10.is_odd
+
+        assert 13.is_odd
+        assert 13.13.is_odd
+    }
 }
