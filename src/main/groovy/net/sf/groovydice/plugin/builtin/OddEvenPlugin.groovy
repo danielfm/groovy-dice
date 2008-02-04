@@ -46,4 +46,12 @@ class OddEvenPlugin {
             (number as int) % 2 != 0
         }
     }
+
+    /**
+     * Returns a String representation of this object.
+     * @return Plugin name.
+     */
+    String toString() {
+        getClass().name
+    }
 }

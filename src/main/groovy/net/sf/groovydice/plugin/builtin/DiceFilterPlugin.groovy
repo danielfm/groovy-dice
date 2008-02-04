@@ -92,4 +92,12 @@ class DiceFilterPlugin {
             -number
         }
     }
+
+    /**
+     * Returns a String representation of this object.
+     * @return Plugin name.
+     */
+    String toString() {
+        getClass().name
+    }
 }

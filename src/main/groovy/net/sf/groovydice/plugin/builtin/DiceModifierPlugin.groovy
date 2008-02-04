@@ -117,4 +117,12 @@ class DiceModifierPlugin {
             new DiceModifier(modifier:number, condition:condition)
         }
     }
+
+    /**
+     * Returns a String representation of this object.
+     * @return Plugin name.
+     */
+    String toString() {
+        getClass().name
+    }
 }
