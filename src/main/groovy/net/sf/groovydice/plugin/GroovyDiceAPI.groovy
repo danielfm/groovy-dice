@@ -18,9 +18,9 @@ package net.sf.groovydice.plugin
 import net.sf.groovydice.*
 
 /**
- * This class represents the Groovy Dice's dynamic methods dictionary. It also
- * provides a simple DSL to enable the users to extend the default API by
- * implementing plugins.
+ * This class is responsible to modify the runtime environment and manage
+ * the dynamically added methods in order to enable them to be called from
+ * a Groovy expression.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  * @since 1.3
@@ -28,8 +28,8 @@ import net.sf.groovydice.*
  */
 class GroovyDiceAPI {
 
-    /** API entries. */
-    def methods = []
+    /** Dynamic API entries. */
+    final def methods = []
 
     /**
      * This method is executed when some missing property or method was
@@ -41,8 +41,10 @@ class GroovyDiceAPI {
      * @throws MissingPropertyException if the given property couldn't be found.
      * @throws MissingMethodException if the given method couldn't be found
      */
-    def invoke(target, method, params=null) {
+    def invoke(target, String method, params=null) {
         def result = null
+
+        /* find all matching methods */
         def entries = methods.findAll {
             target.getClass() == it.clazz && method ==~ it.name
         }
@@ -57,11 +59,14 @@ class GroovyDiceAPI {
                 args.addAll(params.toList())
             }
 
+            /* pass null to non-specified arguments */
             args.addAll([null] * (entry.logic.maximumNumberOfParameters - args.size()))
+
+            /* call the closure */
             result = entry.logic.call(args.size() > 1 ? args as Object[] : args[0])
 
             if (result != null) {
-                break
+                break // was able to handle the call
             }
         }
 
@@ -75,7 +80,7 @@ class GroovyDiceAPI {
     }
 
     /**
-     * Add an entry to the API.
+     * Add a new entry to the dynamic API.
      * @param entryMap Map that contains information about the entry.
      * @param logic Closure to call when the method gets invoked.
     */
@@ -125,8 +130,10 @@ class GroovyDiceAPI {
     }
 
     /**
-     * Inject code to some Groovy classes to enable the method/property
-     * interception.
+     * Inject code to enable Groovy's number classes and dice rolling commands
+     * to trigger the dynamic API lookup. This method is called during the
+     * initialization step.
+     * @see net.sf.groovydice.plugin.GroovyDiceAPI#injectAspect(java.lang.Class)
      */
     void injectAspects() {
         numberClasses.each {
@@ -137,10 +144,13 @@ class GroovyDiceAPI {
 
     /**
      * Inject code to the given Groovy class to enable the method/property
-     * interception.
-     * @param clazz Class to modify.
+     * interception. For security reasons, this mechanism <strong>don't
+     * intercept all method/property calls</strong>; only missing
+     * methods/properties are intended to trigger the dynamic API lookup.
+     * @param clazz Class to be modified.
+     * @see net.sf.groovydice.plugin.GroovyDiceAPI#invoke(java.lang.Object, java.lang.String, java.lang.Object)
      */
-    void injectAspect(clazz) {
+    void injectAspect(Class clazz) {
         clazz.metaClass.propertyMissing = { String name ->
             invoke(delegate, name)
         }

@@ -18,7 +18,7 @@ package net.sf.groovydice.plugin
 import net.sf.groovydice.plugin.builtin.*
 
 /**
- * This class is responsible to manage the Groovy Dice plugins.
+ * This class is responsible to manage the registered plugin instances.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  * @since 1.3
@@ -27,27 +27,13 @@ import net.sf.groovydice.plugin.builtin.*
 class PluginManager {
 
     /** List of registered plugins. */
-    def pluginList = []
-
-    /** Groovy Dice's dynamic methods dictionary. */
-    def api = new GroovyDiceAPI()
+    final List pluginList = []
 
     /**
-     * Register the built-in Groovy Dice plugins.
-     */
-    void registerBuiltInPlugins() {
-        register([new OddEvenPlugin(),
-                  new DiceStatisticsPlugin(),
-                  new DiceModifierPlugin(),
-                  new DiceFilterPlugin(),
-                  new DiceComparingPlugin(),
-                  new DiceArithmeticPlugin(),
-                  new DiceExpressionPlugin()])
-    }
-
-    /**
-     * Register the given plugins.
-     * @param plugins Plugins to register.
+     * Register the given plugin instances. A plugin is always added to
+     * the head of the plugin list to allow newly registered plugins to bypass
+     * operations defined by previously registered plugins.
+     * @param plugins Plugin instances to register.
      */
     void register(plugins) {
         if (plugins instanceof List) {
@@ -61,13 +47,14 @@ class PluginManager {
     /**
      * Triggers the initialization of all registered plugins.
      * @param config Configuration context.
+     * @see net.sf.groovydice.GroovyDice#initialize()
      */
     void onInitialize(config) {
-        api.injectAspects()
+        config.api.injectAspects()
 
         pluginList.each { plugin ->
             try {
-                plugin.dynamicMethods(api)
+                plugin.dynamicMethods(config.api)
                 plugin.onInitialize(config)
             }
             catch (MissingMethodException) { // no big deal

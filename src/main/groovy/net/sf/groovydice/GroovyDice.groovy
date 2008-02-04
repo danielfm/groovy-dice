@@ -16,9 +16,12 @@
 package net.sf.groovydice
 
 import net.sf.groovydice.plugin.*
+import net.sf.groovydice.plugin.builtin.*
 
 /**
- * Groovy Dice configuration context.
+ * Groovy Dice configuration context. This class contains references to other
+ * important objects, like the plugin manager, the dynamic API and the random
+ * number generator.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  * @since 1.0
@@ -30,20 +33,54 @@ class GroovyDice {
     def numberGenerator = new SimpleRandomNumberGenerator()
 
     /** PluginManager instance. */
-    def pluginManager = new PluginManager()
+    final PluginManager pluginManager = new PluginManager()
+
+    /** Groovy Dice's dynamic API. */
+    final GroovyDiceAPI api = new GroovyDiceAPI()
 
     /**
      * Initialize the Groovy Dice engine.
      */
     void initialize() {
-        pluginManager.registerBuiltInPlugins()
+        preInitialize()
         pluginManager.onInitialize(this)
+        postInitialize()
+    }
+
+    /**
+     * Pre-initialization callback method. This implementation registers the
+     * built-in plugins.
+     */
+    void preInitialize() {
+        registerBuiltInPlugins()
+    }
+
+    /**
+     * Post-initialization callback method. This implementation does nothing.
+     */
+    void postInitialize() {
+        /* no-op */
+    }
+
+    /**
+     * Register the built-in Groovy Dice plugins.
+     * @see net.sf.groovydice.GroovyDice#registerPlugins(java.lang.Object)
+     */
+    void registerBuiltInPlugins() {
+        registerPlugins([new DiceStatisticsPlugin(),
+                         new DiceExpressionPlugin(),
+                         new DiceArithmeticPlugin(),
+                         new DiceModifierPlugin(),
+                         new DiceFilterPlugin(),
+                         new DiceComparingPlugin(),
+                         new OddEvenPlugin()])
     }
 
     /**
      * Register the given plugin instances within the
      * <code>PluginManager</code> object.
      * @param plugins Plugin instances to register.
+     * @see net.sf.groovydice.plugin.PluginManager#register(java.lang.Object)
      */
     void registerPlugins(plugins) {
         pluginManager.register(plugins)

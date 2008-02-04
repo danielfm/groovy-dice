@@ -20,25 +20,34 @@
         <menu name="Documentation">
             <item name="Introduction" href="features/index.html" />
             <item name="Dice Filtering"
-                href="features/dice-filtering.html" />
+                  href="features/dice-filtering.html" />
             <item name="Dice Arithmetic"
-                href="features/dice-arithmetic.html" />
+                  href="features/dice-arithmetic.html" />
             <item name="Applying Modifiers"
-                href="features/modifiers.html" />
+                  href="features/modifiers.html" />
 
             <item name="Java/Groovy Integration"
                 href="integration/index.html">
                 <item name="groovysh" href="integration/groovysh.html" />
                 <item name="Eval Class" href="integration/eval.html" />
                 <item name="GroovyShell Class"
-                    href="integration/groovyshell.html" />
+                      href="integration/groovyshell.html" />
                 <item name="Java Scripting API"
-                    href="integration/jsr223.html" />
+                      href="integration/jsr223.html" />
+            </item>
+
+            <item name="Extension Points"
+                  href="extension/index.html">
+                <item name="Random Number Generator"
+                      href="extension/number_generator.html" />
+                <item name="Plugins"
+                      href="extension/plugins.html" />
             </item>
         </menu>
 
         <menu name="Community">
-            <item name="How to Contribute" href="community/how-to-contribute.html" />
+            <item name="How to Contribute"
+                  href="community/how-to-contribute.html" />
             <item name="Getting Help" href="community/getting-help.html" />
         </menu>
 

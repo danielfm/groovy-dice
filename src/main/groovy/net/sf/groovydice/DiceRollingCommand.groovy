@@ -16,7 +16,8 @@
 package net.sf.groovydice
 
 /**
- * This class implements the basic dice rolling functionality
+ * This class provides the basic dice rolling functionality and methods to
+ * allow dice rolling commands to be compared and cloned.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  * @since 1.3
@@ -24,31 +25,33 @@ package net.sf.groovydice
  */
 class DiceRollingCommand implements Comparable {
 
-    /** Sides of the die. */
-    def sides = 6
+    /** Number of sides, which represents the type of dice to roll. */
+    Integer sides = 6
 
-    /** Already rolled dice. */
-    def allDice = []
+    /** Dice results. */
+    List allDice = []
 
     /** Configuration context. */
-    def config
+    GroovyDice config
 
 
     /**
-     * Alias method that returns a copy of rolled dice.
+     * Get a copy of dice results lists.
      * @return Array of <code>Numbers</code> that represents the rolled dice.
+     * @see net.sf.groovydice.DiceRollingCommand#allDice
      */
     def getView() {
         allDice.collect{it}
     }
 
     /**
-     * Roll dice for the given number of times.
+     * Roll the dice using the number generator specified at the configuration
+     * context.
      * @param n Optional parameter that specify the number of dice to roll.
      * Defaults to 1.
      * @return <code>this</code>.
      */
-    def roll(n=1) {
+    def roll(int n=1) {
         n.abs().times {
             allDice << config.numberGenerator.next(sides) * ((n < 0) ? -1 : 1)
         }
@@ -69,20 +72,6 @@ class DiceRollingCommand implements Comparable {
         command.allDice = allDice
         command.config = config
         command
-    }
-
-    /**
-     * Returns whether the given parameter is found in this dice roll.
-     * @param condition Can be any object accepted by <code>grep()</code> method,
-     * like a number, an array, a range, a closure etc. You can also pass a
-     * dice rolling command to use its dice as the condition.
-     * @return Whether the given parameter is found in the dice of this roll.
-     */
-    def isCase(condition) {
-         if (condition instanceof DiceRollingCommand) {
-             condition = condition.sum
-         }
-         condition in allDice
     }
 
     /**

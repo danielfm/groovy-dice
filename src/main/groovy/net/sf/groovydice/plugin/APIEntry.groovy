@@ -18,7 +18,9 @@ package net.sf.groovydice.plugin
 import org.codehaus.groovy.runtime.*
 
 /**
- * This class represents an API entry added dinamically by a plugin.
+ * Groovy Dice allows the users to extend and modify the default API by
+ * providing plugins. When a plugin adds a method to the API, this new method
+ * is represented by a APIEntry object.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  * @since 1.3
@@ -26,10 +28,10 @@ import org.codehaus.groovy.runtime.*
  */
 class APIEntry {
 
-    /** Name of the method/property to be added to the API */
+    /** Name of the method/property to be added to the dynamic API */
     def name = ''
 
-    /** Class that will answer the method call. */
+    /** Class that will answer the dynamic method call. */
     Class clazz = NullObject
 
     /**
@@ -37,15 +39,18 @@ class APIEntry {
      * method name, probably you would like to set this attribute to
      * <code>true</code>. Doing this, when the given API entry is invoked,
      * the requested method name will be passed to the matching closure.
-     * @see net.sf.groovydice.plugin.builtin.DiceExpressionPlugin
      */
     Boolean dynamic = false
 
-    /** Closure that contains the logic to execute. */
+    /**
+     * Closure that contains the logic to execute when this dynamic method
+     * gets invoked.
+     */
     Closure logic
 
     /**
      * String representation of this entry.
+     * @return Method name, class and whether this entry is dynamic.
      */
     String toString() {
         "APIEntry[name:$name, clazz:$clazz, dynamic:$dynamic]"

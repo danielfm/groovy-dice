@@ -56,18 +56,6 @@ class DiceRollingCommandTest {
     }
 
     @Test
-    void isCaseWithDiceRoll() {
-        assert new DiceRollingCommand(allDice:[1,2,3,4]) in
-            new DiceRollingCommand(allDice:[10,20,30,40])
-    }
-
-    @Test
-    void isCase() {
-        assert new DiceRollingCommand(allDice:[10,20,30,40]).isCase(10)
-        assert !new DiceRollingCommand(allDice:[10,20,30,40]).isCase(11)
-    }
-
-    @Test
     void isEqualsInvalidObject() {
         assert !new DiceRollingCommand(allDice:[1,2,3,4]).equals('other')
     }

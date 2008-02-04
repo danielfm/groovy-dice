@@ -15,25 +15,26 @@
  */
 package net.sf.groovydice
 
+import org.junit.*
+
 /**
- * Simple random number generation implementation that rely on the Java's
- * <code>Random</code> class do to its job.
+ * SimpleRandomNumberGenerator test cases.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
- * @since 1.3
- * @version 1
  */
-class SimpleRandomNumberGenerator {
+class SimpleRandomNumberGeneratorTest {
 
-    /** Simple random number generator. */
-    Random generator = new Random()
+    def generator
 
-    /**
-     * This closure is called in order to generate a random number between
-     * 1 and the given number.
-     * @see net.sf.groovydice.DiceRollingCommand#roll(int)
-     */
-    def next = { number ->
-        generator.nextInt(number) + 1
+    @Before
+    void initialize() {
+        generator = new SimpleRandomNumberGenerator()
+    }
+
+    @Test
+    void sortedNumbersInInterval() {
+        (0..100).each {
+            assert generator.next(6) in 1..6
+        }
     }
 }
