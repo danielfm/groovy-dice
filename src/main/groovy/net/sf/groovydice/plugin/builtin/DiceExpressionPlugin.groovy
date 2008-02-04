@@ -48,9 +48,16 @@ class DiceExpressionPlugin {
     }
 
     /**
-     * This closure adds new methods to the API.
+     * This closure adds new methods to the API. Examples: <p/>
+     * <pre>
+     * 3.d    // -> Sides: 6 , Dice: [1,5,3] , Sum: 9
+     * 3.d(4) // -> Sides: 4 , Dice: [1,2,4] , Sum: 7
+     * 3.d4   // -> Sides: 4 , Dice: [1,2,4] , Sum: 7
+     * 3.pd   // -> Sides: 100 , Dice: [10,50,30] , Sum: 90
+     * 3.'d%' // -> Sides: 100 , Dice: [10,50,30] , Sum: 90
+     * </pre>
      * @param api GroovyDiceAPI object.
-     * @see net.sf.groovydice.plugin.GroovyDice.API
+     * @see net.sf.groovydice.plugin.GroovyDiceAPI
      */
     def dynamicMethods = { api ->
 

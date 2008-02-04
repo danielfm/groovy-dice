@@ -26,9 +26,13 @@ package net.sf.groovydice.plugin.builtin
 class OddEvenPlugin {
 
     /**
-     * This closure adds new methods to the API.
+     * This closure adds new methods to the API. Examples: <p/>
+     * <pre>
+     * 5.is_even // -> false
+     * 5.is_odd // -> true
+     * </pre>
      * @param api GroovyDiceAPI object.
-     * @see net.sf.groovydice.plugin.GroovyDice.API
+     * @see net.sf.groovydice.plugin.GroovyDiceAPI
      */
     def dynamicMethods = { api ->
 

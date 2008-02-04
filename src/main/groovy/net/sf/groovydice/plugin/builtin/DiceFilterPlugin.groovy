@@ -25,13 +25,19 @@ package net.sf.groovydice.plugin.builtin
 class DiceFilterPlugin {
 
     /**
-     * This closure adds new methods to the API.
+     * This closure adds new methods to the API. Examples: <p/>
+     * <pre>
+     * 3.d.the(2.best)   // [1,3,5] -> Sides: 6 , Dice: [5,3] , Sum: 8
+     * 3.d.only_if{it>3} // [1,3,5] -> Sides: 6 , Dice: [5] , Sum: 5
+     * 3.best            // -> 3
+     * 3.worst           // -> -3
+     * </pre>
      * @param api GroovyDiceAPI object.
-     * @see net.sf.groovydice.plugin.GroovyDice.API
+     * @see net.sf.groovydice.plugin.GroovyDiceAPI
      */
     def dynamicMethods = { api ->
 
-        /* 10.d.the(xxx) */
+        /* 3.d.the(xxx) */
         api.add(method:'the') { dice, n ->
             if (n == 0) {
                 throw new IllegalArgumentException("Invalid value. Value: $n")
@@ -62,7 +68,7 @@ class DiceFilterPlugin {
             }
         }
 
-        /* 10.d.only_if(xxx) */
+        /* 3.d.only_if(xxx) */
         api.add(method:'only_if') { dice, condition ->
             if (api.isCommand(condition)) {
                 condition = condition.allDice

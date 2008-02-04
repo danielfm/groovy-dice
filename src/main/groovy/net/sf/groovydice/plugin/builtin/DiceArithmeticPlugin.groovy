@@ -26,9 +26,24 @@ package net.sf.groovydice.plugin.builtin
 class DiceArithmeticPlugin {
 
     /**
-     * This closure adds new methods to the API.
+     * This closure adds new methods to the API. Examples: <p/>
+     * <pre>
+     * 3.d + 5  // [1,3,5] -> Sides: 6 , Dice: [1,3,5,5] , Sum: 14
+     * 3.d - 5  // [1,3,5] -> Sides: 6 , Dice: [1,3,5,-5] , Sum: 4
+     * 3.d * 5  // [1,3,5] -> 45
+     * 3.d / 5  // [1,3,5] -> 4.5
+     * 3.d ** 5 // [1,3,5] -> 59049
+     * 3.d % 5  // [1,3,5] -> 4
+     * -3.d     // [1,3,5] -> Sides: 6 , Dice: [-1,-3,-5] , Sum: -9
+     * 5 + 3.d  // [1,3,5] -> Sides: 6 , Dice: [1,3,5,5] , Sum: 14
+     * 5 - 3.d  // [1,3,5] -> Sides: 6 , Dice: [-1,-3,-5,5] , Sum: -4
+     * 5 * 3.d  // [1,3,5] -> 45
+     * 5 / 3.d  // [1,3,5] -> 0.555556
+     * 5 ** 3.d // [1,3,5] -> 1953125
+     * 5 % 3.d  // [1,3,5] -> 5
+     * </pre>
      * @param api GroovyDiceAPI object.
-     * @see net.sf.groovydice.plugin.GroovyDice.API
+     * @see net.sf.groovydice.plugin.GroovyDiceAPI
      */
     def dynamicMethods = { api ->
 

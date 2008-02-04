@@ -25,9 +25,18 @@ package net.sf.groovydice.plugin.builtin
 class DiceStatisticsPlugin {
 
     /**
-     * This closure adds new methods to the API.
+     * This closure adds new methods to the API. Examples: <p/>
+     * <pre>
+     * 10.d.sum       // [1,6,5,4,3,1,2,6,4,2] -> 34
+     * 10.d.count     // -> 10
+     * 10.d.best_die  // [1,6,5,4,3,1,2,6,4,2] -> 6
+     * 10.d.worst_die // [1,6,5,4,3,1,2,6,4,2] -> 1
+     * 10.d.mean      // [1,6,5,4,3,1,2,6,4,2] -> 3.4
+     * 10.d.median    // [1,6,5,4,3,1,2,6,4,2] -> 3.5
+     * 10.d.mode      // [1,6,5,4,3,1,2,6,4,2] -> [1,2,4,6]
+     * </pre>
      * @param api GroovyDiceAPI object.
-     * @see net.sf.groovydice.plugin.GroovyDice.API
+     * @see net.sf.groovydice.plugin.GroovyDiceAPI
      */
     def dynamicMethods = { api ->
 

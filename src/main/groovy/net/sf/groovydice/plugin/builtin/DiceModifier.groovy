@@ -79,6 +79,6 @@ class DiceModifier {
      * @return Modifier number and condition.
      */
     String toString() {
-        "$modifier where $condition"
+        "Number:$modifier , Condition: $condition"
     }
 }

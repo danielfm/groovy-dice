@@ -112,9 +112,9 @@ class DiceRollingCommand implements Comparable {
 
     /**
      * Default string representation of this object.
-     * @return The sum of all dice.
+     * @return Dice type, dice list and dice sum.
      */
     String toString() {
-        sum
+        "Sides: $sides , Dice: $allDice , Sum: ${allDice.sum()}"
     }
 }

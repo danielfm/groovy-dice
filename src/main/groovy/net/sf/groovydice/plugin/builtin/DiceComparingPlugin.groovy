@@ -26,9 +26,12 @@ package net.sf.groovydice.plugin.builtin
 class DiceComparingPlugin {
 
     /**
-     * This closure adds new methods to the API.
+     * This closure adds new methods to the API. Examples: <p/>
+     * <pre>
+     * 3.d.same_as([1,3,5]) [1,5,3] // -> true
+     * </pre>
      * @param api GroovyDiceAPI object.
-     * @see net.sf.groovydice.plugin.GroovyDice.API
+     * @see net.sf.groovydice.plugin.GroovyDiceAPI
      */
     def dynamicMethods = { api ->
 
