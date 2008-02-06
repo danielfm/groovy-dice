@@ -52,7 +52,8 @@ Here goes a list that shows some Groovy Dice's features:
     - 7.d10 + 5.to_every_die
     - 7.d10 * 2.to_each_die_if{it in 1..3}
 
-+ Extension points to allow the user change the default API.
++ Extension points that allows the user to extend or replace the
+  built-in API.
 
 
 3. Installation
@@ -61,7 +62,7 @@ Here goes a list that shows some Groovy Dice's features:
 Just drop the groovydice JAR file in your application's CLASSPATH and you're
 done.
 
-Since this API is written in Groovy 1.5.1, you will need to add the Groovy JARs
+Since this API is written in Groovy, you will need to add the Groovy JARs
 to your CLASSPATH to make the stuff work. Also, if you want to call Groovy Dice
 scripts from a Java application using the Java Scripting API (JSR 223), you'll
 need to add the groovy-engine JAR to your CLASSPATH as well.
@@ -82,13 +83,13 @@ E-mail: daniel_martins at users.sourceforge.net
 5. "Thank you" list
 *******************
 
-This project wouldn't be possible without G2One Inc. and all Groovy contributors'
-great work.
+This project wouldn't be possible without G2One Inc. and all Groovy
+contributors' great work.
 
 http://groovy.codehaus.org
 http://g2one.com
 
-This project is built by Maven 2.0.8, which is a very good tool to handle the
+This project is built by Maven, which is a very good tool to handle the
 project dependencies and reports.
 
 http://maven.apache.org
