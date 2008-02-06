@@ -30,7 +30,7 @@ Dice Rolling Expressions
 
 * Dynamic dice
 
- A useful feature is what we call <<Dynamic dice>>, which allows you to
+ A useful feature is what we call <dynamic> dice, which allows you to
  dynamically specify the type of dice to roll. For example, imagine that your
  script needs to ask the user for the dice type:
 

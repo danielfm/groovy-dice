@@ -23,5 +23,5 @@ public class MyDiceRollerApp {
  We just need to invoke the <<<initialize()>>> method <once> for a given
  application, so it's fine to put that call inside a <<<static>>> block.
 
- For more information on GroovyDice object read the
- {{{../extension/index.html}Extension Points}} page.
+ For more information on GroovyDice object, please read the
+ {{{../extension/index.html}Extension Points}} documentation.

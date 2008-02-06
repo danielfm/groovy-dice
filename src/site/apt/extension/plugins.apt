@@ -31,37 +31,13 @@ config.initialize()
 5.d10.is_the_answer_to_life_the_universe_and_everything
 +-------------------------------------------------------------------------------------+
 
- Every plug-in must provide a method/closure called <<<dynamicMethods>>>. This
- closure/method receives an instance of
+ Every plug-in must provide a closure called <<<dynamicMethods>>>. This
+ closure receives an instance of
  {{{../apidocs/net/sf/groovydice/plugin/GroovyDiceAPI.html}GroovyDiceAPI}}
  which you can use to register new methods to the API.
 
  In this example we added a method to check whether the sum of all dice is
  equals to <<<42>>>.
-
-** A plug-in can use methods added by another
-
- We can make that example even better. You probably know that Groovy Dice
- have a built-in
- {{{../apidocs/net/sf/groovydice/plugin/builtin/DiceStatisticsPlugin.html}plug-in}}
- that already provides a <<<sum>>> method. Then, our plug-in can use this
- method to make things easier:
-
-+-------------------------------------------------------------------------------------+
-class HitchhikersGuideToTheGalaxy {
-
-    /* this closure is called during the Groovy Dice initialization */
-    def dynamicMethods = { api ->
-        api.add(method:'is_the_answer_to_life_the_universe_and_everything') { obj ->
-            if (api.isCommand(obj)) {
-                return obj.sum == 42 // using a method provided by another plug-in
-            }
-        }
-    }
-}
-
-/* the rest remains the same... */
-+-------------------------------------------------------------------------------------+
 
 ** Plug-in lifecycle events
 
@@ -92,13 +68,13 @@ config.initialize()
 +-----------------------------------------------------------------------+
 
  Your plug-ins don't have to have such closure to work. The only practical
- reason you would use this feature is because your plugin needs the
+ reason you would use this feature is because your plug-in needs the
  <<<GroovyDice>>> object to do its job.
 
 ** Several plug-ins can implement the same method collaboratively
 
- You can simulate some sort of polymorfism by writing several plugins that
- provides an implementation to the same method. An example:
+ Several plug-ins can work together to provide an implementation of
+ the same method. An example:
 
 +--------------------------------------------------------------------------------+
 class FirstPlugin {
@@ -135,29 +111,29 @@ println 10.looks_like(new Date())             // prints "First: 10 - (time)"
 println 10.looks_like{ println 'A closure!' } // no plugin can handle a closure!
 +--------------------------------------------------------------------------------+
 
- In this example we have two plugins that "listens" to the same method
- call, but the first plugin only comes into scene when the given object
- is a <<<Date>>> and the second plugin only do it's job when the given
+ In this example we have two plug-ins that "listens" to the same method
+ call, but the first plug-in only comes into scene when the given object
+ is a <<<Date>>> and the second plug-in only do it's job when the given
  object is an <<<Integer>>>. To give every plug-in a chance to execute,
- Groovy Dice will try to call every method registered under that name.
+ Groovy Dice will try to call every closure registered under that name.
 
  Since the plug-in registration order is relevant, Groovy Dice calls
- first the <<<FirstPlugin>>> instance, passing to it the called
+ the closure registered by <<<FirstPlugin>>>, passing to it the called
  <<<Integer>>> instance and the given parameter (<<<10>>> and
  <<<20>>>, respectively). Since the parameter is an <<<Integer>>>,
  the closure returns nothing and then the other registered closures
  are called.
 
- This process continues until some plug-in returns a valid value. In
+ This process continues until someone returns something valid. In
  this example, the closure provided by <<<SecondPlugin>>> returns
- something valid and then the process stops <<even if there are other
- plug-ins that can handle the call>>. If no plug-in can handle the
- call, Groovy Dice will raise an exception.
+ a not null value; then this process stops <<even if there are other
+ closures that can handle the call>>. If no registered closure can
+ handle it, Groovy Dice will raise an exception.
 
 ** Plug-ins can use regex patterns as method names
 
- If you want to add a method under a name that matches a particular
- pattern, you are allowed to use regular expressions:
+ If you want to intercept calls to methods that match a particular
+ pattern, you are allowed to use regular expressions as method names:
 
 +-------------------------------------------------------+
 class HelloPlugin {
@@ -178,8 +154,8 @@ class HelloPlugin {
 
  This feature is pretty useful when you want to intercept a method
  which you don't know exactly the name. But there's a problem: if you
- want to the method name that has triggered your plug-in, you should mark
- a method name as <dynamic> when adding it to the API:
+ want to know the method name that has triggered your closure, you
+ should mark a method name as <dynamic> when adding it to the API:
 
 +-----------------------------------------------------------------------------------+
 class HelloPlugin {
@@ -199,14 +175,9 @@ class HelloPlugin {
 +-----------------------------------------------------------------------------------+
 
  In this example, we specify the method name using the <<<dynamicMethod>>>
- instead of <<<method>>>. Doing this, your closure will get the method name
- in the first parameter and the called object in the second parameter.
-
-** Limitations
-
- You <<can't>> add methods to any class you want; you are restricted to
- numbers and the
- {{{../apidocs/net/sf/groovydice/DiceRollingCommand.html}dice rolling command}}.
+ instead of <<<method>>>. Doing this, your closure will get the called
+ method name in the first parameter and the called object in the second
+ parameter.
 
 * Manipulating the built-in stack
 
@@ -226,3 +197,15 @@ manager.unregister(plugin)   // unregister a particular plugin instance
 manager.unregister(MyPlugin) // unregister all MyPlugin instances
 manager.unregister()         // removes all registered plugins
 +------------------------------------------------------------------------------+
+
+* Limitations
+
+    [[1]] A plug-in can use methods registered by other plug-ins, but you
+    have to be careful when dealing with such dependencies. For example,
+    let's say you created a plug-in <<A>> that depends on the plug-in
+    <<B>>. Then, you have to register both <<A>> and <<B>> before the
+    initialization step. Groovy Dice <<won't>> do it for you;
+
+    [[2]] You <<can't>> add methods to any class you want; you are restricted
+    to numbers and the
+    {{{../apidocs/net/sf/groovydice/DiceRollingCommand.html}dice rolling command}}.

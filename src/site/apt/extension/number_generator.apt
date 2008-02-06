@@ -9,10 +9,14 @@ Generators
  to generate pseudorandom numbers, but you are able to replace this default
  logic if you need something more reliable.
 
- In order to customize the random number generation, you can provide an object
- which have a public <<<next>>> closure/method or a simple closure:
+ There are two ways to replace the default random number generator:
 
-+-------------------------------------------------------+
+* Using an object that speaks the appropriate protocol
+
+ In other words: any object that have a <<<next>>> method/closure can be used
+ as random number generator:
+
++-------------------------------------------------------------------------+
 class MyRandomNumberGenerator {
     def next = { sides ->
         /* sides is the number of sides of the dice */
@@ -24,14 +28,23 @@ def config = new GroovyDice()
 config.numberGenerator = new MyRandomNumberGenerator()
 config.initialize()
 
-/* using MyRandomNumberGenerator */
+/* using a MyRandomNumberGenerator instance to generate random numbers */
 println 2.d10
++-------------------------------------------------------------------------+
 
+* Using closures
+
+ You can also pack your random number generation logic inside a simple
+ closure and use it:
+
++-------------------------------------------------------+
+def config = new GroovyDice()
 config.numberGenerator = { sides ->
     /* sides is the number of sides of the dice */
     sides
 }
+config.initialize()
 
-/* using the closure */
+/* using the closure to generate random numbers */
 println 2.d10
 +-------------------------------------------------------+

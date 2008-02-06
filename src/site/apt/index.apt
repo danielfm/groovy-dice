@@ -12,7 +12,7 @@ A groovier way to roll dice
 
 * It's simple
 
- By default, Groovy Dice provides you a simple language to express dice rolls:
+ By default, Groovy Dice provides a simple language to express dice rolls:
 
 +---------------------------------------+
 6.d10      // six ten-sided dice
@@ -44,7 +44,8 @@ A groovier way to roll dice
 * It's extensible
 
  Most built-in features are implemented as plug-ins, which means you can replace
- any plugin or provide your own plugin stack when a full API change is needed:
+ any built-in plug-in or provide your own plug-in stack when a full API change
+ is needed:
 
 +---------------------------------------+
 /* stupid number generator */
