@@ -39,50 +39,27 @@ class GroovyDice {
     final GroovyDiceAPI api = new GroovyDiceAPI()
 
     /**
-     * Initialize the Groovy Dice engine.
+     * This constructor register the builtin plugins.
      */
-    void initialize() {
-        preInitialize()
-        pluginManager.onInitialize(this)
-        postInitialize()
-    }
-
-    /**
-     * Pre-initialization callback method. This implementation registers the
-     * built-in plugins.
-     */
-    void preInitialize() {
+    public GroovyDice() {
         registerBuiltInPlugins()
     }
 
     /**
-     * Post-initialization callback method. This implementation does nothing.
+     * Initialize the Groovy Dice engine.
      */
-    void postInitialize() {
-        /* no-op */
+    void initialize() {
+        pluginManager.onInitialize(this)
     }
 
     /**
      * Register the built-in Groovy Dice plugins.
-     * @see net.sf.groovydice.GroovyDice#registerPlugins(java.lang.Object)
      */
     void registerBuiltInPlugins() {
-        registerPlugins([new DiceStatisticsPlugin(),
-                         new DiceExpressionPlugin(),
-                         new DiceArithmeticPlugin(),
-                         new DiceModifierPlugin(),
-                         new DiceFilterPlugin(),
-                         new DiceComparingPlugin(),
-                         new OddEvenPlugin()])
-    }
-
-    /**
-     * Register the given plugin instances within the
-     * <code>PluginManager</code> object.
-     * @param plugins Plugin instances to register.
-     * @see net.sf.groovydice.plugin.PluginManager#register(java.lang.Object)
-     */
-    void registerPlugins(plugins) {
-        pluginManager.register(plugins)
+        pluginManager.register([new DiceStatisticsPlugin(),
+              new DiceExpressionPlugin(),
+              new DiceArithmeticPlugin(),
+              new DiceModifierPlugin(),
+              new DiceFilterPlugin()])
     }
 }

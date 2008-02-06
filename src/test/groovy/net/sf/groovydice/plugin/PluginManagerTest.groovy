@@ -25,13 +25,43 @@ import org.junit.*
 class PluginManagerTest {
 
     @Test
-    void registerPlugin() {
+    void register() {
         def manager = new PluginManager()
         manager.register('plugin')
-        assert manager.pluginList[0] == 'plugin'
+        assert manager.pluginStack[0] == 'plugin'
 
         manager.register('other')
-        assert manager.pluginList[0] == 'other'
-        assert manager.pluginList[1] == 'plugin'
+        assert manager.pluginStack[0] == 'other'
+        assert manager.pluginStack[1] == 'plugin'
+    }
+
+    @Test
+    void unregisterAll() {
+        def manager = new PluginManager()
+        manager.unregister()
+        assert manager.pluginStack == []
+    }
+
+    @Test
+    void unregisterByClass() {
+        def manager = new PluginManager()
+        manager.register('plugin')
+        manager.register(123)
+        manager.register('other')
+        assert manager.pluginStack == ['other',123,'plugin']
+
+        manager.unregister(String)
+        assert manager.pluginStack == [123]
+    }
+
+    @Test
+    void unregisterInstance() {
+        def manager = new PluginManager()
+        manager.register('plugin')
+        manager.register('other')
+        assert manager.pluginStack == ['other','plugin']
+
+        manager.unregister('other')
+        assert manager.pluginStack == ['plugin']
     }
 }

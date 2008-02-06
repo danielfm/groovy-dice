@@ -27,20 +27,44 @@ import net.sf.groovydice.plugin.builtin.*
 class PluginManager {
 
     /** List of registered plugins. */
-    final List pluginList = []
+    final List pluginStack = []
 
     /**
      * Register the given plugin instances. A plugin is always added to
-     * the head of the plugin list to allow newly registered plugins to bypass
+     * the top of the plugin stack to allow newly registered plugins to bypass
      * operations defined by previously registered plugins.
      * @param plugins Plugin instances to register.
      */
     void register(plugins) {
         if (plugins instanceof List) {
-            pluginList.addAll(0, plugins)
+            pluginStack.addAll(0, plugins)
         }
         else {
-            pluginList.add(0, plugins)
+            pluginStack.add(0, plugins)
+        }
+    }
+
+    /**
+     * Unregister plugins.
+     * @param plugins If this parameter is null, then all registered plugins
+     * are removed. If this parameter is a Class, then all plug-ins that
+     * shares an is-a relationship with that class are removed. Otherwise,
+     * the plug-in instance represented by this parameter is removed from
+     * the stack.
+     */
+    void unregister(plugins=null) {
+        if (!plugins) { // clear the plug-in stack
+            pluginStack.clear()
+        }
+        else if (plugins instanceof Class) {
+            pluginStack.collect{it}.each {
+                if (plugins.isInstance(it)) {
+                    pluginStack.remove(it)
+                }
+            }
+        }
+        else {
+            pluginStack.remove(plugins)
         }
     }
 
@@ -52,7 +76,7 @@ class PluginManager {
     void onInitialize(config) {
         config.api.injectAspects()
 
-        pluginList.each { plugin ->
+        pluginStack.each { plugin ->
             try {
                 plugin.dynamicMethods(config.api)
                 plugin.onInitialize(config)

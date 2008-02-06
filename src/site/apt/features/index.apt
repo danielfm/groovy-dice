@@ -1,94 +1,20 @@
- ------------
- Introduction
+ -----------------
+ Built-in Features
 
-Introduction
+Built-in Features
 
- The simplest Groovy Dice expression looks like this:
- 
-+-----------------------
-1.d
-+-----------------------
- 
- This script rolls one <default> die (a six-sided die). Obviously, you can roll
- any kind of dice you want:
- 
-+-----------------------
-5.d15
-15.d20
-2.d100
-1.pd
-1.'d%'
-+-----------------------
- 
- Except for the last two lines - which means the same thing (roll a percentile
- die) - the code is very easy to follow for those who know a bit about
- {{{http://en.wikipedia.org/wiki/Dice_notation}dice notation}}.
+ For most cases, the built-in functionality is all you need. In the next few
+ pages you will learn how to take advantage of it:
 
-* Dynamic dice
+    * {{{expressions.html}Dice Rolling Expressions}}
 
- A useful feature is what we call <<Dynamic dice>>, which allows you to
- dynamically specify the type of dice to roll. For example, imagine that your
- script needs to ask the user for the dice type:
- 
-+-----------------------
-def n = new Scanner(System.in).nextLine()
-5.d(n) // 'n' is a number or a '%'
-+-----------------------
- 
- This feature also allows you to use another dice roll as argument to that
- method:
- 
-+-----------------------
-6.d(3.d4)
-+-----------------------
- 
- This script rolls three four-sided dice and then rolls six dice of that many
- sides.
+    * {{{statistics.html}Statistical Calculations}}
 
-* What is returned by a dice rolling expression?
+    * {{{arithmetic.html}Dice Arithmetic}}
 
- If you take a look at
- {{{../apidocs/net/sf/groovydice/DefaultDiceRollingCommand.html}the documentation}}
- pages, you'll see that you are able to extract some useful information from dice,
- like the best die, the worst die, the sum of all dice, and so on. Then, all
- dice expressions (except in few cases) returns a dice rolling command.
- 
- Some examples:
- 
-+-----------------------
-10.d6.best_die
-5.d12.worst_die
-5.d20.sum
-6.d4.mean
-12.d.median
-20.d10.mode
-5.d10.the(3.best)
-8.d20.the(4.worst)
-+-----------------------
+    * {{{filtering.html}Dice Filtering}}
 
- I'm not going to explain what each line does. Try to figure it out yourself!
+    * {{{modifiers.html}Applying Modifiers}}
 
-* How can I access the results from a dice roll?
-
- A simple way to see the results is to use the <<<getView()>>> method, which
- returns an <<<Array>>> of <<<Number>>>s:
- 
-+-----------------------
-3.d6.view
-+-----------------------
- 
-* Exercises
-
- [[1]] Roll fifteen six-sided dice. A: <<<15.d6>>>
- 
- [[2]] Roll a percentile die for <<<5*4>>> times. A: <<<(5*4).'d%'>>>
- 
- [[3]] Roll six twenty-sided dice and print the worst two dice. A:
- <<<6.d20.the(2.worst).view.each\{println it\}>>>
- 
- [[4]] Roll two ten-sided dice, get the best die and roll twenty-sided
- dice for this number of times. Return all dice. A:
- <<<(2.d10.best_die).d20.view>>>
- 
- [[5]] Roll three four-sided dice and then roll a die of that many sides:
- A: <<<1.d(3.d4)>>>
+ You don't have to do anything to be able to use those features; they are
+ enabled by default.

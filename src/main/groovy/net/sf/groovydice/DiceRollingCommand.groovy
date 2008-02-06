@@ -52,8 +52,13 @@ class DiceRollingCommand implements Comparable {
      * @return <code>this</code>.
      */
     def roll(int n=1) {
+        def generator = config.numberGenerator
+        if (!(generator instanceof Closure)) {
+            generator = generator.&next
+        }
+
         n.abs().times {
-            allDice << config.numberGenerator.next(sides) * ((n < 0) ? -1 : 1)
+            allDice << generator(sides) * ((n < 0) ? -1 : 1)
         }
         this
     }
@@ -100,6 +105,20 @@ class DiceRollingCommand implements Comparable {
             return allDice.sum() <=> command.allDice.sum()
         }
         throw new ClassCastException("Object type not expected: ${command.class}")
+    }
+
+    /**
+     * Returns whether the given parameter is found in this dice roll.
+     * @param condition Can be any object accepted by <code>grep()</code> method,
+     * like a number, an array, a range, a closure etc. You can also pass a
+     * dice rolling command to use its dice as the condition.
+     * @return Whether the given parameter is found in the dice of this roll.
+     */
+    def isCase(condition) {
+         if (condition instanceof DiceRollingCommand) {
+             condition = condition.sum
+         }
+         condition in allDice
     }
 
     /**

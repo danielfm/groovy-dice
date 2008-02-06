@@ -1,0 +1,109 @@
+ ------------------------
+ Statistical Calculations
+
+Statistical Calculations
+
+ The internal plug-in
+ {{{../apidocs/net/sf/groovydice/plugin/builtin/DiceStatisticsPlugin.html}DiceStatisticsPlugin}}
+ allows you to apply basic statistical calculations on dice rolls.
+
+* Sum
+
+ The <<<sum>>> method gives you the sum of all dice:
+
++--------+
+3.d.sum
++--------+
+
+ Let's say that the expression <<<3.d>>> returned <<<[1,6,5]>>>. Then, the
+ sum is <<<12>>>.
+
+* Count
+
+ The <<<count>>> method just returns the number of dice of a roll.
+
+* Best die
+
+ The <<<best_die>>> method returns the highest die of a roll:
+
++------------+
+3.d.best_die
++------------+
+
+ Let's say that the expression <<<3.d>>> returned <<<[1,5,2]>>>. Then, the
+ best die is <<<5>>>.
+
+* Worst die
+
+ The <<<worst_die>>> method returns the lowest die of a roll:
+
++------------+
+3.d.worst_die
++------------+
+
+ Let's say that the expression <<<3.d>>> returned <<<[1,5,2]>>>. Then, the
+ worst die is <<<1>>>.
+
+* Mean
+
+ The <<<mean>>> method calculates the
+ {{{http://en.wikipedia.org/wiki/Mean}mean}} of a dice roll:
+
++--------+
+3.d.mean
++--------+
+
+ Let's say that the expression <<<3.d>>> returned <<<[1,5,2]>>>. Then, the
+ mean is <<<2.6667>>>, or <<<8/3>>>.
+
+* Median
+
+ The <<<median>>> method calculates the
+ {{{http://en.wikipedia.org/wiki/Median}median}} of a dice roll:
+
++----------+
+3.d.median
++----------+
+
+ Let's say that the expression <<<3.d>>> returned <<<[1,5,2]>>>. Then, the
+ median is <<<2>>>.
+
+ Another example:
+
++----------+
+6.d.median
++----------+
+
+ Let's say that the expression <<<6.d>>> returned <<<[1,3,2,4,6,1]>>>. Then,
+ the median is <<<2.5>>>, or <<<(2+3)/2>>>.
+
+* Mode
+
+ The <<<mode>>> method calculates the
+ {{{http://en.wikipedia.org/wiki/Mode_(statistics)}mode}} of a dice
+ roll:
+
++--------+
+3.d.mode
++--------+
+
+ Let's say that the expression <<<3.d>>> returned <<<[1,5,2]>>>. Then, the
+ mode is <<<[1,5,2]>>> since all elements appears only once.
+
+ Another example:
+
++--------+
+6.d.mode
++--------+
+
+ Let's say that the expression <<<6.d>>> returned <<<[1,3,2,4,6,1]>>>. Then,
+ the mode is <<<1>>>.
+
+ A last example:
+
++--------+
+5.d.mode
++--------+
+
+ Let's say that the expression <<<5.d>>> returned <<<[1,3,1,2,3]>>>. Then,
+ the mode is <<<[1,3]>>>.

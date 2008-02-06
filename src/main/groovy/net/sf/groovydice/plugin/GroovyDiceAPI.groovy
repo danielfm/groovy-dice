@@ -37,11 +37,12 @@ class GroovyDiceAPI {
      * @param target Called object.
      * @param method Method name.
      * @param params Optional parameters array.
-     * @return
+     * @return Value returned by the closure that is registered under the
+     * requested method name and class.
      * @throws MissingPropertyException if the given property couldn't be found.
      * @throws MissingMethodException if the given method couldn't be found
      */
-    def invoke(target, String method, params=null) {
+    private def invoke(target, String method, params=null) {
         def result = null
 
         /* find all matching methods */
@@ -135,7 +136,7 @@ class GroovyDiceAPI {
      * initialization step.
      * @see net.sf.groovydice.plugin.GroovyDiceAPI#injectAspect(java.lang.Class)
      */
-    void injectAspects() {
+    protected void injectAspects() {
         numberClasses.each {
             injectAspect(it)
         }
@@ -150,7 +151,7 @@ class GroovyDiceAPI {
      * @param clazz Class to be modified.
      * @see net.sf.groovydice.plugin.GroovyDiceAPI#invoke(java.lang.Object, java.lang.String, java.lang.Object)
      */
-    void injectAspect(Class clazz) {
+    private void injectAspect(Class clazz) {
         clazz.metaClass.propertyMissing = { String name ->
             invoke(delegate, name)
         }

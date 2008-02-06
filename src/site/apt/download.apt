@@ -15,8 +15,8 @@ Download
 
  If you want to add Groovy Dice as a dependency, just put the following snippet
  to your POM:
- 
-+---------------------
+
++-----------------------------------------------------------+
 <repositories>
     <repository>
         <id>groovydice-m2repo</id>
@@ -34,7 +34,7 @@ Download
         <version>1.3</version>
     </dependency>
 </dependencies>
-+---------------------
++-----------------------------------------------------------+
 
 * Getting Groovy Dice from the source control server
 
@@ -45,19 +45,19 @@ Download
 ** How to build?
 
  Groovy Dice is built by {{{http://maven.apache.org}Maven 2}}.
- 
+
  After check out the Groovy Dice code from the source control server, just open
  the terminal (bash, ms-dos prompt, whatever) and run the following command line
  at the project's root folder:
 
-+---------------------
++----------------+
 mvn package site
-+----------------------
++----------------+
 
  This command will compile the source code, run all test cases and create the
  Groovy Dice JAR file. An offline version of this website will be generated
  as well.
- 
+
  Needless to say that you must have Maven 2 installed in your machine. Further
  instructions on how to download and configure Maven can be found at
  {{{http://maven.apache.org}Maven's website}}.

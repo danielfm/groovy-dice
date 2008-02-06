@@ -69,6 +69,18 @@ class DiceRollingCommandTest {
             new DiceRollingCommand(allDice:[5,4,2]))
     }
 
+    @Test
+    void isCaseWithDiceRoll() {
+        assert new DiceRollingCommand(allDice:[1,2,3,4]) in
+            new DiceRollingCommand(allDice:[10,20,30,40])
+    }
+
+    @Test
+    void isCase() {
+        assert new DiceRollingCommand(allDice:[10,20,30,40]).isCase(10)
+        assert !new DiceRollingCommand(allDice:[10,20,30,40]).isCase(11)
+    }
+
     @Test(expected=ClassCastException)
     void isComparableWithInvalidObject() {
         new DiceRollingCommand(allDice:[1,2,3,4]).compareTo('something')
@@ -90,6 +102,19 @@ class DiceRollingCommandTest {
     void getHashCode() {
         assert new DiceRollingCommand().hashCode()
         assert new DiceRollingCommand(allDice:[1,2,3,4]).hashCode()
+    }
+
+    @Test
+    void testToString() {
+        assert new DiceRollingCommand(config:config, sides:6).roll(3)
+            .toString() ==~ /Sides:.*, Dice:.*, Sum:.*/
+    }
+
+    @Test
+    void useClosureAsNumberGenerator() {
+        config.numberGenerator = { it*2 }
+        assert new DiceRollingCommand(config:config, sides:6).roll(3)
+            .allDice == [12,12,12]
     }
 }
 

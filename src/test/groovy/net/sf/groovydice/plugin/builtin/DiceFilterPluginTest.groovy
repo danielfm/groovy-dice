@@ -114,4 +114,22 @@ class DiceFilterPluginTest {
             .only_if(new DiceRollingCommand(allDice:[1,2,3]))
             ).allDice == [3,2,1]
     }
+
+    @Test
+    void numberIsEven() {
+        assert !5.is_even
+        assert !5.5.is_even
+
+        assert 6.is_even
+        assert 6.6.is_even
+    }
+
+    @Test
+    void numberIsOdd() {
+        assert !10.is_odd
+        assert !10.10.is_odd
+
+        assert 13.is_odd
+        assert 13.13.is_odd
+    }
 }

@@ -31,6 +31,8 @@ class DiceFilterPlugin {
      * 3.d.only_if{it>3} // [1,3,5] -> Sides: 6 , Dice: [5] , Sum: 5
      * 3.best            // -> 3
      * 3.worst           // -> -3
+     * 5.is_even         // -> false
+     * 5.is_odd          // -> true
      * </pre>
      * @param api GroovyDiceAPI object.
      * @see net.sf.groovydice.plugin.GroovyDiceAPI
@@ -91,13 +93,15 @@ class DiceFilterPlugin {
             }
             -number
         }
-    }
 
-    /**
-     * Returns a String representation of this object.
-     * @return Plugin name.
-     */
-    String toString() {
-        getClass().name
+        /* 5.is_even */
+        api.add(method:'is_even', to:api.numberClasses) { number ->
+            (number as int) % 2 == 0
+        }
+
+        /* 5.is_odd */
+        api.add(method:'is_odd', to:api.numberClasses) { number ->
+            (number as int) % 2 != 0
+        }
     }
 }

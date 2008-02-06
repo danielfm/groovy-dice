@@ -5,7 +5,6 @@
     <bannerLeft>
         <name>Groovy Dice</name>
         <src>images/logo.png</src>
-        <href>index.html</href>
     </bannerLeft>
     <bannerRight>
         <src>http://sflogo.sourceforge.net/sflogo.php?group_id=213311&amp;type=5</src>
@@ -18,17 +17,9 @@
         </menu>
 
         <menu name="Documentation">
-            <item name="Introduction" href="features/index.html" />
-            <item name="Dice Filtering"
-                  href="features/dice-filtering.html" />
-            <item name="Dice Arithmetic"
-                  href="features/dice-arithmetic.html" />
-            <item name="Applying Modifiers"
-                  href="features/modifiers.html" />
-
-            <item name="Java/Groovy Integration"
-                href="integration/index.html">
-                <item name="groovysh" href="integration/groovysh.html" />
+            <item name="Groovy Dice Initialization"
+                  href="integration/index.html">
+                <item name="groovysh Integration" href="integration/groovysh.html" />
                 <item name="Eval Class" href="integration/eval.html" />
                 <item name="GroovyShell Class"
                       href="integration/groovyshell.html" />
@@ -36,11 +27,24 @@
                       href="integration/jsr223.html" />
             </item>
 
+            <item name="Built-in Features" href="features/index.html">
+                <item name="Dice Rolling Expressions"
+                      href="features/expressions.html" />
+                <item name="Statistical Calculations"
+                      href="features/statistics.html" />
+                <item name="Dice Arithmetic"
+                      href="features/arithmetic.html" />
+                <item name="Dice Filtering"
+                      href="features/filtering.html" />
+                <item name="Applying Modifiers"
+                  href="features/modifiers.html" />
+            </item>
+
             <item name="Extension Points"
                   href="extension/index.html">
-                <item name="Random Number Generator"
+                <item name="Generators"
                       href="extension/number_generator.html" />
-                <item name="Plugins"
+                <item name="Plug-ins"
                       href="extension/plugins.html" />
             </item>
         </menu>

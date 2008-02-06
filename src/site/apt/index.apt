@@ -4,49 +4,72 @@
 
 A groovier way to roll dice
 
- <<Groovy Dice>> is an extensible {{{license.html}open source}}
- {{{http://groovy.codehaus.org}Groovy}}-based dice rolling API that provides
- a simple way to perform almost any kind of dice roll, making this project a
- reasonable choice for those who are implementing any kind of dice-based game
- on top of Java platform.
- 
- In fact, this project was born just as an experiment on how to design and
- implement DSLs (Domain Specific Languages) using Groovy. Thus, I invite
- anyone interested in this subject to {{{download.html}download}} and study the
- source code. It's not state-of-art stuff, but might help. :-)
+ <<Groovy Dice>> is an {{{license.html}open source}} dice rolling engine
+ written entirely in {{{http://groovy.codehaus.org}Groovy}} that provides a
+ simple way to specify and evaluate complex dice rolling expressions.
 
-* How it works?
+ Here goes some reasons you should use Groovy Dice:
 
- Groovy Dice provides a DSL-like syntax that allows us to express dice rolls
- more effectively. Some examples:
+* It's simple
+
+ By default, Groovy Dice provides you a simple language to express dice rolls:
 
 +---------------------------------------+
-6.d17      // six seventeen-sided dice
-7.d10 - 5  // roll seven ten-sided dice and append -5 to the results
-3.d + 4.d4 // plus the sum of four four-sided dice to the sum of three six-sided dice
+6.d10      // six ten-sided dice
+6.d50      // six fifty-sided dice
 1.'d%'     // percentile die
-1.pd       // another way to roll a percentile die 
+1.pd       // another way to roll a percentile die
 +---------------------------------------+
 
- We can extract some useful information from a dice roll as well:
+ You can roll dice with any number of sides, no matter if they are real or
+ not.
+
+* It's powerful
+
+ The built-in API is flexible enough to allow you to perform several useful
+ operations, like dice arithmetic, statistical calculations, modifiers
+ and dice filtering:
 
 +---------------------------------------+
-5.d.view        // view the results of five six-sided dice
-10.d6.worst_die // get the worst die in this roll
+7.d10 - 5                         // roll seven ten-sided dice and append -5 to the results
+3.d + 4.d4                        // join four four-sided dice with three six-sided dice
+5.d.mean                          // calculate the mean value of five six-side dice
+10.d6.worst_die                   // get the lowest die
+5.d12 * 5.to_every_die            // multiply each die by 5
+4.d + 3.to_each_die_if{it.is_odd} // plus 3 to all odd dice
+10.d10.the(3.best)                // filter the three highest dice
+20.d6.only_if{it.is_odd}          // filter all odd dice
 +---------------------------------------+
 
- Filtering dice and applying modifiers to them is also possible:
+* It's extensible
+
+ Most built-in features are implemented as plug-ins, which means you can replace
+ any plugin or provide your own plugin stack when a full API change is needed:
 
 +---------------------------------------+
-10.d10.the(3.best)       // filter the three best dice in this roll
-20.d6.only_if{it.is_odd} // filter all odd dice of this roll
-5.d12 * 5.to_every_die   // multiply each die by 5
-6.d20 + 2.d.to_every_die // multiply each die by the sum of two six-sided dice
+/* stupid number generator */
+class Dumb {
+    def next = { number -> 
+        number // echo
+    }
+}
+
+/* plug-in */
+class Plugin {
+    def dynamicMethods = { api ->
+        api.add(method:'laugh', to:api.numberClasses) { times ->
+            'Mu' + ('Ah' * times) + '!!'
+        }
+    }
+}
+
+/* after Groovy Dice initialization... */
+
+2.d10 + 4.d // prints "Sides: 10 , Dice: [10, 10, 6, 6, 6, 6] , Sum: 44"
+10.laugh    // prints "MuAhAhAhAhAhAhAhAhAhAh!!"
 +---------------------------------------+
 
- Don't be fooled: all these Groovy scripts <works>!
+* Oh, and by the way...
 
-* Is this everything!?
-
- No, it's just an idea of what you can do with Groovy Dice. To see its real
- power, take a look at the {{{features/index.html}documentation}}.
+ ... it's {{{license.html}free, open source software}}! Feel free to distribute
+ it and use it in your project - either open source or proprietary.

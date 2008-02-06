@@ -1,0 +1,41 @@
+ --------------
+ Dice Filtering
+
+Dice Filtering
+
+ The internal plug-in
+ {{{../apidocs/net/sf/groovydice/plugin/builtin/DiceFilterPlugin.html}DiceFilterPlugin}}
+ allows you to filter dice of a roll. This is a very useful feature for
+ situations where only a few dice matters.
+
+ The simplest way to filter dice is to use the <<<the()>>> method:
+
++-------------------+
+5.d10.the(2.best)
+10.d20.the(5.worst)
++-------------------+
+
+ You can use the <<<only_if()>>> method to specify more advanced filters:
+
++-------------------------+
+5.d6.only_if(2)
+10.d12.only_if([1,3,5,7,9,11])
+5.d20.only_if(1..4)
+5.d20.only_if(2.d10)
++-------------------------+
+
+ In the first script we are rolling five six-sided dice and filtering all dice
+ equals to <<<2>>>. The second script rolls ten twelve-sided dice and filter
+ all dice equals to <<<1>>>, <<<3>>>, <<<5>>> or <<<7>>>. The third script
+ rolls five twenty-sided dice and filter all dice between <<<1>>> and <<<4>>>
+ (inclusive). Finally, the last script rolls five twenty-sided dice and filter
+ all dice equals to any dice in two ten-sided dice.
+
+ Although these scripts work fine, we can do things in a more <idiomatic> way:
+
++-------------------------------+
+5.d6.only_if{it == 2}
+10.d12.only_if{it.is_odd}
+5.d20.only_if{it in 1..4}
+5.d20.only_if{it in 2.d10}
++-------------------------------+

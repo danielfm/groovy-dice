@@ -16,7 +16,7 @@
 package net.sf.groovydice.plugin.builtin
 
 /**
- * This plugin provides statistical methods to analise the dice from a roll.
+ * This plugin provides statistical methods to analyse the dice from a roll.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
  * @since 1.3
@@ -123,13 +123,5 @@ class DiceStatisticsPlugin {
                 return keys[0..last]
             }
         }
-    }
-
-    /**
-     * Returns a String representation of this object.
-     * @return Plugin name.
-     */
-    String toString() {
-        getClass().name
     }
 }

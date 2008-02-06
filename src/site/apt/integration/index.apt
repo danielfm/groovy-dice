@@ -1,18 +1,11 @@
- -----------------------
- Java/Groovy Integration
+ --------------------------
+ Groovy Dice Initialization
 
-Java/Groovy Integration
+Groovy Dice Initialization
 
- Groovy Dice leverage the Groovy's dynamic capabilities to create a better way
- to express dice rolls.
+ Since Groovy Dice modify some Groovy classes at runtime, we need to initialize
+ it before use:
 
-* Groovy Dice initialization
-
- Before show you how to integrate your application with Groovy Dice, we must
- learn how to initialize the Groovy Dice engine.
- 
- Take a look at the following Java code:
- 
 +----------------------------
 import net.sf.groovydice.*;
 
@@ -26,27 +19,9 @@ public class MyDiceRollerApp {
     }
 }
 +----------------------------
- 
- In this code, the <<<initialize()>>> method is called from within a
- <<<static>>> block. Since we just need to invoke the <<<initialize()>>>
- method once for a given application, it's fine to put that call inside a
- <<<static>>> block.
 
-** Why do we need to "initialize" the Groovy Dice engine?
- 
- During the initialization step, the behavior of some classes is modified
- <on-the-fly>. One example:
- 
-+----------------------------
-2.d20
-+----------------------------
- 
- Here, we're just calling <<<getD20()>>> method on <<<2>>> instance, which
- is an <<<Integer>>>. But, if you are a Java or Groovy programmer, you know
- that <<<Integer>>> instances doesn't have such method.
- 
- That's why the initialization step is necessary; all the "magic" needed to
- add such methods (among other things) is done here.
- 
- Don't forget to learn to use the <<<GroovyDice>>> class to easily
- {{{../extend/index.html}extend}} the Groovy Dice API.
+ We just need to invoke the <<<initialize()>>> method <once> for a given
+ application, so it's fine to put that call inside a <<<static>>> block.
+
+ For more information on GroovyDice object read the
+ {{{../extension/index.html}Extension Points}} page.

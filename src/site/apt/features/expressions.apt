@@ -1,0 +1,50 @@
+ ------------------------
+ Dice Rolling Expressions
+
+Dice Rolling Expressions
+
+ The internal plug-in
+ {{{../apidocs/net/sf/groovydice/plugin/builtin/DiceExpressionPlugin.html}DiceExpressionPlugin}}
+ provides a simple way to specify dice rolls.
+
+ The simplest dice rolling expression looks like this:
+
++---+
+1.d
++---+
+
+ This script rolls one <default> die (a six-sided die). Obviously, you can
+ roll any kind of dice you want:
+
++------+
+5.d15
+15.d20
+2.d100
+1.pd
+1.'d%'
++------+
+
+ Except for the last two lines - which means the same thing (roll a percentile
+ die) - the code is very easy to follow for those who know a bit about
+ {{{http://en.wikipedia.org/wiki/Dice_notation}dice notation}}.
+
+* Dynamic dice
+
+ A useful feature is what we call <<Dynamic dice>>, which allows you to
+ dynamically specify the type of dice to roll. For example, imagine that your
+ script needs to ask the user for the dice type:
+
++-----------------------------------------+
+def n = new Scanner(System.in).nextLine()
+5.d(n) // 'n' is a number or a '%'
++-----------------------------------------+
+
+ This feature also allows you to use another dice roll as argument to that
+ method:
+
++---------+
+6.d(3.d4)
++---------+
+
+ This script rolls three four-sided dice and then rolls six dice of that many
+ sides.

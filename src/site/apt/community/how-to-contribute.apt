@@ -4,24 +4,24 @@
 How to Contribute
 
  As with any open source project, there are several ways you can help:
- 
+
    * Report bugs, feature requests and other issues in the
    {{{../issue-tracking.html}issue tracking}} application;
-   
+
    * Submit patches to reported issues (both those you find, or that others
    have filed);
-   
+
    * Help with the documentation by pointing out areas that are lacking or
    unclear, and if you are so inclined, submitting patches to correct it;
-   
-   * Improve the overall quality by suggesting refactorings and improving the
-   test cases. A great way to learn - and in turn give value back to the
-   community - is to review someone else's code. So, we invite you to review
-   ours;
-   
+
+   * Improve the overall project quality by suggesting refactorings and
+   improving the test cases. A great way to learn - and in turn give value
+   back to the community - is to review someone else's code. So, we invite
+   you to review ours;
+
    * Write about Groovy Dice in your blog or personal web site. Let your
    friends and co-workers know about this project. Spread the word!
- 
+
  Your participation in the community is much appreciated.
 
 * How do I join the team?

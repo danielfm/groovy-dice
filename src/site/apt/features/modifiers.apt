@@ -3,80 +3,75 @@
 
 Applying Modifiers
 
- Sometimes you might want to apply modifiers to one or more dice of a roll.
- To do this, Groovy Dice provides  <simple> modifiers and <conditional>
+ The internal plug-in
+ {{{../apidocs/net/sf/groovydice/plugin/builtin/DiceModifierPlugin.html}DiceModifierPlugin}}
+ provides methods to allow the use of dice modifiers.
+
+ There are two types of modifiers: <simple> modifiers and <conditional>
  modifiers.
 
 * Simple modifiers
 
  Let's say you want to roll seven six-sided dice and plus <<<1>>> to <<all>>
  dice:
- 
-+-----------------------
-7.d6 + 1.to_every_die
-+-----------------------
- 
+
++---------------------+
+7.d6 + 1.on_every_die
++---------------------+
+
  So, if seven six-sided dice are equals to <<<[1,6,5,3,2,3,6]>>>, then the
  result of the expression will be <<<[2,7,6,4,3,4,7]>>>.
- 
+
  Feel free to use any operator you want:
- 
-+-----------------------
-7.d6 - 2.to_every_die
-7.d6 * 2.to_every_die
-7.d6 ** 2.to_every_die // exponentiation
-7.d6 / 2.to_every_die
-7.d6 % 2.to_every_die  // modulo
-+-----------------------
- 
+
++-----------------------------------------+
+7.d6 - 2.on_every_die
+7.d6 * 2.on_every_die
+7.d6 ** 2.on_every_die // exponentiation
+7.d6 / 2.on_every_die
+7.d6 % 2.on_every_die  // modulo
++-----------------------------------------+
+
  It's also possible to use a dice as modifier:
- 
-+-----------------------
-7.d6 + 1.d6.to_every_die
-7.d6 / 3.d6.best_die.to_every_die
-+-----------------------
- 
+
++---------------------------------+
+7.d6 + 1.d6.on_every_die
+7.d6 / 3.d6.best_die.on_every_die
++---------------------------------+
+
  The first script rolls seven six-sided dice and plus to each die the result of
  a six-sided die. The last script rolls seven six-sided dice and divides each
  die by the best die of three six-sided dice.
- 
+
  All these scripts returns dice rolling command.
 
 * Conditional modifiers
 
  <Conditional> modifiers are just like the <simple> modifier, but we can
  specify which dice will be affected by the modifier:
- 
-+-----------------------
-7.d6 + 1.to_each_die_if{it.is_even}
-+-----------------------
- 
+
++-----------------------------------+
+7.d6 + 1.on_each_die_if{it.is_even}
++-----------------------------------+
+
  In this example, we roll seven six-sided dice and plus <<<1>>> to each <even>
  dice. So, if seven six-sided dice are equals to <<<[1,6,5,3,2,3,6]>>>, then
  the result will be <<<[1,7,5,3,3,3,7]>>>.
- 
- You can pass to <<<to_each_die_if()>>> method several types of objects:
- 
-+-----------------------
-7.d6 + 1.to_each_die_if(1)
-7.d6 + 1.to_each_die_if([1,3,5])
-7.d6 + 1.to_each_die_if(1..4)
-7.d6 + 1.to_each_die_if(1.d4)
-+-----------------------
- 
+
+ You can pass to <<<on_each_die_if()>>> method several types of objects:
+
++--------------------------------+
+7.d6 + 1.on_each_die_if(1)
+7.d6 + 1.on_each_die_if([1,3,5])
+7.d6 + 1.on_each_die_if(1..4)
+7.d6 + 1.on_each_die_if(1.d4)
++--------------------------------+
+
  A more <idiomatic> way to express those modifiers is also supported:
- 
-+-----------------------
-7.d6 + 1.to_each_die_if{it == 1}
-7.d6 + 1.to_each_die_if{it in [1,3,5]}
-7.d6 + 1.to_each_die_if{it in 1..4}
-7.d6 + 1.to_each_die_if{it in 1.d4}
-+-----------------------
 
-* Exercises
-
- [[1]] Roll ten six-sided dice and multiply every die by <<<-2>>>. A:
- <<<10.d * -2.to_every_die>>>
- 
- [[2]] Roll six four-sided dice and plus <<<1>>> to every die equals to
- <<<1>>> or <<<2>>>. A: <<<6.d4 + 1.to_each_die_if\{it in [1,2]\}>>>
++--------------------------------------+
+7.d6 + 1.on_each_die_if{it == 1}
+7.d6 + 1.on_each_die_if{it in [1,3,5]}
+7.d6 + 1.on_each_die_if{it in 1..4}
+7.d6 + 1.on_each_die_if{it in 1.d4}
++--------------------------------------+

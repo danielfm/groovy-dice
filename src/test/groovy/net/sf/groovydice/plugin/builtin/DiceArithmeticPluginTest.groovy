@@ -149,4 +149,33 @@ class DiceArithmeticPluginTest {
         def c = new DiceRollingCommand(allDice:[1,2,3])
         assert c%4 == 2
     }
+
+    @Test
+    void isDiceRollTheSameAsNumber() {
+        assert new DiceRollingCommand(allDice:[1]).same_as(1)
+        assert !new DiceRollingCommand(allDice:[1]).same_as(2)
+    }
+
+    @Test
+    void isDiceRollTheSameAsList() {
+        assert new DiceRollingCommand(allDice:[1,2,3]).same_as([1,2,3])
+        assert !new DiceRollingCommand(allDice:[1,2,3]).same_as([1,2,3,4])
+
+        assert new DiceRollingCommand(allDice:[1,2,3]).same_as(1..3)
+        assert !new DiceRollingCommand(allDice:[1,2,3]).same_as(1..4)
+    }
+
+    @Test
+    void isDiceRollTheSameAsAnother() {
+        assert new DiceRollingCommand(allDice:[1,2,3]).same_as(
+            new DiceRollingCommand(allDice:[3,2,1]))
+
+        assert !new DiceRollingCommand(allDice:[1,2,3]).same_as(
+            new DiceRollingCommand(allDice:[4,2,1]))
+    }
+
+    @Test(expected=IllegalArgumentException)
+    void isDiceRollTheSameAsInvalidObject() {
+        new DiceRollingCommand(allDice:[1,2,3]).same_as('hey')
+    }
 }
