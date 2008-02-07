@@ -27,7 +27,7 @@ CONTENT OF THIS FILE
 1. What is this?
 ****************
 
-Groovy Dice is an open source Groovy-based dice rolling API that provides a
+Groovy Dice is an open source Groovy-based dice rolling engine that provides a
 simple way to perform almost any kind of dice roll, making this project a
 reasonable choice for those who are implementing any kind of dice-based game
 on top of Java platform.
