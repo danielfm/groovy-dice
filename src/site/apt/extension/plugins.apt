@@ -184,7 +184,7 @@ class HelloPlugin {
  Most of Groovy Dice's features were implemented as plug-ins, which make your
  life easier when you need to change the default plug-in stack.
 
- The following script shows some examples on how to manipulate the plugin
+ The following script shows some examples on how to manipulate the plug-in
  stack:
 
 +------------------------------------------------------------------------------+
