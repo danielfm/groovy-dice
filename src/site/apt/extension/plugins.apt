@@ -181,21 +181,22 @@ class HelloPlugin {
 
 * Manipulating the built-in stack
 
- Most of Groovy Dice's features were implemented as plug-ins, which make your life
- easier when you need to change the default plug-in stack.
+ Most of Groovy Dice's features were implemented as plug-ins, which make your
+ life easier when you need to change the default plug-in stack.
 
- The following example shows some examples:
+ The following script shows some examples on how to manipulate the plugin
+ stack:
 
 +------------------------------------------------------------------------------+
 def config = new GroovyDice()
-def manager = config.pluginManager
+def manager = config.pluginManager // default plugin stack already defined
 
-def plugin = new MyPlugin()
+def plugin = new MyPlugin()        // some plug-in
 
-manager.register(plugin)     // register a new plugin to the stack
-manager.unregister(plugin)   // unregister a particular plugin instance
-manager.unregister(MyPlugin) // unregister all MyPlugin instances
-manager.unregister()         // removes all registered plugins
+manager.register(plugin)          // register plug-in
+manager.unregister(plugin)        // unregister plug-in
+manager.unregister(MyPlugin)      // unregister all MyPlugin instances
+manager.unregister()              // clear the whole plug-in stack
 +------------------------------------------------------------------------------+
 
 * Limitations
@@ -203,7 +204,7 @@ manager.unregister()         // removes all registered plugins
     [[1]] A plug-in can use methods registered by other plug-ins, but you
     have to be careful when dealing with such dependencies. For example,
     let's say you created a plug-in <<A>> that depends on the plug-in
-    <<B>>. Then, you have to register both <<A>> and <<B>> before the
+    <<B>>. Then, you have to register manually both <<A>> and <<B>> before the
     initialization step. Groovy Dice <<won't>> do it for you;
 
     [[2]] You <<can't>> add methods to any class you want; you are restricted
