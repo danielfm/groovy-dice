@@ -32,7 +32,7 @@ class DiceExpressionPluginTest {
     }
 
     @Test
-    void rollDefaultDice() {
+    void rollDefaultDiceWithd() {
         def command = 2.d
         assert command.sides == 6
         assert command.allDice.size() == 2
@@ -43,40 +43,110 @@ class DiceExpressionPluginTest {
     }
 
     @Test
-    void rollDice() {
+    void rollDefaultDiceWithD() {
+        def command = 2.D
+        assert command.sides == 6
+        assert command.allDice.size() == 2
+
+        command = 3.D()
+        assert command.sides == 6
+        assert command.allDice.size() == 3
+    }
+
+    @Test
+    void rollDiceWithd() {
         def command = 2.d(10)
         assert command.sides == 10
         assert command.allDice.size() == 2
     }
 
+    @Test
+    void rollDiceWithD() {
+        def command = 2.D(10)
+        assert command.sides == 10
+        assert command.allDice.size() == 2
+    }
+
     @Test(expected=IllegalArgumentException)
-    void rollInvalidDiceType() {
+    void rollInvalidDiceTypeWithd() {
         2.d('ten')
     }
 
-    @Test
-    void rollDiceWithDiceRollAsDiceType() {
-        def type = 2.d
+    @Test(expected=IllegalArgumentException)
+    void rollInvalidDiceTypeWithD() {
+        2.D('ten')
+    }
 
+    @Test
+    void rollDiceWithDiceRollAsDiceTypeWithd() {
+        def type = 2.d
         def command = 3.d(type)
+
         assert command.sides == type.allDice.sum()
         assert command.allDice.size() == 3
     }
 
     @Test
-    void rollDynamicDice() {
+    void rollDiceWithDiceRollAsDiceTypeWithD() {
+        def type = 2.d
+        def command = 3.D(type)
+
+        assert command.sides == type.allDice.sum()
+        assert command.allDice.size() == 3
+    }
+
+    @Test
+    void rollDynamicDiceWithd() {
         def command = 2.d10
         assert command.sides == 10
         assert command.allDice.size() == 2
     }
 
     @Test
-    void rollPercentileDice() {
+    void rollDynamicDiceWithD() {
+        def command = 2.D10
+        assert command.sides == 10
+        assert command.allDice.size() == 2
+    }
+
+    @Test
+    void rollPercentileDiceWithpd() {
         def command = 2.pd
         assert command.sides == 100
         assert command.allDice.size() == 2
+    }
 
-        command = 3.'d%'
+    @Test
+    void rollPercentileDiceWithPd() {
+        def command = 2.Pd
+        assert command.sides == 100
+        assert command.allDice.size() == 2
+    }
+
+    @Test
+    void rollPercentileDiceWithpD() {
+        def command = 2.pD
+        assert command.sides == 100
+        assert command.allDice.size() == 2
+    }
+
+    @Test
+    void rollPercentileDiceWithPD() {
+        def command = 2.PD
+        assert command.sides == 100
+        assert command.allDice.size() == 2
+    }
+
+    @Test
+    void rollPercentileDiceWithdPercent() {
+        def command = 3.'d%'
+        assert command.sides == 100
+        assert command.allDice.size() == 3
+    }
+
+    @Test
+    void rollPercentileDiceWithDPercent() {
+        def command = 3.'D%'
         assert command.sides == 100
         assert command.allDice.size() == 3
     }
