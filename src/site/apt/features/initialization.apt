@@ -1,0 +1,27 @@
+ --------------
+ Initialization
+
+Initialization
+
+ Since Groovy Dice modify some Groovy classes at runtime, we need to initialize
+ it before use:
+
++----------------------------
+import net.sf.groovydice.*;
+
+public class MyDiceRollerApp {
+    static {
+        new GroovyDice().initialize();
+    }
+
+    public static void main(String[] args) {
+        // now we can roll our dice!
+    }
+}
++----------------------------
+
+ We just need to invoke the <<<initialize()>>> method <once> for a given
+ application, so it's fine to put that call inside a <<<static>>> block.
+
+ For more information on <<<GroovyDice>>> class, please read the
+ {{{../extension/index.html}Extension Points}} documentation.

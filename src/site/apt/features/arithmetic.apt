@@ -3,7 +3,7 @@
 
 Dice Arithmetic
 
- The internal plug-in
+ The internal plugin
  {{{../apidocs/net/sf/groovydice/plugin/builtin/DiceArithmeticPlugin.html}DiceArithmeticPlugin}}
  allows you to specify complex dice arithmetic expressions and comparisons.
 

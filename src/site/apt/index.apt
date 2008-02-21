@@ -1,5 +1,5 @@
- ------
- What is Groovy Dice?
+ ----
+ Home
 
 
 A groovier way to roll dice
@@ -15,26 +15,24 @@ A groovier way to roll dice
  By default, Groovy Dice provides a simple language to express dice rolls:
 
 +---------------------------------------+
-6.d10      // six ten-sided dice
-6.d50      // six fifty-sided dice
-1.'d%'     // percentile die
-1.pd       // another way to roll a percentile die
+1.d10     // ten-sided die
+1.d50     // fifty-sided die
+1.'d%'    // percentile die
+1.d(2.d4) // sum two four-sided dice and roll a six-sided die of that many sides
 +---------------------------------------+
 
- You can roll dice with any number of sides, no matter if they are real or
- not.
+ You can roll dice with any number of sides, no matter if they're real or not.
 
 * It's powerful
 
- The built-in API is flexible enough to allow you to perform several useful
- operations, like dice arithmetic, statistical calculations, modifiers
- and dice filtering:
+ The built-in API allows you to perform dice arithmetic, statistical
+ calculations, modifiers and dice filtering:
 
 +---------------------------------------+
-7.d10 - 5                         // roll seven ten-sided dice and append -5 to the results
-3.d + 4.d4                        // join four four-sided dice with three six-sided dice
-5.d.mean                          // calculate the mean value of five six-side dice
-10.d6.worst_die                   // get the lowest die
+1.d10 - 5                         // roll a ten-sided die and append -5 to the results
+1.d + 1.d4                        // join a four-sided die with a six-sided die
+3.d.mean                          // calculate the mean value of three six-side dice
+3.d.worst_die                     // get the lowest die
 5.d12 * 5.to_every_die            // multiply each die by 5
 4.d + 3.to_each_die_if{it.is_odd} // plus 3 to all odd dice
 10.d10.the(3.best)                // filter the three highest dice
@@ -43,20 +41,11 @@ A groovier way to roll dice
 
 * It's extensible
 
- Most built-in features are implemented as plug-ins, which means you can replace
- any built-in plug-in or provide your own plug-in stack when a full API change
- is needed:
+ Most built-in features are implemented as plugins, which means you can easily
+ provide your own plugins in order to extend or even replace the entire API:
 
 +---------------------------------------+
-/* stupid number generator */
-class Dumb {
-    def next = { number -> 
-        number // echo
-    }
-}
-
-/* plug-in */
-class Plugin {
+class FunnyPlugin {
     def dynamicMethods = { api ->
         api.add(method:'laugh', to:api.numberClasses) { times ->
             'Mu' + ('Ah' * times) + '!!'
@@ -70,7 +59,7 @@ class Plugin {
 10.laugh    // prints "MuAhAhAhAhAhAhAhAhAhAh!!"
 +---------------------------------------+
 
-* Oh, and by the way...
+* It's free
 
- ... it's {{{license.html}free, open source software}}! Feel free to distribute
- it and use it in your project - either open source or proprietary.
+ Groovy Dice uses a flexible {{{license.html}open source license}} that allows
+ you to leverage Groovy Dice in your project, either open or closed source.

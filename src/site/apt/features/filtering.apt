@@ -3,7 +3,7 @@
 
 Dice Filtering
 
- The internal plug-in
+ The internal plugin
  {{{../apidocs/net/sf/groovydice/plugin/builtin/DiceFilterPlugin.html}DiceFilterPlugin}}
  allows you to filter dice of a roll. This is a very useful feature for
  situations where only a few dice matters.

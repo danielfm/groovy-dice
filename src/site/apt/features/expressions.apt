@@ -3,7 +3,7 @@
 
 Dice Rolling Expressions
 
- The internal plug-in
+ The internal plugin
  {{{../apidocs/net/sf/groovydice/plugin/builtin/DiceExpressionPlugin.html}DiceExpressionPlugin}}
  provides a simple way to specify dice rolls.
 

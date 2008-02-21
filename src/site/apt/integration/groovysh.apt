@@ -3,9 +3,8 @@
 
 groovysh Integration
 
- You <<don't>> need to create a full-fledged dice roller application from
- scratch just to play around with Groovy Dice: why not leverage
- <<<groovysh>>> and <<<groovyConsole>>>? :-)
+ You don't need to create a full-fledged dice roller application from scratch
+ just to play around with Groovy Dice: why not leverage <<<groovysh>>> and <<<groovyConsole>>>? :-)
  
  The following procedure works for both <<<groovysh>>> and
  <<<groovyConsole>>>:

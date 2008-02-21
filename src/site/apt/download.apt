@@ -46,16 +46,15 @@ Download
 
  Groovy Dice is built by {{{http://maven.apache.org}Maven 2}}.
 
- After check out the Groovy Dice code from the source control server, just open
- the terminal (bash, ms-dos prompt, whatever) and run the following command line
- at the project's root folder:
+ After check out the code, just open the terminal (bash, ms-dos prompt,
+ whatever) and run the following command line at the project's root folder:
 
 +----------------+
 mvn package site
 +----------------+
 
- This command will compile the source code, run all test cases and create the
- Groovy Dice JAR file. An offline version of this website will be generated
+ This command line will compile the source code, run all test cases and create
+ the Groovy Dice JAR file. An offline version of this website will be generated
  as well.
 
  Needless to say that you must have Maven 2 installed in your machine. Further

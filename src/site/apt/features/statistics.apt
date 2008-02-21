@@ -3,7 +3,7 @@
 
 Statistical Calculations
 
- The internal plug-in
+ The internal plugin
  {{{../apidocs/net/sf/groovydice/plugin/builtin/DiceStatisticsPlugin.html}DiceStatisticsPlugin}}
  allows you to apply basic statistical calculations on dice rolls.
 

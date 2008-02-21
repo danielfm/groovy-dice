@@ -11,10 +11,10 @@ Generators
 
  There are two ways to replace the default random number generator:
 
-* Using an object that speaks the appropriate protocol
+* 1. Using an object that speaks the appropriate protocol
 
- In other words: any object that have a <<<next>>> method/closure can be used
- as random number generator:
+ In other words: any object that have a <<<next>>> method can be used as random
+ number generator:
 
 +-------------------------------------------------------------------------+
 class MyRandomNumberGenerator {
@@ -32,7 +32,7 @@ config.initialize()
 println 2.d10
 +-------------------------------------------------------------------------+
 
-* Using closures
+* 2. Using closures
 
  You can also pack your random number generation logic inside a simple
  closure and use it:

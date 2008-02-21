@@ -3,7 +3,7 @@
 
 Applying Modifiers
 
- The internal plug-in
+ The internal plugin
  {{{../apidocs/net/sf/groovydice/plugin/builtin/DiceModifierPlugin.html}DiceModifierPlugin}}
  provides methods to allow the use of dice modifiers.
 

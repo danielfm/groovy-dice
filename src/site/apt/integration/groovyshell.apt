@@ -3,8 +3,8 @@
 
 Groovy's GroovyShell Class
 
- Another easy way to evaluate Groovy Dice scripts from a Java/Groovy
- application is to use the Groovy's <<<GroovyShell>>> class:
+ Another easy way to evaluate Groovy Dice scripts from a Java application is to
+ use the Groovy's <<<GroovyShell>>> class:
  
 +----------------------------
 import groovy.lang.*;

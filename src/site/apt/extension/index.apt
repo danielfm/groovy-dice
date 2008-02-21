@@ -3,11 +3,11 @@
 
 Extension Points
 
- If you gave Groovy Dice a try but it turned out to not fit your needs, you can
- use one of Groovy Dice's extension points to fix the issues you found.
+ If you gave Groovy Dice a try but it turned out not to fit your needs, then you
+ can use the extension points to workaround the issues you found.
 
- Currently, there are two ways to customize Groovy Dice:
+ There are two ways to customize Groovy Dice:
 
-    [[1]] Provide your own {{{number_generator.html}random number generator}};
+    [[1]] Provide your own {{{number_generator.html}random number generator}}
 
-    [[2]] Provide new {{{plugins.html}plugins}} to replace or extend the built-in API.
+    [[2]] Provide new {{{plugins.html}plugins}} to replace or extend the built-in API

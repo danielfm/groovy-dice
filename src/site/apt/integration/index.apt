@@ -1,27 +1,14 @@
- --------------------------
- Groovy Dice Initialization
+ -----------
+ Integration
 
-Groovy Dice Initialization
+Integration
 
- Since Groovy Dice modify some Groovy classes at runtime, we need to initialize
- it before use:
+ It's very simple to integrate Groovy Dice to your Java applications:
 
-+----------------------------
-import net.sf.groovydice.*;
+    * {{{eval.html}Using Groovy's Eval class}}
 
-public class MyDiceRollerApp {
-    static {
-        new GroovyDice().initialize();
-    }
+    * {{{groovyshell.html}Using Groovy's GroovyShell class}}
 
-    public static void main(String[] args) {
-        // now we can roll our dice!
-    }
-}
-+----------------------------
+    * {{{jsr223.html}Using the Java Scripting API (JSR-223)}}
 
- We just need to invoke the <<<initialize()>>> method <once> for a given
- application, so it's fine to put that call inside a <<<static>>> block.
-
- For more information on GroovyDice object, please read the
- {{{../extension/index.html}Extension Points}} documentation.
+    * {{{groovysh.html}Rolling dice with groovyConsole and groovysh}}
