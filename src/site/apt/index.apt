@@ -29,14 +29,14 @@ A groovier way to roll dice
  calculations, modifiers and dice filtering:
 
 +---------------------------------------+
-1.d10 - 5                         // roll a ten-sided die and append -5 to the results
-1.d + 1.d4                        // join a four-sided die with a six-sided die
-3.d.mean                          // calculate the mean value of three six-side dice
-3.d.worst_die                     // get the lowest die
-5.d12 * 5.to_every_die            // multiply each die by 5
+1.d10 - 5                  // roll a ten-sided die and append -5 to the results
+1.d + 1.d4                 // join a four-sided die with a six-sided die
+3.d.mean                   // calculate the mean value of three six-side dice
+3.d.worst_die              // get the lowest die
+5.d12 * 5.to_every_die     // multiply each die by 5
 4.d + 3.to_each_die_if{it.is_odd} // plus 3 to all odd dice
-10.d10.the(3.best)                // filter the three highest dice
-20.d6.only_if{it.is_odd}          // filter all odd dice
+10.d10.the(3.best)         // filter the three highest dice
+20.d6.only_if{it.is_odd}   // filter all odd dice
 +---------------------------------------+
 
 * It's extensible

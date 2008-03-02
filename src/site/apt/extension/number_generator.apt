@@ -3,8 +3,8 @@
 
 Generators
 
- Groovy Dice uses the concept of Generators to abstract the randomization logic.
- By default, Groovy Dice uses the
+ Groovy Dice uses the concept of Generators to abstract the randomization
+ logic. By default, Groovy Dice uses the
  {{{http://java.sun.com/j2se/1.5.0/docs/api/java/util/Random.html}Random class}}
  to generate pseudorandom numbers, but you are able to replace this default
  logic if you need something more reliable.

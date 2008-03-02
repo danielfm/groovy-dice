@@ -20,7 +20,8 @@ import net.sf.groovydice.plugin.builtin.*
 /**
  * This class is responsible to manage the registered plugin instances.
  *
- * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
+ * Martins</a>
  * @since 1.3
  * @version 1
  */

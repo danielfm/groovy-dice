@@ -22,7 +22,8 @@ import net.sf.groovydice.*
  * the dynamically added methods in order to enable them to be called from
  * a Groovy expression.
  *
- * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
+ * Martins</a>
  * @since 1.3
  * @version 1
  */
@@ -61,10 +62,12 @@ class GroovyDiceAPI {
             }
 
             /* pass null to non-specified arguments */
-            args.addAll([null] * (entry.logic.maximumNumberOfParameters - args.size()))
+            args.addAll([null] *
+                  (entry.logic.maximumNumberOfParameters - args.size()))
 
             /* call the closure */
-            result = entry.logic.call(args.size() > 1 ? args as Object[] : args[0])
+            result = entry.logic.call(
+                  args.size() > 1 ? args as Object[] : args[0])
 
             if (result != null) {
                 break // was able to handle the call
@@ -149,7 +152,8 @@ class GroovyDiceAPI {
      * intercept all method/property calls</strong>; only missing
      * methods/properties are intended to trigger the dynamic API lookup.
      * @param clazz Class to be modified.
-     * @see net.sf.groovydice.plugin.GroovyDiceAPI#invoke(java.lang.Object, java.lang.String, java.lang.Object)
+     * @see net.sf.groovydice.plugin.GroovyDiceAPI#invoke(java.lang.Object,
+     * java.lang.String, java.lang.Object)
      */
     private void injectAspect(Class clazz) {
         clazz.metaClass.propertyMissing = { String name ->

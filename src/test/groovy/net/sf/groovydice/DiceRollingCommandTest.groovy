@@ -20,7 +20,8 @@ import org.junit.*
 /**
  * DiceRollin test cases.
  *
- * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
+ * Martins</a>
  */
 class DiceRollingCommandTest {
 
@@ -41,18 +42,23 @@ class DiceRollingCommandTest {
 
     @Test
     void rollOneDie() {
-        assert new DiceRollingCommand(config:config, sides:6).roll().allDice == [6]
-        assert new DiceRollingCommand(config:config, sides:6).roll(1).allDice == [6]
+        assert new DiceRollingCommand(config:config, sides:6).roll()
+              .allDice == [6]
+
+        assert new DiceRollingCommand(config:config, sides:6).roll(1)
+              .allDice == [6]
     }
 
     @Test
     void rollThreeDice() {
-        assert new DiceRollingCommand(config:config, sides:6).roll(3).allDice == [6,6,6]
+        assert new DiceRollingCommand(config:config, sides:6).roll(3)
+              .allDice == [6,6,6]
     }
 
     @Test
     void rollMinusThreeDice() {
-        assert new DiceRollingCommand(config:config, sides:6).roll(-3).allDice == [-6,-6,-6]
+        assert new DiceRollingCommand(config:config, sides:6).roll(-3)
+              .allDice == [-6,-6,-6]
     }
 
     @Test
@@ -121,7 +127,8 @@ class DiceRollingCommandTest {
 /**
  * Dumb number generator.
  *
- * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
+ * Martins</a>
  */
 class GeneratorStub {
     def next = {it}

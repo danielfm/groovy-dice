@@ -7,7 +7,9 @@
         <src>images/logo.png</src>
     </bannerLeft>
     <bannerRight>
-        <src>http://sflogo.sourceforge.net/sflogo.php?group_id=213311&amp;type=5</src>
+        <src>
+            http://sflogo.sourceforge.net/sflogo.php?group_id=213311&amp;type=5
+        </src>
         <href>http://sourceforge.net/</href>
     </bannerRight>
     <body>

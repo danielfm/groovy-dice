@@ -22,7 +22,8 @@ import net.sf.groovydice.*
 /**
  * DiceExpressionPlugin test cases.
  *
- * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
+ * Martins</a>
  */
 class DiceExpressionPluginTest {
 

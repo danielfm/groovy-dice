@@ -18,7 +18,8 @@ package net.sf.groovydice.plugin.builtin
 /**
  * This plugin provides statistical methods to analyse the dice from a roll.
  *
- * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
+ * Martins</a>
  * @since 1.3
  * @version 1
  */

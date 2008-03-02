@@ -21,7 +21,8 @@ package net.sf.groovydice.plugin.builtin
  * used when applying the modifier in such a way that only matching dice are
  * modified.
  *
- * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
+ * Martins</a>
  * @since 1.0
  * @version 4
  */
@@ -37,17 +38,18 @@ class DiceModifier {
      * Set the condition, which restricts the modifier to be applied only to a
      * specific set of dice.
      * @param condition An object that express an condition which all dice must
-     * fit in order to be 'modified'. Any object that fit into a <code>grep()</code>
-     * call can be used here. You can also pass a dice rolling command object to
-     * apply this modifier only to dice equals to any dice of the given roll.
+     * fit in order to be 'modified'. Any object that fit into a
+     * <code>grep()</code> call can be used here. You can also pass a dice
+     * rolling command object to apply this modifier only to dice equals to
+     * any dice of the given roll.
      */
     void setCondition(condition) {
         this.condition = condition
     }
 
     /**
-     * Multiply the modifier value by '-1' when the unary '-' operator is used in
-     * this object.
+     * Multiply the modifier value by '-1' when the unary '-' operator is used
+     * in this object.
      * @return <code>this</code>.
      */
     def negative() {

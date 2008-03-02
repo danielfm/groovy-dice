@@ -19,7 +19,8 @@ package net.sf.groovydice
  * This class provides the basic dice rolling functionality and methods to
  * allow dice rolling commands to be compared and cloned.
  *
- * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
+ * Martins</a>
  * @since 1.3
  * @version 1
  */
@@ -104,14 +105,15 @@ class DiceRollingCommand implements Comparable {
         if (command instanceof DiceRollingCommand) {
             return allDice.sum() <=> command.allDice.sum()
         }
-        throw new ClassCastException("Object type not expected: ${command.class}")
+        throw new ClassCastException("Object type not expected: " +
+              "${command.class}")
     }
 
     /**
      * Returns whether the given parameter is found in this dice roll.
-     * @param condition Can be any object accepted by <code>grep()</code> method,
-     * like a number, an array, a range, a closure etc. You can also pass a
-     * dice rolling command to use its dice as the condition.
+     * @param condition Can be any object accepted by <code>grep()</code>
+     * method,like a number, an array, a range, a closure etc. You can also
+     * pass a dice rolling command to use its dice as the condition.
      * @return Whether the given parameter is found in the dice of this roll.
      */
     def isCase(condition) {

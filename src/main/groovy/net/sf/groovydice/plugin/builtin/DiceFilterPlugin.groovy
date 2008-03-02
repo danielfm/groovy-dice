@@ -18,7 +18,8 @@ package net.sf.groovydice.plugin.builtin
 /**
  * This plugin provides a simple way to perform dice filtering.
  *
- * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
+ * Martins</a>
  * @since 1.3
  * @version 1
  */
@@ -81,7 +82,9 @@ class DiceFilterPlugin {
         /* 3.best */
         api.add(method:'best', to:api.numberClasses) { number ->
             if (number < 1) {
-                throw new IllegalArgumentException("You can only use the 'best' property on positive numbers. Value: $number")
+                throw new IllegalArgumentException(
+                      "You can only use the 'best' property on positive " +
+                      "numbers. Value: $number")
             }
             number
         }
@@ -89,7 +92,9 @@ class DiceFilterPlugin {
         /* 3.worst */
         api.add(method:'worst', to:api.numberClasses) { number ->
             if (number < 1) {
-                throw new IllegalArgumentException("You can only use the 'worst' property on positive numbers. Value: $number")
+                throw new IllegalArgumentException(
+                      "You can only use the 'worst' property on positive " + 
+                      "numbers. Value: $number")
             }
             -number
         }

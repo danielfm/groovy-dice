@@ -22,7 +22,8 @@ import org.codehaus.groovy.runtime.*
  * providing plugins. When a plugin adds a method to the API, this new method
  * is represented by a APIEntry object.
  *
- * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
+ * Martins</a>
  * @since 1.3
  * @version 1
  */

@@ -11,9 +11,10 @@ Plugins
 ** A simple example
 
  Here goes a simple plugin that adds a method to
- {{{../apidocs/net/sf/groovydice/DiceRollingCommand.html}dice rolling command}} objects:
+ {{{../apidocs/net/sf/groovydice/DiceRollingCommand.html}dice rolling command}}
+ objects:
 
-+-------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
 class HitchhikersGuideToTheGalaxy {
 
     /* this closure is called during the Groovy Dice initialization */
@@ -30,7 +31,7 @@ config.pluginManager.register(new HitchhikersGuideToTheGalaxy())
 config.initialize()
 
 5.d10.is_the_answer_to_life_the_universe_and_everything
-+-------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
 
  Every plugin must provide a method called <<<dynamicMethods>>>. This
  method receives an instance of
@@ -77,7 +78,7 @@ config.initialize()
  Several plugins can work together to provide an implementation of
  the same method. An example:
 
-+--------------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
 class FirstPlugin {
 
     def dynamicMethods = { api ->
@@ -110,7 +111,7 @@ config.initialize()
 println 10.looks_like(20)                     // prints "Second: 10 - 20"
 println 10.looks_like(new Date())             // prints "First: 10 - (time)"
 println 10.looks_like{ println 'A closure!' } // no plugin can handle a closure!
-+--------------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
 
  In this example we have two plugins that "listens" to the same method
  call, but the first plugin only comes into scene when the given object
@@ -158,7 +159,7 @@ class HelloPlugin {
  that has triggered your closure, you should mark a method name as <dynamic>
  when adding it to the API:
 
-+-----------------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
 class HelloPlugin {
 
     def dynamicMethods = { api ->
@@ -173,7 +174,7 @@ class HelloPlugin {
 10.say          // prints "say - 10"
 10.sayHello     // prints "sayHello - 10"
 10.saySomething // prints "saySomething - 10"
-+-----------------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
 
  In this example, we specify the method name using the <<<dynamicMethod>>>
  instead of <<<method>>>. Doing this, your closure will get the called
@@ -188,7 +189,7 @@ class HelloPlugin {
  The following script shows some examples on how to manipulate the plugin
  stack:
 
-+------------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
 def config = new GroovyDice()
 def manager = config.pluginManager // default plugin stack already defined
 
@@ -198,7 +199,7 @@ manager.register(plugin)          // register plugin
 manager.unregister(plugin)        // unregister plugin
 manager.unregister(MyPlugin)      // unregister all MyPlugin instances
 manager.unregister()              // clear the whole plugin stack
-+------------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
 
 * Limitations
 

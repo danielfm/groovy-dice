@@ -23,7 +23,8 @@ import net.sf.groovydice.plugin.builtin.*
  * important objects, like the plugin manager, the dynamic API and the random
  * number generator.
  *
- * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
+ * Martins</a>
  * @since 1.0
  * @version 3
  */

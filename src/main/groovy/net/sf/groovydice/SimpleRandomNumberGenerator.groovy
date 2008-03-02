@@ -19,7 +19,8 @@ package net.sf.groovydice
  * Simple random number generation implementation that rely on the Java's
  * <code>Random</code> class do to its job.
  *
- * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
+ * Martins</a>
  * @since 1.3
  * @version 1
  */
@@ -29,8 +30,8 @@ class SimpleRandomNumberGenerator {
     Random generator = new Random()
 
     /**
-     * This closure is called in order to generate a random number between
-     * 1 and the given number.
+     * This closure is called in order to generate a random number between 1
+     * and the given number.
      * @see net.sf.groovydice.DiceRollingCommand#roll(int)
      */
     def next = { number ->

@@ -22,7 +22,8 @@ import net.sf.groovydice.*
 /**
  * DiceFilterPlugin test cases.
  *
- * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
+ * Martins</a>
  */
 class DiceFilterPluginTest {
 

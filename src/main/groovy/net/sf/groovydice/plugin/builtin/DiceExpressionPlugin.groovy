@@ -20,7 +20,8 @@ import net.sf.groovydice.*
 /**
  * This plugin adds support to dice expressions like '1.d6'.
  *
- * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F. Martins</a>
+ * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
+ * Martins</a>
  * @since 1.3
  * @version 2
  */
@@ -79,7 +80,8 @@ class DiceExpressionPlugin {
         }
 
         /* 1.d5 */
-        api.add(dynamicMethod:/(d|D)\d+/, to:api.numberClasses) { method, number ->
+        api.add(dynamicMethod:/(d|D)\d+/, to:api.numberClasses) {
+              method, number ->
             number.d(method.substring(1).toInteger())
         }
 
