@@ -36,14 +36,6 @@ class APIEntry {
     Class clazz = NullObject
 
     /**
-     * Whether this method is dynamic. If you use a regex pattern as the
-     * method name, probably you would like to set this attribute to
-     * <code>true</code>. Doing this, when the given API entry is invoked,
-     * the requested method name will be passed to the matching closure.
-     */
-    Boolean dynamic = false
-
-    /**
      * Closure that contains the logic to execute when this dynamic method
      * gets invoked.
      */

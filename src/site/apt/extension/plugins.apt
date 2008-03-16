@@ -156,14 +156,14 @@ class HelloPlugin {
 
  This feature is pretty useful when you want to intercept a method
  which you don't know exactly the name. If you want to know the method name
- that has triggered your closure, you should mark a method name as <dynamic>
- when adding it to the API:
+ that has activated the closure, its first parameter should be explicitely
+ defined as String:
 
 +----------------------------------------------------------------------------+
 class HelloPlugin {
 
     def dynamicMethods = { api ->
-        api.add(dynamicMethod:/say.*/, to:Integer) { name, number ->
+        api.add(method:/say.*/, to:Integer) { String name, number ->
             "$name - $number"
         }
     }
@@ -176,10 +176,8 @@ class HelloPlugin {
 10.saySomething // prints "saySomething - 10"
 +----------------------------------------------------------------------------+
 
- In this example, we specify the method name using the <<<dynamicMethod>>>
- instead of <<<method>>>. Doing this, your closure will get the called
- method name in the first parameter and the called object in the second
- parameter.
+ Doing this, the closure will receive the method name and the called object
+ at the first and second parameters respectively.
 
 * Manipulating the built-in plugin stack
 

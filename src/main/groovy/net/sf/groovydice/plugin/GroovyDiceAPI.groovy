@@ -53,7 +53,8 @@ class GroovyDiceAPI {
 
         for (entry in entries) {
             def args = []
-            if (entry.dynamic) {
+
+            if (entry.logic.parameterTypes[0] == String) {
                 args << method
             }
             args << target
@@ -96,14 +97,8 @@ class GroovyDiceAPI {
         }
 
         entryMap.to.each { clazz ->
-            if (entryMap.method) {
-                methods << new APIEntry(name:entryMap.method, clazz:clazz,
-                    logic:logic)
-            }
-            else if (entryMap.dynamicMethod) {
-                methods << new APIEntry(name:entryMap.dynamicMethod,
-                        clazz:clazz, dynamic:true, logic:logic)
-            }
+            methods << new APIEntry(name:entryMap.method, clazz:clazz,
+                  logic:logic)
         }
     }
 

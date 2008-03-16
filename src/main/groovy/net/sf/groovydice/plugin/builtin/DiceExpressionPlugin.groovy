@@ -80,9 +80,9 @@ class DiceExpressionPlugin {
         }
 
         /* 1.d5 */
-        api.add(dynamicMethod:/(d|D)\d+/, to:api.numberClasses) {
-              method, number ->
-            number.d(method.substring(1).toInteger())
+        api.add(method:/(d|D)\d+/, to:api.numberClasses) {
+              String methodName, number ->
+            number.d(methodName.substring(1).toInteger())
         }
 
         /* 1.'d%' and 1.pd */
