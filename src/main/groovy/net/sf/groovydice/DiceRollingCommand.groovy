@@ -22,7 +22,7 @@ package net.sf.groovydice
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
  * Martins</a>
  * @since 1.3
- * @version 1
+ * @version 2
  */
 class DiceRollingCommand implements Comparable {
 
@@ -90,6 +90,9 @@ class DiceRollingCommand implements Comparable {
         if (command instanceof DiceRollingCommand) {
             return this.compareTo(command) == 0
         }
+        if (command instanceof Number) {
+            return this.compareTo(command) == 0
+        }
         false
     }
 
@@ -104,6 +107,9 @@ class DiceRollingCommand implements Comparable {
     int compareTo(command) {
         if (command instanceof DiceRollingCommand) {
             return allDice.sum() <=> command.allDice.sum()
+        }
+        else if (command instanceof Number) {
+            return allDice.sum() <=> command
         }
         throw new ClassCastException("Object type not expected: " +
               "${command.class}")
