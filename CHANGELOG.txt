@@ -1,6 +1,16 @@
 Groovy Dice - Changelog
 ***********************
 
+groovydice v1.4 - Mon Apr 7, 2008
+---------------------------------
+
+ + Site updates.
+ + Code cleanup.
+ + Simplification of few extensibility things.
+ + A dice rolling command can now be compared directly with numbers.
+ + POM cleanup.
+
+
 groovydice v1.3 - Wed Feb 6, 2008
 ---------------------------------
 

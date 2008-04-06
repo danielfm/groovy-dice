@@ -1,7 +1,7 @@
 Groovy Dice - A groovier way to roll dice!
 ******************************************
 
-Version 1.3 - Wed Feb 6, 2008
+Version 1.4 - Mon Apr 7, 2008
 
 This software is distributed under the terms of the Apache v2.0 License
 (see LICENSE.txt).
@@ -27,10 +27,9 @@ CONTENT OF THIS FILE
 1. What is this?
 ****************
 
-Groovy Dice is an open source Groovy-based dice rolling engine that provides a
-simple way to perform almost any kind of dice roll, making this project a
-reasonable choice for those who are implementing any kind of dice-based game
-on top of Java platform.
+Groovy Dice is an open source dice rolling engine written entirely in Groovy
+that provides a simple way to specify and evaluate complex dice rolling
+expressions.
 
 
 2. Features
@@ -101,6 +100,6 @@ http://maven.apache.org
 This package contains an offline version of the project's website at the
 'doc/site' folder. The "official" online version can be found at:
 
-http://groovydice.sourceforge.net/.
+http://groovydice.sourceforge.net/
 
 --EOF
