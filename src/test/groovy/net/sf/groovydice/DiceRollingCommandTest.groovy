@@ -18,7 +18,7 @@ package net.sf.groovydice
 import org.junit.*
 
 /**
- * DiceRollin test cases.
+ * DiceRollingCommand test cases.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
  * Martins</a>
@@ -62,17 +62,23 @@ class DiceRollingCommandTest {
     }
 
     @Test
-    void isEqualsInvalidObject() {
+    void isEqualsToInvalidObject() {
         assert !new DiceRollingCommand(allDice:[1,2,3,4]).equals('other')
     }
 
     @Test
-    void isEquals() {
+    void isEqualsToDice() {
         assert new DiceRollingCommand(allDice:[1,2,3,4]).equals(
             new DiceRollingCommand(allDice:[5,4,1]))
 
         assert !new DiceRollingCommand(allDice:[1,2,3,4]).equals(
             new DiceRollingCommand(allDice:[5,4,2]))
+    }
+
+    @Test
+    void isEqualsToNumber() {
+        assert new DiceRollingCommand(allDice:[1,2,3,4]).equals(10)
+        assert !new DiceRollingCommand(allDice:[1,2,3,4]).equals(11)
     }
 
     @Test
@@ -88,12 +94,12 @@ class DiceRollingCommandTest {
     }
 
     @Test(expected=ClassCastException)
-    void isComparableWithInvalidObject() {
-        new DiceRollingCommand(allDice:[1,2,3,4]).compareTo('something')
+    void compareDiceWithInvalidObject() {
+        new DiceRollingCommand(allDice:[1,2,3,4]).compareTo('10')
     }
 
     @Test
-    void isComparable() {
+    void compareDiceWithDice() {
         assert new DiceRollingCommand(allDice:[1,2,3,4]).compareTo(
             new DiceRollingCommand(allDice:[1,2,3,4])) == 0
 
@@ -102,6 +108,13 @@ class DiceRollingCommandTest {
 
         assert new DiceRollingCommand(allDice:[1,2,3]).compareTo(
             new DiceRollingCommand(allDice:[1,2,3,4])) < 0
+    }
+
+    @Test
+    void compareDiceWithNumber() {
+        assert new DiceRollingCommand(allDice:[1,2,3,4]).compareTo(10) == 0
+        assert new DiceRollingCommand(allDice:[1,2,3,4]).compareTo(6) > 0
+        assert new DiceRollingCommand(allDice:[1,2,3]).compareTo(10) < 0
     }
 
     @Test
