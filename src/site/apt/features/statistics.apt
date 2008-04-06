@@ -99,7 +99,7 @@ Statistical Calculations
  Let's say that the expression <<<6.d>>> returned <<<[1,3,2,4,6,1]>>>. Then,
  the mode is <<<1>>>.
 
- A last example:
+ Another example:
 
 +--------+
 5.d.mode
@@ -107,3 +107,7 @@ Statistical Calculations
 
  Let's say that the expression <<<5.d>>> returned <<<[1,3,1,2,3]>>>. Then,
  the mode is <<<[1,3]>>>.
+ 
+ Finally, don't forget that sometimes we can't find the mode for a given
+ set of dice. Using the last example again, if the expression <<<5.d>>>
+ returned <<<[1,2,3,4,5]>>>, then the mode is <<<[]>>>.

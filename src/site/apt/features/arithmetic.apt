@@ -223,17 +223,16 @@ Dice Arithmetic
 7.d10 < 5.d12
 +--------------+
 
- You <<cannot>> mix dice rolling commands with <<<Number>>>s. To perform
- comparisons between objects of those types, you must convert the dice to a
- <<<Number>>> first.
+ You can also compare dice rolling commands with <<<Number>>>s, but the
+ inverse <<is not true>>. To illustrate this, both scripts below tests whether
+ the sum of ten six-sided dice is greater or equals to <<<45>>>:
 
- Both scripts below tests whether the sum of ten six-sided dice is greater or
- equals to <<<45>>>:
-
-+---------------+
-10.d6.sum >= 45
-45 < 10.d6.sum
-+---------------+
++-----------------------------+
+10.d6 >= 45     // valid
+10.d6.sum >= 45 // valid
+45 < 10.d6      // not valid!
+45 < 10.d6.sum  // valid
++-----------------------------+
 
  But, what if you want to check whether two dice contains the <<same>>
  results regardless its order? In this case, you can use the <<<same_as()>>>
