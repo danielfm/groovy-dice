@@ -29,6 +29,12 @@ class DiceArithmeticPlugin {
     /**
      * This closure adds new methods to the API. Examples: <p/>
      * <pre>
+     * 3.d + 3.d          // [1,3,5], [2,4,6] -> Sides: 6 , Dice: [1,3,5,2,4,6] , Sum: 21
+     * 3.d - 3.d          // [1,3,5], [2,4,6] -> Sides: 6 , Dice: [1,3,5,-2,-4,-6] , Sum: 3
+     * 3.d * 3.d          // [1,3,5], [2,4,6] -> 108
+     * 3.d / 3.d          // [1,3,5], [2,4,6] -> 0.75
+     * 3.d ** 3.d         // [1,3,5], [2,4,6] -> 282429536481
+     * 3.d % 3.d          // [1,3,5], [2,4,6] -> 9
      * 3.d + 5            // [1,3,5] -> Sides: 6 , Dice: [1,3,5,5] , Sum: 14
      * 3.d - 5            // [1,3,5] -> Sides: 6 , Dice: [1,3,5,-5] , Sum: 4
      * 3.d * 5            // [1,3,5] -> 45
@@ -36,8 +42,8 @@ class DiceArithmeticPlugin {
      * 3.d ** 5           // [1,3,5] -> 59049
      * 3.d % 5            // [1,3,5] -> 4
      * -3.d               // [1,3,5] -> Sides: 6 , Dice: [-1,-3,-5] , Sum: -9
-     * 5 + 3.d            // [1,3,5] -> Sides: 6 , Dice: [1,3,5,5] , Sum: 14
-     * 5 - 3.d            // [1,3,5] -> Sides: 6 , Dice: [-1,-3,-5,5] , Sum: -4
+     * 5 + 3.d            // [1,3,5] -> 14
+     * 5 - 3.d            // [1,3,5] -> -4
      * 5 * 3.d            // [1,3,5] -> 45
      * 5 / 3.d            // [1,3,5] -> 0.555556
      * 5 ** 3.d           // [1,3,5] -> 1953125
@@ -49,7 +55,7 @@ class DiceArithmeticPlugin {
      */
     def dynamicMethods = { api ->
 
-        /* 1.d + 5 */
+        /* 1.d + 5, 3.d + 3.d */
         api.add(method:'plus') { dice, other ->
             if (api.isCommand(other)) {
                 return dice.derive(dice.allDice + other.allDice,
@@ -60,7 +66,7 @@ class DiceArithmeticPlugin {
             }
         }
 
-        /* 1.d - 5 */
+        /* 1.d - 5, 3.d - 3.d */
         api.add(method:'minus') { dice, other ->
             if (api.isCommand(other)) {
                 return dice.derive(dice.allDice + -other.allDice)
@@ -70,7 +76,7 @@ class DiceArithmeticPlugin {
             }
         }
 
-        /* 1.d * 5 */
+        /* 1.d * 5, 3.d * 3.d */
         api.add(method:'multiply') { dice, other ->
             if (api.isCommand(other)) {
                 return dice.allDice.sum() * other.allDice.sum()
@@ -80,14 +86,14 @@ class DiceArithmeticPlugin {
             }
         }
 
-        /* 1.d / 5 */
+        /* 1.d / 5, 3.d / 3.d */
         api.add(method:'div') { dice, other ->
             if (api.isCommand(other) || api.isNumber(other)) {
                 return dice.allDice.sum() / other
             }
         }
 
-        /* 1.d ** 5 */
+        /* 1.d ** 5, 3.d ** 3.d */
         api.add(method:'power') { dice, other ->
             if (api.isCommand(other)) {
                 return dice.allDice.sum() ** other.allDice.sum()
@@ -97,7 +103,7 @@ class DiceArithmeticPlugin {
             }
         }
 
-        /* 1.d % 5 */
+        /* 1.d % 5, 3.d % 3.d */
         api.add(method:'mod') { dice, other ->
             if (api.isCommand(other)) {
                 return dice.allDice.sum() % other.allDice.sum()
