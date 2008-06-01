@@ -17,7 +17,7 @@ package net.sf.groovydice
 
 /**
  * This class provides the basic dice rolling functionality and methods to
- * allow dice rolling commands to be compared and cloned.
+ * allow dice rolling commands to be compared and derived.
  *
  * @author <a href="mailto:daniel_martins@users.sourceforge.net">Daniel F.
  * Martins</a>
