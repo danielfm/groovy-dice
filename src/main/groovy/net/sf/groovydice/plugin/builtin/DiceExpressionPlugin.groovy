@@ -65,7 +65,7 @@ class DiceExpressionPlugin {
 
         /* 1.d(5) */
         api.add(method:/(d|D)/, to:api.numberClasses) { number, sides ->
-            sides = sides ?: 6
+            sides = sides ? sides : 6
 
             if (api.isNumber(sides)) {
                 return rollCommand(sides.toFloat() as int, number)
