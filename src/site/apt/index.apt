@@ -47,8 +47,8 @@ A groovier way to roll dice
 +---------------------------------------+
 class FunnyPlugin {
     def dynamicMethods = { api ->
-        api.add(method:'laugh', to:api.numberClasses) { times ->
-            'Mu' + ('Ah' * times) + '!!'
+        api.add(method:'dx', to:api.numberClasses) { times ->
+            "Roll ${times} X-sided dice"
         }
     }
 }
@@ -56,7 +56,7 @@ class FunnyPlugin {
 /* after Groovy Dice initialization... */
 
 2.d10 + 4.d // prints "Sides: 10 , Dice: [10, 10, 6, 6, 6, 6] , Sum: 44"
-10.laugh    // prints "MuAhAhAhAhAhAhAhAhAhAh!!"
+10.dx    // prints "Roll 10 X-sided dice"
 +---------------------------------------+
 
 * It's free

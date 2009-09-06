@@ -26,10 +26,10 @@ Dice Filtering
 
  In the first script we are rolling five six-sided dice and filtering all dice
  equals to <<<2>>>. The second script rolls ten twelve-sided dice and filter
- all dice equals to <<<1>>>, <<<3>>>, <<<5>>> or <<<7>>>. The third script
- rolls five twenty-sided dice and filter all dice between <<<1>>> and <<<4>>>
- (inclusive). Finally, the last script rolls five twenty-sided dice and filter
- all dice equals to any dice in two ten-sided dice.
+ all dice equals to <<<1>>>, <<<3>>>, <<<5>>>, <<<7>>>, <<9>> or <<11>>. The
+ third script rolls five twenty-sided dice and filter all dice between <<<1>>>
+ and <<<4>>> (inclusive). Finally, the last script rolls five twenty-sided dice
+ and filter all dice equals to any dice in two ten-sided dice.
 
  Although these scripts work fine, we can do things in a more <idiomatic> way:
 
