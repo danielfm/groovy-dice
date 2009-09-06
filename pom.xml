@@ -34,14 +34,12 @@
     <inceptionYear>2008</inceptionYear>
     <organization>
         <name>Daniel F. Martins</name>
-        <url>http://danielfmartins.com</url>
     </organization>
 
     <developers>
         <developer>
             <name>Daniel F. Martins</name>
             <email>daniel_martins at users . sourceforge . net</email>
-            <url>http://danielfmartins.com/</url>
             <roles>
                 <role>Lead developer</role>
             </roles>
