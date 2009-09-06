@@ -1,12 +1,8 @@
 Groovy Dice - A groovier way to roll dice!
 ******************************************
 
-Version 1.4 - Mon Apr 7, 2008
-
 This software is distributed under the terms of the Apache v2.0 License
 (see LICENSE.txt).
-
-
 
 
 
@@ -19,8 +15,6 @@ CONTENT OF THIS FILE
 4. Brought to you by...
 5. "Thank you" list
 6. More information
-
-
 
 
 
@@ -51,7 +45,7 @@ Here goes a list that shows some Groovy Dice's features:
     - 7.d10 + 5.to_every_die
     - 7.d10 * 2.to_each_die_if{it in 1..3}
 
-+ Extension points that allows the user to extend or replace the
++ Simple plugin architecture that allows the user to extend or even replace the
   built-in API.
 
 
@@ -82,11 +76,11 @@ E-mail: daniel_martins at users.sourceforge.net
 5. "Thank you" list
 *******************
 
-This project wouldn't be possible without G2One Inc. and all Groovy
+This project wouldn't be possible without SpringSource Inc. and all Groovy
 contributors' great work.
 
 http://groovy.codehaus.org
-http://g2one.com
+http://springsource.com
 
 This project is built by Maven, which is a very good tool to handle the
 project dependencies and reports.
