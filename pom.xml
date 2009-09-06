@@ -25,7 +25,7 @@
     <name>Groovy Dice</name>
     <groupId>net.sf.groovydice</groupId>
     <artifactId>groovydice</artifactId>
-    <packaging>groovy-jar</packaging>
+    <packaging>jar</packaging>
     <version>1.4</version>
     <description>
         Groovy Dice is an advanced Groovy-based dice rolling API
@@ -75,15 +75,18 @@
         </url>
     </scm>
 
-    <!-- needed for javax.script -->
     <repositories>
+        <repository>
+            <id>default</id>
+            <name>Default repository</name>
+            <url>http://repo1.maven.org/maven2</url>
+        </repository>
+
+        <!-- needed for javax.script -->
         <repository>
             <id>mule-deps</id>
             <name>Mule Dependencies</name>
             <url>http://dist.codehaus.org/mule/dependencies/maven2</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
         </repository>
     </repositories>
 
@@ -112,9 +115,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>1.5.0</version>
+            <groupId>org.codehaus.groovy.maven.runtime</groupId>
+            <artifactId>gmaven-runtime-1.6</artifactId>
+            <version>1.0</version>
         </dependency>
 
         <!-- file added to the distribution ZIP, but not required in runtime/compilation -->
@@ -135,6 +138,11 @@
         </dependency>
     </dependencies>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -150,9 +158,19 @@
                 <artifactId>maven-jar-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo.groovy</groupId>
-                <artifactId>groovy-maven-plugin</artifactId>
-                <extensions>true</extensions>
+                <groupId>org.codehaus.groovy.maven</groupId>
+                <artifactId>gmaven-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generateStubs</goal>
+                            <goal>compile</goal>
+                            <goal>generateTestStubs</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
