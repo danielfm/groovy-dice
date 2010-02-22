@@ -77,9 +77,9 @@
 
     <repositories>
         <repository>
-            <id>default</id>
-            <name>Default repository</name>
-            <url>http://repo1.maven.org/maven2</url>
+            <id>maven2-repository.dev.java.net</id>
+            <name>Java.net Repository for Maven</name>
+            <url>http://download.java.net/maven/2/</url>
         </repository>
 
         <!-- needed for javax.script -->
@@ -93,17 +93,9 @@
     <!-- Groovy Dice website -->
     <distributionManagement>
         <repository>
-            <id>sourceforge.net</id>
-            <url>
-                scp://shell.sourceforge.net/home/groups/g/gr/groovydice/htdocs/m2repo
-            </url>
+            <id>java.net-m2-repository</id>
+            <url>java-net:/maven2-repository/trunk/repository</url>
         </repository>
-        <snapshotRepository>
-            <id>sourceforge.net</id>
-            <url>
-                scp://shell.sourceforge.net/home/groups/g/gr/groovydice/htdocs/m2snapshot
-            </url>
-        </snapshotRepository>
         <site>
             <id>sourceforge.net</id>
             <name>Groovy Dice website</name>
@@ -118,22 +110,21 @@
             <groupId>org.codehaus.gmaven.runtime</groupId>
             <artifactId>gmaven-runtime-1.7</artifactId>
             <version>1.2</version>
+            <scope>compile</scope>
         </dependency>
 
-        <!-- file added to the distribution ZIP, but not required in runtime/compilation -->
         <dependency>
             <groupId>javax.script</groupId>
             <artifactId>groovy-engine</artifactId>
             <version>1.1</version>
             <classifier>jdk14</classifier>
-            <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.4</version>
+            <version>4.7</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -148,16 +139,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.0.2</version>
+                <version>2.1</version>
                 <configuration>
                     <source>1.5</source>
                     <target>1.5</target>
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.groovy.maven</groupId>
+                <groupId>org.codehaus.gmaven</groupId>
                 <artifactId>gmaven-plugin</artifactId>
-                <version>1.0</version>
+                <version>1.2</version>
                 <executions>
                     <execution>
                         <goals>
@@ -199,6 +190,13 @@
                 </configuration>
             </plugin>
         </plugins>
+        <extensions>
+            <extension>
+                <groupId>org.jvnet.wagon-svn</groupId>
+                <artifactId>wagon-svn</artifactId>
+                <version>RELEASE</version>
+            </extension>
+        </extensions>
     </build>
 
     <reporting>
@@ -216,7 +214,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.6</version>
+                <version>2.6.1</version>
                 <reportSets>
                     <reportSet>
                         <reports>
