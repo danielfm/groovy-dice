@@ -3,7 +3,7 @@
 
 Download
 
- <<Groovy Dice 1.4>> is the latest official stable release.
+ <<Groovy Dice 1.4.1>> is the latest official stable release.
 
  Groovy Dice is available for
  {{{http://sourceforge.net/project/showfiles.php?group_id=213311}download}} at
@@ -30,7 +30,7 @@ Download
     <dependency>
         <groupId>net.sf.groovydice</groupId>
         <artifactId>groovydice</artifactId>
-        <version>1.4</version>
+        <version>1.4.1</version>
     </dependency>
 </dependencies>
 +-----------------------------------------------------------+

@@ -68,7 +68,7 @@ class GroovyDiceAPI {
 
             /* call the closure */
             result = entry.logic.call(
-                  args.size() > 1 ? args as Object[] : args[0])
+                  args.size() > 1 ? args : args[0])
 
             if (result != null) {
                 break // was able to handle the call
